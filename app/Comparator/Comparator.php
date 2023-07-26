@@ -1,14 +1,15 @@
 <?php 
 
-namespace App\Compartor;
+namespace App\Comparator;
 
-class Compartor{
+class Comparator
+{
 
 
     public function equal($a , $b)
     {
         return $a == $b;
     }
-   
+
    
 }
