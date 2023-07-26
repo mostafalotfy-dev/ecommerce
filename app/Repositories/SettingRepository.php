@@ -17,8 +17,18 @@ class SettingRepository extends Repository{
     }
     public function setKey($key,$value)
     {
-        return $this->where("key",$key)->firstOrFail()?->update([
+       return  $this->insert([
+            "key"=>$key,
             "value"=>$value
+        ]);
+    }
+    public function update($key,$value)
+    {
+        $this
+        ->where("key",$key)->first()
+        ->updateOrCreate([
+            "key"=>$key,
+            "value",$value
         ]);
     }
 }

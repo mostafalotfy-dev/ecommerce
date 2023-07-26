@@ -4,15 +4,13 @@ use App\Repositories\SettingRepository;
 
 function settings($key, $value = null)
 {
-    $settingsRepository = app(SettingRepository::class)->where("key", $key);
+    $settingsRepository = app(SettingRepository::class);
     if (!$value) {
 
-        return $settingsRepository->first();
+        return $settingsRepository->getByKey($value);
     }
 
-    $settingsRepository->update([
-        "value" => $value
-    ]);
+    $settingsRepository->updateKey($key,$value);
 
 
 }

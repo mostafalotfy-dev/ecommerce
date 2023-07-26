@@ -18,7 +18,7 @@ class CategoryRepository extends Repository
     }
     public function searchByCategoryId($id)
     {
-       return $this->where("category_id",$id);
+       return $this->where("category_id",$id)->first();
     }
    
 }
