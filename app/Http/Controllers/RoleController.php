@@ -13,10 +13,18 @@ class RoleController extends Controller
   
     public function __construct(public RoleRepository $roleRepository)
     {
+        $this->middleware("auth:admin");
+        $this->middleware("can:update-roles")->only("update","edit");
 
+        $this->middleware("can:create-roles")->only("create","store");
+        $this->middleware("can:view-roles")->only("index","show");
+        $this->middleware("can:delete-roles")->only("destroy");
+  
+        
     }
     public function index()
     {
+      
        return app(RoleDataTable::class)->render("roles.index");
 
     }

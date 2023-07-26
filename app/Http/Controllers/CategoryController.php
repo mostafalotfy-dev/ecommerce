@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\CategoryRepository;
+
 
 class CategoryController extends Controller
 {
-    public function __construct(public CategoryControllerRepository $CategoryControllerRepository)
+    public function __construct(public CategoryRepository $CategoryControllerRepository)
     {
 
     }

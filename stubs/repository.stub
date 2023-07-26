@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Repositories;
+
+
+class {{ className }}Repository extends Repository
+{
+    public function tableName(){
+        return {{ tableName }};
+    }
+    
+}

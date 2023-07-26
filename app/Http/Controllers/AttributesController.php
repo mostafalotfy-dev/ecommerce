@@ -6,8 +6,5 @@ use Illuminate\Http\Request;
 
 class AttributesController extends Controller
 {
-    public function __construct(public AttributesControllerRepository $AttributesControllerRepository)
-    {
-
-    }
+   
 }

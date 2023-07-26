@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\ProductRepository;
+
 
 class ProductController extends Controller
 {
-    public function __construct(public ProductControllerRepository $ProductControllerRepository)
+    public function __construct(public ProductRepository $ProductControllerRepository)
     {
 
     }

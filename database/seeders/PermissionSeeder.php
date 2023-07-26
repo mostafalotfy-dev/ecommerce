@@ -18,64 +18,40 @@ class PermissionSeeder extends Seeder
         \Schema::disableForeignKeyConstraints();
         Role::truncate();
         Permission::truncate();
-       $role =  Role::create([
-            "name_en"=>"Admin",
-            "name_ar"=>"ادمن",
-            "guard_name"=>"admin"
+        $role = Role::create([
+            "name" => "Admin",
+           
+            "guard_name" => "admin"
         ]);
-        $permission_en = [
-            "roles",
-            "products",
-            "categories",
-            "orders",
-            "images",
-            
-        ];
-        $permission_ar = [
-            "الأدوار",
-            "المنتجات",
-            "الأقسام",
-            "الطلبات",
-            "الصور",
-            
+        $permission_names = [
+            ["name_en" => "roles", "name_ar" => "الأدوار"],
+            ["name_en" => "products", "name_ar" => "المنتجات"],
+            ["name_en" => "categories", "name_ar" => "الأقسام"],
+            ["name_en" => "orders", "name_ar" => "الطلبات"],
+            ["name_en" => "images", "name_ar" => "الصور"],
         ];
         $permissions = [];
-        foreach($permission_en as $key => $keyword){
+        foreach (["create", "view", "update", "delete"] as $name) {
+            foreach ($permission_names as $key => $permission_name) {
+                $permissions["name_en"][] = $name . "-" . $permission_name["name_en"];
+            }
 
-            foreach(["create","view","update","delete"] as $permission)
-            {
-                $permissions[$key]["name_en"] = $keyword . " ".  $permission;
-            }
+        }
+
+        foreach ($permissions["name_en"] as $key => $permission) {
+            $p = new Permission([
+                "name" => $permission,
                
-        }
-        foreach($permission_ar as $key => $keyword)
-        {
-            foreach(["إنشاء","عرض", "تحديث", "مسح"] as $permission)
-            {
-                $permissions[$key]["name_ar"] = $keyword . " ".  $permission;
-            }
-        }
-        foreach ($permissions as $p)
-        {
-            $perm = Permission::create([
-                "name_en"=>$p["name_en"],
-                "name_ar"=>$p["name_ar"],
-                "guard_name"=>"admin"
             ]);
-            $role->givePermissionTo($perm);
+            $p->save();
+            $role->givePermissionTo($p);
         }
-        
+
+
+
         Admin::find(1)->assignRole($role);
         \Schema::enableForeignKeyConstraints();
+
     }
-    protected function addPermission($permission_ar,$permission_en,$role,array $permissionTypeArr,$lang)
-    {
-        foreach($permission_en as $permission)
-        {
-            foreach($permissionTypeArr as $keyword )
-            {
-                $role->givePermissionTo(Permission::create(["name_en"=>$keyword . " " . $permission,""]));
-            }
-        }
-    }
+
 }

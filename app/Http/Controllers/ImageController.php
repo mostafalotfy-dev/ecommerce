@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\ImageRepository;
 
 class ImageController extends Controller
 {
-    public function __construct(public ImageControllerRepository $ImageControllerRepository)
+    public function __construct(public ImageRepository $ImageControllerRepository)
     {
 
     }

@@ -3,9 +3,20 @@
 namespace App\Repositories;
 
 
-class RoleRepository extends Repository
+class ProductRepository extends Repository
 {
+    protected $searchableFields = [
+        "name_en",
+        "name_ar",
+        "price",
+        "description",
+        "discount",
+        "in_stock",
+        "stock_count",
+        
+    ];
     public function tableName(){
         return "prodcuts";
     }
+    
 }

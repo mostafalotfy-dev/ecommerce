@@ -22,7 +22,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
     public function username()
     {
-        return "mobile";
+        return "phone_number";
     }
     /**
      * Where to redirect users after login.
@@ -38,6 +38,10 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+    }
+    public function guard()
+    {
+        return auth("admin");
     }
 }
