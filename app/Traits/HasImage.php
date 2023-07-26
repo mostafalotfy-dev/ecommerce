@@ -7,15 +7,7 @@ trait HasImage {
     
     protected string $imagePath;
     protected string $imageName;
-    public function __construct(string $imageName,string $imagePath)
-    {
-        
-        if(request()->file($imageName))
-        {
-            $this->imageName = $imageName;
-            $this->imagePath = $imagePath;
-        }
-    }
+   
     public function add(&$input)
     {
         if(isset($input[$this->imageName]))

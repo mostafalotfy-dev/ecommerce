@@ -34,4 +34,8 @@ class AppFactory {
     {
         return app(Comparator::class);
     }
+    public function product_info()
+    {
+        return app(ProductInfoRepository::class);
+    }
 }
