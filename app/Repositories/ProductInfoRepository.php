@@ -1,15 +1,16 @@
-<?php 
+<?php
 
 
 namespace App\Repositories;
+
 use App\Repositories\Repository;
 
 
-class ProductInfo extends Repository
+class ProductInfoRepository extends Repository
 {
 
-        public function tableName()
-        {
-            return "products_infos";
-        }
+    public function tableName(): string
+    {
+        return "products_infos";
+    }
 }

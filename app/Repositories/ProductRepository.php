@@ -13,10 +13,11 @@ class ProductRepository extends Repository
         "discount",
         "in_stock",
         "stock_count",
-        
+
     ];
-    public function tableName(){
+    public function tableName(): string
+    {
         return "prodcuts";
     }
-    
+
 }

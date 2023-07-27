@@ -1,62 +1,66 @@
-<?php 
+<?php
 
 
 namespace App\Repositories;
+
 use DB;
-abstract class Repository {
-    abstract function tableName();
- 
+
+abstract class Repository
+{
+    abstract function tableName() :string;
+
 
     protected function table()
     {
-        return  DB::table($this->tableName());
+        return DB::table($this->tableName());
     }
-    public function __call($name,$args )
+
+    public function __call($name, $args)
     {
-    
-            return $this->table()->$name(...$args);
-    
-      
+       return $this->table()->$name(...$args);
     }
+
     public function db()
     {
         return app(DB::class);
     }
+
     public function transaction(\Closure $cb)
     {
         $this->db()->beginTransaction();
-        $result  = $cb($this->table());
-        
+        $result = $cb($this->table());
+
         $this->commitIf($result);
         $this->rollbackIf($result);
     }
+
     public function commitIf($a)
     {
-        if($a)
-        {
+        if ($a) {
             $this->db()->commit();
         }
     }
+
     public function rollbackIf($a)
     {
-        if(!$a)
-        {
+        if (!$a) {
             $this->db()->rollBack();
         }
     }
+
     public function find($id)
     {
-        return $this->where("id",$id)->first();
+        return $this->where("id", $id)->first();
     }
-   public function search($keyword)
-   {
-    $result =null;
-    
-    foreach($this->searchableFields as $searchableField)
+
+    public function search($keyword)
     {
-        echo $searchableField;
-         $result =  $result ? $result->orWhere($searchableField,"LIKE","%{$keyword}%") : $this->where($searchableField,"Like","%{$keyword}%");
+        $result = $this;
+
+        foreach ($this->searchableFields as $searchableField) {
+
+            $result = $result->orWhere($searchableField, "LIKE", "%{$keyword}%") ;
+        }
+        return $result->cursor();
     }
-    return $result->get();
-   }
 }

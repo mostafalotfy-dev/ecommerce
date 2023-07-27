@@ -4,12 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laratrust\Traits\HasRolesAndPermissions;
 
 class Admin extends Authenticatable
 {
-    use HasFactory,HasRolesAndPermissions;
+    use HasFactory;
     protected $guarded = ["_token"];
-    protected array $guard_name = ['api', 'admin'];
+    public function roles(): MorphToMany
+    {
+        return $this->morphToMany(Role::class,"user","role_user","role_id","user_id");
+    }
+    protected function scopeHasRole($query)
+    {
+        return $query->join("role_user","roles.id","user_role.role_id")
+            ->join("permission_role","permission_role.role_id","roles.id");
+    }
+
 }

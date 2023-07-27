@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Repositories;
 use App\Traits\HasSelfJoin;
 
@@ -10,9 +10,9 @@ class CategoryRepository extends Repository
         "name_en",
         "name_ar",
         "category_id",
-        
+
     ];
-    public function tableName()
+    public function tableName(): string
     {
         return "categories";
     }
@@ -20,6 +20,6 @@ class CategoryRepository extends Repository
     {
        return $this->where("category_id",$id)->first();
     }
-   
+
 }
 

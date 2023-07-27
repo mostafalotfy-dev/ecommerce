@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
@@ -7,7 +7,7 @@ class SettingRepository extends Repository{
         "key",
         "value"
     ];
-    public function tableName()
+    public function tableName(): string
     {
         return "settings";
     }
@@ -31,4 +31,6 @@ class SettingRepository extends Repository{
             "value",$value
         ]);
     }
+
+
 }

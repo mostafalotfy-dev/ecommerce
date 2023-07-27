@@ -10,8 +10,8 @@ class BannerRepository extends Repository
         "alt",
         "description",
     ];
-    public function tableName(){
+    public function tableName():string{
         return "banners";
     }
-    
+
 }

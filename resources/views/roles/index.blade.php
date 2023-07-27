@@ -1,15 +1,14 @@
 @extends("layouts.app")
 
-
+@section("create_button")
+    <a class="btn btn-primary m-1" href="{{url("roles/create")}}">{{lang("crud.actions.create",defaults: "Create")}}</a>
+@endsection
+@yield("title",lang("models/roles.plural"))
+@section("card_title",__("models/roles.plural"))
 @section("content")
-<div class="container">
-    <div class="card card-success">
-        <div class="card-header">@lang('models/roles.fields.title')</div>
-        <div class="card-body">
-            {{ $dataTable->table() }}
-        </div>
-    </div>
-</div>
+
+    {{ $dataTable->table() }}
+
 @endsection
 
 @push("scripts")

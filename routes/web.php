@@ -3,6 +3,7 @@
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('/', function () {
+//    return view('home');
+//});
 
 Auth::routes();
 Route::group(["middleware"=>["auth:admin"]],fn() => Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'));
-
-Route::resource("roles",RoleController::class);
+Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:admin"]], function() {
+    Route::resource("roles", RoleController::class);
+});
 
 

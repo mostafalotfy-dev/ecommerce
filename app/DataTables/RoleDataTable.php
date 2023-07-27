@@ -24,8 +24,9 @@ class RoleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
         return (new QueryDataTable($query))
-            ->addColumn('action', 'role.action')
-            ->setRowId('id');
+            ->setRowId('id')
+            ->addColumn('action', 'role.action');
+
     }
 
     /**
@@ -66,12 +67,13 @@ class RoleDataTable extends DataTable
         return [
             Column::computed('action')
                   ->exportable(false)
-                  ->printable(false)
+                  ->printable(true)
                   ->width(60)
                   ->addClass('text-center'),
             Column::make('id'),
             Column::make('name_en'),
             Column::make('name_ar'),
+            Column::make('display_name'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];

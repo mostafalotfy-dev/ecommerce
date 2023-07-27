@@ -10,7 +10,8 @@ class RoleRepository extends Repository
         "name_ar",
         "guard_name",
     ];
-    public function tableName(){
+    public function tableName(): string
+    {
         return "roles";
     }
 }

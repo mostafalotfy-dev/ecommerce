@@ -10,21 +10,21 @@ use App\Repositories\RoleRepository;
 
 class RoleController extends Controller
 {
-  
+
     public function __construct(public RoleRepository $roleRepository)
     {
         $this->middleware("auth:admin");
-        $this->middleware("can:update-roles")->only("update","edit");
+        $this->middleware("permission:update-roles")->only("update","edit");
 
-        $this->middleware("can:create-roles")->only("create","store");
-        $this->middleware("can:view-roles")->only("index","show");
-        $this->middleware("can:delete-roles")->only("destroy");
-  
-        
+        $this->middleware("permission:create-roles")->only("create","store");
+        $this->middleware("permission:view-roles")->only("index","show");
+        $this->middleware("permission:delete-roles")->only("destroy");
+
+
     }
     public function index()
     {
-      
+
        return app(RoleDataTable::class)->render("roles.index");
 
     }
@@ -42,6 +42,10 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         return view("roles.show",compact("role"));
+    }
+    public function edit(Role $role)
+    {
+        return view("roles.edit",compact("role"));
     }
     public function destroy(Role $role)
     {

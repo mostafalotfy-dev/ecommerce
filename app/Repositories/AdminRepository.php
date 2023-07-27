@@ -13,7 +13,7 @@ class AdminRepository extends Repository{
         "profile_image",
 
     ];
-    public function tableName()
+    public function tableName(): string
     {
         return "admins";
     }
