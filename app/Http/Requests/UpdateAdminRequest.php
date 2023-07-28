@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Repositories\AdminRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateImageRequest extends FormRequest
+class UpdateAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,8 +22,9 @@ class CreateImageRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $rules= AdminRepository::$rules;
+        $rules["phone_number"] .= ",". request("admin");
+        $rules["email"] .= ",". request("admin");
+        return $rules;
     }
 }

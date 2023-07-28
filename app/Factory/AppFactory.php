@@ -5,7 +5,7 @@ namespace App\Factory;
 use App\Repositories\AdminRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoryRepository;
-
+use App\Repositories\ImageRepository;
 use App\Repositories\LangRepository;
 use App\Repositories\ProductInfoRepository;
 use App\Repositories\RoleRepository;
@@ -48,5 +48,9 @@ class AppFactory {
     public function  settings()
     {
         return app(SettingRepository::class);
+    }
+    public function image()
+    {
+        return app(ImageRepository::class);
     }
 }

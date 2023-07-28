@@ -6,12 +6,14 @@ namespace App\Repositories;
 
 use App\Comparator\Comparator;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class  LangRepository extends Repository {
 
     protected Comparator $comparator;
-
+    static $rules = [
+        "key"=> "required|string|max:255",
+        "value"=>"requierd|string|max:255"
+    ];
     public function  __construct()
     {
         $this->comparator = new Comparator($this);

@@ -7,14 +7,16 @@ use App\Traits\HasImage;
 
 class ImageRepository extends Repository{
     use HasImage;
-    public function __construct(string $imageName,string $imagePath)
+  
+    public function setImageName($name)
     {
-
-        if(request()->file($imageName))
-        {
-            $this->imageName = $imageName;
-            $this->imagePath = $imagePath;
-        }
+        $this->imageName = $name;
+        return $this;
+    }
+    public function setImagePath($path)
+    {
+        $this->imagePath = $path;
+        return $this;
     }
     public function tableName():string
     {

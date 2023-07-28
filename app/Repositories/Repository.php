@@ -4,11 +4,12 @@
 namespace App\Repositories;
 
 use DB;
+use Illuminate\Foundation\Http\FormRequest;
 
 abstract class Repository
 {
     abstract function tableName() :string;
-
+    
 
     protected function table()
     {

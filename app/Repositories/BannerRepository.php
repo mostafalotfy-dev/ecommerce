@@ -10,6 +10,10 @@ class BannerRepository extends Repository
         "alt",
         "description",
     ];
+    static $rules = [
+        "alt"=>"nullable|string|max:255",
+        "description"=>"nullable|string",
+    ];
     public function tableName():string{
         return "banners";
     }
