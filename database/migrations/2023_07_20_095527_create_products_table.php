@@ -20,8 +20,12 @@ return new class extends Migration
             $table->integer("discount")->default(0);
             $table->boolean("in_stock")->default(1);
             $table->integer("stock_count")->default(0);
+            $table->text("keywords");
+           
+            $table->integer("views")->default(0);
             
             $table->timestamps();
+            $table->engine = "myisam";
         });
     }
 

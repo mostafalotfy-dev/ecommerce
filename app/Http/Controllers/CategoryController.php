@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CategoryRepository;
-
+use App\DataTables\CategoryDatatables;
 
 class CategoryController extends Controller
 {
-    public function __construct(public CategoryRepository $CategoryControllerRepository)
+    public function index()
     {
+        return app(CategoryDatatables::class)->render("categories.index");
 
     }
 }

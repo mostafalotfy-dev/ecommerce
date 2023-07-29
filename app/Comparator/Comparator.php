@@ -6,9 +6,11 @@ use App\Repositories\Repository;
 
 class Comparator
 {
+    private Repository $repository;
 
-    public function __construct(private Repository $repository)
+    public function __construct( Repository $repository)
     {
+        $this->repository = $repository;
     }
 
     public function equal($a, $b)
@@ -21,8 +23,21 @@ class Comparator
         json_decode($text);
         return json_last_error() === 0;
     }
-    public function exists($key, $value)
+    public function exists($keyName, $key)
     {
-       return $this->repository->where($key,$value)->count() > 1;
+       return $this->repository->where($keyName,$key)->count() > 0;
+    }
+    public function isProduction()
+    {
+        return env("APP_DEBUG") == false && env("APP_ENV") == "production";
+    }
+    
+    public function when($bool ,\Closure $cb)
+    
+    {
+        if($bool)
+        {
+            return $cb($this->repository); 
+        }
     }
 }

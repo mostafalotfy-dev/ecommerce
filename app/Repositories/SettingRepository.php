@@ -2,7 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Traits\Singleton;
+
 class SettingRepository extends Repository{
+    use Singleton;
     protected $searchableField = [
         "key",
         "value"

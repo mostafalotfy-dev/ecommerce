@@ -196,6 +196,7 @@
                              <li class="breadcrumb-item"><a href="{{url('/admin')}}">{{lang("home")}}</a></li>
                         @php
                             $level_2 = lang(str(request()->route()->getName())->split("/\./")[0]);
+                         
                         @endphp
                             <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{str($level_2)->title()}}</a></li>
 
@@ -203,10 +204,10 @@
                             $breadcrumb  = str(request()->route()->uri);
 
                             $breadcrumb_text = match (true){
-                                $breadcrumb->contains("create") =>  "Create",
-                                $breadcrumb->endsWith("edit")  => "Edit",
-                                !!$breadcrumb->contains("show") => "Show",
-                                default => "Index"
+                                $breadcrumb->contains("create") =>  lang("Create"),
+                                $breadcrumb->endsWith("edit")  => lang("Edit"),
+                                !!$breadcrumb->contains("show") => lang("Show"),
+                                default => lang("Index")
                             };
 
                         @endphp
@@ -256,8 +257,9 @@
 <script src= {{url("plugins/overlayScrollbars/js/OverlayScrollbars.min.js")}}></script>
 <script src= {{url("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
 <script src= {{url("dist/js/adminlte.min.js")}}></script>
+<script src={{url("plugins/datatables/jquery.dataTables.min.js")}}></script>
 {{-- <script src= {{url("dist/js/pages/dashboard.js")}}></script> --}}
-
+@stack("scripts")
 
 {{-- <script src= {{url("js/demo.js")}}></script> --}}
 

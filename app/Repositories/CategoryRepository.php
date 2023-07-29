@@ -10,7 +10,9 @@ class CategoryRepository extends Repository
         "name_en",
         "name_ar",
         "category_id",
-
+    ];
+    static $rules = [
+        ""
     ];
     public function tableName(): string
     {

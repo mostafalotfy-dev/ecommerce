@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Mixins\LangMixin;
-use App\Repositories\LangRepository;
-use Illuminate\Support\Facades\Lang;
+use App\Comparator\Comparator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,7 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
-
+       
     }
 }

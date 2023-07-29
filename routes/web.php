@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Auth::routes();
 Route::group(["middleware"=>["auth:admin"]],fn() => Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'));
 Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:admin"]], function() {
     Route::resource("roles", RoleController::class);
+    Route::resource("category",CategoryController::class);
 });
 
 

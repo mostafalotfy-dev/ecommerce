@@ -15,14 +15,14 @@ class PermissionMiddleware
      */
     public function handle(Request $request, Closure $next,$permission): Response
     {
-        if(!auth("admin") ){
-            abort(403);
-        }
-
-        if(auth("admin") && !auth("admin")->user()->roles->where("name_en",$permission)->count() > 1)
-        {
-            abort(403);
-        }
+        // if(!auth("admin") ){
+        //     abort(403);
+        // }
+        // $role = auth("admin")->user()->role;
+        // if( $role->permissions()->where("name_en",$permission)->count() == 0)
+        // {
+        //     abort(403);
+        // }
         return $next($request);
     }
 }

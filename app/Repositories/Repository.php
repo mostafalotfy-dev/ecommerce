@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 use DB;
-use Illuminate\Foundation\Http\FormRequest;
+
 
 abstract class Repository
 {
@@ -51,9 +51,22 @@ abstract class Repository
 
     public function find($id)
     {
-        return $this->where("id", $id)->first();
+        return $this->where("id", $id);
     }
-
+    public function create($input)
+    {
+        $input = array_merge($input,[
+            "created_at"=>now()
+        ]);
+        $this->insert($input);
+    }
+    public function updateFields($input,$id)
+    { 
+        $input= array_merge($input,[
+            "updated_at"=>now()
+        ]);
+        $this->find($id)->update($input);
+    }
     public function search($keyword)
     {
         $result = $this;
@@ -64,4 +77,6 @@ abstract class Repository
         }
         return $result->cursor();
     }
+  
+    
 }

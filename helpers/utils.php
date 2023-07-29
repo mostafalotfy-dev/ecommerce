@@ -9,10 +9,7 @@ function settings($key, $value = null,$default = "")
 
         return $settingsRepository->getByKey($value)  ?: $default  ;
     }
-
     $settingsRepository->updateKey($key,$value);
-
-
 }
 
  function factory($name)
@@ -28,15 +25,19 @@ function image($name,$path)
 }
 function lang($key,$value = null,$langPrefix = null)
 {
-    if(!$langPrefix)
+    if(is_null($langPrefix))
     {
         $langPrefix = app()->getLocale();
         $key = $langPrefix. ".".$key;
     }
+    if(!factory("lang")->getCompare()->isProduction())
+    {
+        factory("lang")->set($key,$value);
+    }
     if(!$value)
     {
-
-        return factory("lang")->key($key)->value ??  $key;
+        return factory("lang")->key($key) ?: $key ;
     }
-    return factory("lang")->set($key, $value);
+     
+   
 }

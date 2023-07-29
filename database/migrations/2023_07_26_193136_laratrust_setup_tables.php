@@ -18,6 +18,7 @@ class LaratrustSetupTables extends Migration
             $table->bigIncrements('id');
             $table->string('name_en')->unique();
             $table->string('name_ar')->unique();
+            $table->unsignedBigInteger("admin_id")->foreign("id")->constrained()->cascadeOnDelete();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
@@ -33,17 +34,7 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
-        // Create table for associating roles to users and teams (Many To Many Polymorphic)
-        Schema::create('role_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('user_type');
-
-            $table->foreign('role_id')->references('id')->on('roles')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary(['user_id', 'role_id', 'user_type']);
-        });
+        
 
         // Create table for associating permissions to users (Many To Many Polymorphic)
         Schema::create('permission_user', function (Blueprint $table) {

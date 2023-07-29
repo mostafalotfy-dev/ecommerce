@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 
-@yield("title",lang("models/roles.plural"))
+@section("title",lang("models/roles.plural"))
 @section("card_title")
     @lang("models/roles.plural")
 @endsection

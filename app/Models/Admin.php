@@ -3,19 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
     use HasFactory;
     protected $guarded = ["_token"];
-    public function roles(): MorphToMany
+    public function role():HasOne
     {
-        return $this->morphToMany(Role::class,"user","role_user","role_id","user_id");
+        return $this->hasOne(Role::class);
     }
+
     protected function scopeHasRole($query)
     {
         return $query->join("role_user","roles.id","user_role.role_id")
