@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --force",
         "build": "vite build"
     },
     "devDependencies": {
@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "alpinejs": "^3.12.3",
         "jquery": "^3.7.0",
         "moment": "^2.29.4"
     }

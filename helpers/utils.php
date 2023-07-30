@@ -30,14 +30,13 @@ function lang($key,$value = null,$langPrefix = null)
         $langPrefix = app()->getLocale();
         $key = $langPrefix. ".".$key;
     }
-    if(!factory("lang")->getCompare()->isProduction())
-    {
+
         factory("lang")->set($key,$value);
-    }
+
     if(!$value)
     {
         return factory("lang")->key($key) ?? $key ;
     }
-     
-   
+
+
 }

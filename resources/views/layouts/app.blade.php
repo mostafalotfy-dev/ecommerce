@@ -161,7 +161,7 @@
             </div>
             <div class="info">
                 @auth("admin")
-                <a href="#" class="d-block">{{auth("admin")->user()->first_name}}</a>
+                    <a href="#" class="d-block">{{auth("admin")->user()->first_name}}</a>
                 @endauth
             </div>
         </div>
@@ -172,7 +172,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-               @include("layouts.menu")
+                @include("layouts.menu")
 
             </ul>
         </nav>
@@ -181,6 +181,36 @@
     <!-- /.sidebar -->
 </aside>
 <!-- Content Wrapper. Contains page content -->
+@hasSection("iframe")
+    <div class="content-wrapper iframe-mode" data-widget="iframe" data-loading-screen="750">
+        <!-- Content Header (Page header) -->
+
+        <div class="nav navbar navbar-expand navbar-white navbar-light border-bottom p-0">
+            <div class="nav-item dropdown">
+                <a class="nav-link bg-danger dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Close</a>
+                <div class="dropdown-menu mt-0">
+                    <a class="dropdown-item" href="#" data-widget="iframe-close" data-type="all">Close All</a>
+                    <a class="dropdown-item" href="#" data-widget="iframe-close" data-type="all-other">Close All Other</a>
+                </div>
+            </div>
+            <a class="nav-link bg-light" href="#" data-widget="iframe-scrollleft"><i class="fas fa-angle-double-left"></i></a>
+            <ul class="navbar-nav overflow-hidden" role="tablist"></ul>
+            <a class="nav-link bg-light" href="#" data-widget="iframe-scrollright"><i class="fas fa-angle-double-right"></i></a>
+            <a class="nav-link bg-light" href="#" data-widget="iframe-fullscreen"><i class="fas fa-expand"></i></a>
+        </div>
+        <div class="tab-content">
+            <div class="tab-empty">
+                <h2 class="display-4">No tab selected!</h2>
+            </div>
+            <div class="tab-loading">
+                <div>
+                    <h2 class="display-4">Tab is loading <i class="fa fa-sync fa-spin"></i></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+@else
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -196,7 +226,7 @@
                              <li class="breadcrumb-item"><a href="{{url('/admin')}}">{{lang("home")}}</a></li>
                         @php
                             $level_2 = lang(str(request()->route()->getName())->split("/\./")[0]);
-                         
+
                         @endphp
                             <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{str($level_2)->title()}}</a></li>
 
@@ -243,40 +273,7 @@
         </div>
     </section>
     <!-- /.content -->
+
 </div>
-
-<script src="{{url("jquery/jquery.min.js")}}"></script>
-<script src="{{url("moment/moment.min.js")}}"></script>
-
-<script src= {{url('plugins/bootstrap/js/bootstrap.bundle.js')}}></script>
-
-<script src= {{url("plugins/jquery-ui/jquery-ui.js")}}></script>
-<script src= {{url("plugins/chart.js/Chart.js")}}></script>
-
-<script src= {{url("plugins/daterangepicker/daterangepicker.js")}}></script>
-<script src= {{url("plugins/overlayScrollbars/js/OverlayScrollbars.min.js")}}></script>
-<script src= {{url("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
-<script src= {{url("dist/js/adminlte.min.js")}}></script>
-<script src={{url("plugins/datatables/jquery.dataTables.min.js")}}></script>
-{{-- <script src= {{url("dist/js/pages/dashboard.js")}}></script> --}}
-@stack("scripts")
-
-{{-- <script src= {{url("js/demo.js")}}></script> --}}
-
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-
-
-{{-- <!-- Sparkline -->
-<script src={{asset("plugins/sparklines/sparkline.js")}}></script> --}}
-
-
-
-
-
-
-
-</body>
-</html>
+@endif
+@include("layouts.footer")

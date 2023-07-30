@@ -23,11 +23,11 @@ class Comparator
         json_decode($text);
         return json_last_error() === 0;
     }
-    public function exists($keyName, $key)
+    public function exists($keyName, $key):bool
     {
-       return $this->repository->where($keyName,$key)->count() > 0;
+       return $this->repository->where($keyName,"LIKE","%$key%")->count() > 0;
     }
-    public function isProduction()
+    public function isProduction():bool
     {
         return env("APP_DEBUG") == false && env("APP_ENV") == "production";
     }
@@ -39,7 +39,7 @@ class Comparator
     {
         if($predicate)
         {
-            return $cb($this->repository); 
+            return $cb($this->repository);
         }
     }
 }
