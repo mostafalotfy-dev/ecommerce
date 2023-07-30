@@ -19,9 +19,9 @@ return new class extends Migration
             $table->text("description")->default("");
             $table->integer("discount")->default(0);
             $table->boolean("in_stock")->default(1);
-            $table->integer("stock_count")->default(0);
+            $table->integer("quantity")->default(0);
             $table->text("keywords");
-           
+            
             $table->integer("views")->default(0);
             
             $table->timestamps();
