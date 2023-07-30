@@ -13,4 +13,10 @@ class AjaxController extends Controller
 
       ],204);
     }
+    public function get_language()
+    {
+        return response()->json([
+            "data"=>factory("lang")->paginate()
+        ]);
+    }
 }
