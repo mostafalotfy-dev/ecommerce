@@ -31,11 +31,13 @@ class Comparator
     {
         return env("APP_DEBUG") == false && env("APP_ENV") == "production";
     }
-    
-    public function when($bool ,\Closure $cb)
-    
+    public function unless(bool $predicate,\Closure $cb)
     {
-        if($bool)
+        return $this->when(!$predicate,$cb);
+    }
+    public function when(bool $predicate ,\Closure $cb)
+    {
+        if($predicate)
         {
             return $cb($this->repository); 
         }

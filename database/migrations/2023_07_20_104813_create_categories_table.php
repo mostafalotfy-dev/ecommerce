@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer("newIndex")->default(0);
             $table->string("draggable_class_name")->default(".item");
             
-            $table->unsignedBigInteger("category_id")->foreign("id")->references("id")->on("categories")->cascadeOnDelete();
+            $table->unsignedBigInteger("category_id")->foreign("id")->references("id")->on("categories")->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }

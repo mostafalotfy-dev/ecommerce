@@ -36,7 +36,7 @@ function lang($key,$value = null,$langPrefix = null)
     }
     if(!$value)
     {
-        return factory("lang")->key($key) ?: $key ;
+        return factory("lang")->key($key) ?? $key ;
     }
      
    

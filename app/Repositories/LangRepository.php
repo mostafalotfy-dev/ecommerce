@@ -34,40 +34,35 @@ class  LangRepository extends Repository {
     public function key($key)
     {
     
-;
-       
        if($this->comparator->isProduction())
             $keys = cache()->rememberForever("language",fn()=>$this->data);
         else{
             $keys = $this->data;
         }        
-        return $keys->pluck("value","key")[$key];
+        return key_exists($key,$keys->pluck("value","key")->toArray()) ? $keys->pluck("value","key")[$key]: null;
        
        
     }
     public function setKey($key)
     {
         
-        if(!$this->comparator->exists("key",$key))
-        {
-            $this->insert([
-                "key"=>$key
-            ]);
-        }
+        $this->comparator->unless(
+            $this->comparator->exists("key",$key)
+            ,fn($repo)=>$repo
+                        ->insert([
+                            "key"=>$key,
+                        ]));
     }
     public function set($key,$value){
 
       
         
-        return !$this->comparator
-        ->exists("key",$key)  
-        ? $this->insert([
+        return $this->comparator->when(!$this->comparator->isProduction() && !$this->comparator->exists("key",$key),
+            fn($repo)=> $repo->insert([
                 "key"=>$key,
                 "value"=>$value,
                 "created_at"=>now()
-            ])
-            : null
-        ;
+            ])) ;
     }
    public function getCompare()
    {
