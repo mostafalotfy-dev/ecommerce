@@ -6,15 +6,26 @@ document.addEventListener("alpine:init", () => {
                 loading : false,
                 page_number:1,
                 value:"",
+
                 length:0,
+                send(id){
+                   const that = this
+
+                    $.post("http://"+location.host + "/api/ajax/language",{
+                        "key":id,
+                        value: that.value
+                    });
+
+                },
                 search(){
                     const  that = this
 
-                    if(!this.searchInput.length && this.searchInput.length <= 3 )
+                    if(!this.searchInput.length && this.searchInput.length <= 3  || this.searchInput.length === 0)
                     {
-                        return
+                        return;
                     }
-                    $.get(location.protocol + "/api/ajax/language/"+that.searchInput.replace(/\//g,"-"),function (result){
+
+                   $.get(location.protocol + "/api/ajax/language/"+encodeURIComponent(that.searchInput.replace(/\//g,"-")),function (result){
                         that.result = result;
 
 
@@ -26,14 +37,16 @@ document.addEventListener("alpine:init", () => {
                     return $.get(location.protocol + "/api/ajax/language?page=" +this.page_number,function ({data})
                     {
 
-                        that.loading = false
+
                         that.result = data.data
                         that.length = data.data.length
 
 
                     }).fail(()=>{
-                        that.search.loading = false
+
                         alert("something went wrong");
+                    }).always(function (){
+                        that.loading = false
                     })
                 },
                 nextPage(){

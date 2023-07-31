@@ -11,7 +11,9 @@ use App\Traits\Singleton;
 class  LangRepository extends Repository {
      use Singleton;
      protected  $searchableFields = [
-         "key"
+         "key",
+         "value",
+         "id"
      ];
     protected Comparator $comparator;
     public static $rules = [
