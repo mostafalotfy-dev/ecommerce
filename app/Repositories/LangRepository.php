@@ -10,6 +10,9 @@ use App\Traits\Singleton;
 
 class  LangRepository extends Repository {
      use Singleton;
+     protected  $searchableFields = [
+         "key"
+     ];
     protected Comparator $comparator;
     public static $rules = [
         "key"=> "required|string|max:255",
@@ -55,7 +58,7 @@ class  LangRepository extends Repository {
     }
     public function set($key,$value){
 
-        return $this->comparator->when( !$this->comparator->exists("key",$key),
+        return $this->comparator->when(!$this->comparator->isProduction() && !$this->comparator->exists("key",$key),
             fn($repo)=> $repo->insert([
                 "key"=>$key,
                 "value"=>$value,

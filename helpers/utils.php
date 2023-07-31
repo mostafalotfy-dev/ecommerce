@@ -40,3 +40,6 @@ function lang($key,$value = null,$langPrefix = null)
 
 
 }
+
+
+

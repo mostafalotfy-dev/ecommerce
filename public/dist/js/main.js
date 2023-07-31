@@ -1,49 +1,62 @@
 
 document.addEventListener("alpine:init", () => {
+        Alpine.store("search",{
+                searchInput: "",
+                result:[],
+                loading : false,
+                page_number:1,
+                value:"",
+                length:0,
+                search(){
+                    const  that = this
 
-Alpine.data("ajax", function () {
-        let that = null;
+                    if(!this.searchInput.length && this.searchInput.length <= 3 )
+                    {
+                        return
+                    }
+                    $.get(location.protocol + "/api/ajax/language/"+that.searchInput.replace(/\//g,"-"),function (result){
+                        that.result = result;
 
-        return {
-            value: "",
-            langs:[],
-            show_text:false,
-            page_number:1,
-            loading:false,
-            send: function (key){
-                const $this = this
 
-                $.post(location.protocol+"/api/ajax/language",{"key":key,"value":$this.value},"json");
-            },
-            init(){
-                that = this
-                that.get();
-
-            },
-            get(){
-                $.get(location.protocol + "/api/ajax/language?page=" +that.page_number,function ({data})
+                    })
+                },
+                get()
                 {
+                   const that = this
+                    return $.get(location.protocol + "/api/ajax/language?page=" +this.page_number,function ({data})
+                    {
 
-                    that.langs = data.data
-                    that.loading = false
-                })
-            },
-            nextPage:()=>{
+                        that.loading = false
+                        that.result = data.data
+                        that.length = data.data.length
 
-               that.page_number++;
-                if(that.page_number > that.langs.length)
-                    that.page_number = that.langs.length
-                that.loading = true
-                that.get()
-            },
-            prevPage:()=>{
-                that.page_number--;
-                if(that.page_number < 0)
-                    that.page_number = 1;
-                that.loading = true
-                that.get();
+
+                    }).fail(()=>{
+                        that.search.loading = false
+                        alert("something went wrong");
+                    })
+                },
+                nextPage(){
+
+                    this.page_number++;
+
+
+                    if(this.page_number > this.length)
+                        this.page_number = this.length
+                    this.loading = true
+                    this.get()
+                },
+                prevPage(){
+                    this.page_number--;
+                    if(this.page_number < 1)
+                        this.page_number = 1;
+                    this.loading = true
+                    this.get();
+                },
+
             }
+        )
 
-        }
     })
-})
+
+

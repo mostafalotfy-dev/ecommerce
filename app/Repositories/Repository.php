@@ -9,7 +9,7 @@ use DB;
 abstract class Repository
 {
     abstract function tableName() :string;
-    
+
 
     protected function table()
     {
@@ -61,7 +61,7 @@ abstract class Repository
         $this->insert($input);
     }
     public function updateFields($input,$id)
-    { 
+    {
         $input= array_merge($input,[
             "updated_at"=>now()
         ]);
@@ -75,9 +75,9 @@ abstract class Repository
 
             $result = $result->orWhere($searchableField, "LIKE", "%{$keyword}%") ;
         }
-        return $result->cursor();
+        return $result->orderBy("id","desc")->get();
     }
-  
-    
-   
+
+
+
 }
