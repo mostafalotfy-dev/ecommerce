@@ -69,7 +69,19 @@ document.addEventListener("alpine:init", () => {
 
             }
         )
+        Alpine.data("status",function(){
+            return {
+                update(id,tableId){
+                    $.post(`http://${location.host}/api/ajax/update/status`,{
+                        id:id,
+                        _method:"put"
+                    },function(){
+                       location.reload()
+                    })
 
+                }
+            }
+        })
     })
 
 

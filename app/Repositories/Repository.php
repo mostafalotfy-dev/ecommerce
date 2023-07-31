@@ -55,10 +55,8 @@ abstract class Repository
     }
     public function create($input)
     {
-        $input = array_merge($input,[
-            "created_at"=>now()
-        ]);
-        $this->insert($input);
+
+        return $this->insert($input);
     }
     public function updateFields($input,$id)
     {
@@ -67,15 +65,18 @@ abstract class Repository
         ]);
         $this->find($id)->update($input);
     }
-    public function search($keyword)
+    public function search($keyword = null)
     {
         $result = $this;
-
+        if(is_null($keyword))
+        {
+            return $result;
+        }
         foreach ($this->searchableFields as $searchableField) {
 
             $result = $result->orWhere($searchableField, "LIKE", "%{$keyword}%") ;
         }
-        return $result->orderBy("id","desc")->get();
+        return $result;
     }
 
 

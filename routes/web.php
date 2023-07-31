@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
@@ -27,6 +28,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::resource("roles", RoleController::class);
     Route::resource("category",CategoryController::class);
     Route::get("language",[LanguageController::class,"index"])->name("language.index");
+    Route::resource("admins",AdminController::class);
 });
 
 

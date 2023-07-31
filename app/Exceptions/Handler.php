@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
     {
         return response()->json([
             'message' => $exception->getMessage(),
-            'errors' => collect($exception->errors())->first(),
+            'errors' => $exception->errors(),
         ], $exception->status);
     }
 }
