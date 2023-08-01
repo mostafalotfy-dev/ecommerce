@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Admin;
+
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
