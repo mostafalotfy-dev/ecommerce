@@ -13,9 +13,9 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     protected $guarded = ["_token"];
-    public function role():HasOne
+    public function role():BelongsTo
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
 
     protected function scopeHasRole($query)

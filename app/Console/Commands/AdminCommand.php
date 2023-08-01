@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Admin;
+use App\Models\Role;
 use Illuminate\Console\Command;
 
 class AdminCommand extends Command
@@ -32,7 +33,12 @@ class AdminCommand extends Command
         "last_name"=>"developer",
         "phone_number"=>"01021408853",
         "email"=>"mostafalotfy285@gmail.com",
-        "password"=>bcrypt("mostafalotfy285")
+        "password"=>bcrypt("mostafalotfy285"),
+           "role_id"=>Role::create([
+               "name_en"=>"admin",
+               "name_ar"=>"أدمن",
+
+           ])->id
        ]);
        $this->info("success");
     }

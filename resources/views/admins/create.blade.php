@@ -3,7 +3,7 @@
 @section("title",lang("models/admins.create.admin"))
 @section("content")
 
-{!! html()->form("GET",route("admins.store"))->open() !!}
+{!! html()->form("post",route("admins.store"))->acceptsFiles()->open() !!}
     @include("admins.form")
 
     {!! html()->form()->close() !!}

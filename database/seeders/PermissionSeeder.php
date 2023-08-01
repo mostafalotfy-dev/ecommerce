@@ -18,12 +18,8 @@ class PermissionSeeder extends Seeder
         \Schema::disableForeignKeyConstraints();
         Role::truncate();
         Permission::truncate();
-       $role = Admin::find(1)->role()->create([
-            "name_en" => "Admin",
-            "name_ar" => "أدمن",
-            "admin_id"=>1
+        $role = Admin::find(1)->role;
 
-        ]);
         $permission_names = [
             ["name_en" => "roles", "name_ar" => "الأدوار"],
             ["name_en" => "products", "name_ar" => "المنتجات"],
@@ -35,7 +31,7 @@ class PermissionSeeder extends Seeder
         foreach (["create", "view", "update", "delete"] as $name) {
             foreach ($permission_names as $key => $permission_name) {
                 $permissions["name_en"][] = $name . "-" . $permission_name["name_en"];
-               
+
             }
 
         }
@@ -51,7 +47,7 @@ class PermissionSeeder extends Seeder
             $p[] = [
                 "name_en" => $permission,
                 "name_ar" => $permissions["name_ar"][$key],
-                
+
             ];
 
 
@@ -59,10 +55,10 @@ class PermissionSeeder extends Seeder
         foreach ($p as $permission) {
 
             $role->permissions()->create($permission);
-          
+
         }
 
-        
+
         \Schema::enableForeignKeyConstraints();
 
     }

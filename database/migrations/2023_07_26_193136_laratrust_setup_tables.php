@@ -18,7 +18,7 @@ class LaratrustSetupTables extends Migration
             $table->bigIncrements('id');
             $table->string('name_en')->unique();
             $table->string('name_ar')->unique();
-            $table->unsignedBigInteger("admin_id")->foreign("id")->refrences("id")->constrained()->cascadeOnDelete();
+
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();

@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string("last_name");
             $table->string("email")->unique()->nullable();
             $table->string("phone_number")->unique();
+            $table->unsignedBigInteger("role_id")->foreign("id")->refrences("id")->constrained()->cascadeOnDelete();
             $table->string("profile_image")->default("default.png");
             $table->string("password");
-            
+
             $table->timestamps();
         });
     }
