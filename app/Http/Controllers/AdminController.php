@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\DataTables\AdminDataTable;
 use App\Http\Requests\CreateAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
+
 use App\Models\Admin;
-use Illuminate\Http\Request;
+
 
 class AdminController extends Controller
 {
@@ -30,21 +30,27 @@ class AdminController extends Controller
         {
 
             $image = image("profile_image","images");
-            $input = $request->except("_token","_method");
+            $input = $request->except("_token","_method","save_and_edit","save");
             if(isset($input["password"]))
             {
                 $input["password"] = bcrypt($request->password);
             }
             $image->add($input);
-             factory("admin")->insertGetId($input);
-         return to_route("admins.index");
+            factory("admin")->insertGetId($input);
+            return request("save_and_edit") == lang("save_and_edit") ? to_route("admins.create") : to_route("admins.index");
         }
         public function edit(Admin $admin)
         {
+            $role = $admin->role;
             return view("admins.edit",[
                 "admin"=>$admin,
-                "roles"=>[$admin->role]
+                "roles"=>[$role->id=>$role->{"name_".app()->getLocale()}]
             ]);
 
+        }
+        public function update(Admin $admin)
+        {
+            $admin->delete();
+            return back();
         }
 }

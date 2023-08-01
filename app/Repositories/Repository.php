@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use DB;
+use Illuminate\Database\Query\Builder;
 
 
 abstract class Repository
@@ -11,7 +12,7 @@ abstract class Repository
     abstract function tableName() :string;
 
 
-    protected function table()
+    protected function table():Builder
     {
         return DB::table($this->tableName());
     }
@@ -21,7 +22,7 @@ abstract class Repository
        return $this->table()->$name(...$args);
     }
 
-    public function db()
+    public function db():\DB
     {
         return app(DB::class);
     }
@@ -35,37 +36,37 @@ abstract class Repository
         $this->rollbackIf($result);
     }
 
-    public function commitIf($a)
+    public function commitIf($a):void
     {
         if ($a) {
             $this->db()->commit();
         }
     }
 
-    public function rollbackIf($a)
+    public function rollbackIf($a): void
     {
         if (!$a) {
             $this->db()->rollBack();
         }
     }
 
-    public function find($id)
+    public function find($id):Builder
     {
         return $this->where("id", $id);
     }
-    public function create($input)
+    public function create($input):bool
     {
 
         return $this->insert($input);
     }
-    public function updateFields($input,$id)
+    public function updateFields($input,$id):bool
     {
         $input= array_merge($input,[
             "updated_at"=>now()
         ]);
         $this->find($id)->update($input);
     }
-    public function search($keyword = null)
+    public function search($keyword = null):Builder|self
     {
         $result = $this;
         if(is_null($keyword))

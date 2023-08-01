@@ -3,7 +3,7 @@
 @section("title",lang("models/admins.create.admin"))
 
 @section("content")
-    {!! html()->modelForm($admin,action:route("admins.update",$admin->id))->acceptsFiles()->open() !!}
+    {!! html()->modelForm($admin,"PUT",route("admins.update",$admin->id))->acceptsFiles()->open() !!}
     @include("admins.form")
     {!! html()->closeModelForm() !!}
 @endsection
