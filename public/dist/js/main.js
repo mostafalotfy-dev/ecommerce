@@ -7,7 +7,10 @@ document.addEventListener("alpine:init", () => {
                 page_number:1,
                 value:"",
 
+                controller : new AbortController(),
+
                 length:0,
+
                 send(id){
 
                     formData = new FormData();
@@ -18,30 +21,20 @@ document.addEventListener("alpine:init", () => {
                         body:formData,
                        headers:{
                            "Accept":"application/json"
-                       }
+                       },
+
                     });
 
                 },
-                search(){
 
-
-                    if(!this.searchInput.length && this.searchInput.length <= 3  || this.searchInput.length === 0)
-                    {
-                        return;
-                    }
-
-                   fetch(location.protocol + "/api/ajax/language/"+encodeURIComponent(that.searchInput.replace(/\//g,"-")))
-                       .then((r)=>r.json())
-                       .then((r)=>this.result = r)
-                },
                 get()
                 {
 
-                    fetch(location.protocol + "/api/ajax/language?page=" +this.page_number)
+                    fetch(location.protocol + "/api/ajax/language/"+encodeURIComponent(this.searchInput.replace(/\//g,"-"))+"?page=" +this.page_number,{ signal:this.controller.signal})
                         .then((r)=>r.json())
                         .then(({data})=>{
-                            this.result = data.data;
-                            this.length = data.data.length
+                            this.result = data;
+                            this.length = data.length
 
                         })
                         .catch((e)=>{
@@ -49,6 +42,13 @@ document.addEventListener("alpine:init", () => {
                             this.loading = false
                         })
                 },
+            delete(id){
+                    fetch(location.protocol+"/api/ajax/language/"+id,{
+                        method:"delete",
+
+                    }).then((r)=> r.json())
+                        .then((r)=>this.result = r.data.data)
+            },
                 nextPage(){
 
                     this.page_number++;
@@ -69,17 +69,37 @@ document.addEventListener("alpine:init", () => {
 
             }
         )
-        Alpine.data("status",function(){
-            return {
-                update(id,tableId){
-                    // $.post(`http://${location.host}/api/ajax/update/status`,{
-                    //     id:id,
-                    //     _method:"put"
-                    // },function(){
-                    //    location.reload()
-                    // })
+        Alpine.store("permission",{
+            permissions:[],
+            searchInput: "",
+            currentPage:1,
+            paginate()
+            {
+                fetch(`http://${location.host}/api/ajax/permissions/${encodeURIComponent(this.searchInput)}?page=${this.currentPage}`)
+                    .then((r)=> r.json())
+                    .then(({data})=>this.permissions = data)
+            },
+            next()
+            {
+
+                this.currentPage++;
+                if(this.currentPage > this.permissions.length)
+                {
+                    this.currentPage = this.permissions.length - 1;
 
                 }
+                this.paginate()
+            },
+            previous()
+            {
+
+                this.currentPage--;
+                if(this.currentPage < 1)
+                {
+                    this.currentPage = 1;
+
+                }
+                this.paginate()
             }
         })
     })

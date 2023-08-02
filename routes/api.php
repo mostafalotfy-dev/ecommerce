@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post("ajax/language",[AjaxController::class,"store_language"]);
-Route::get("ajax/language",[AjaxController::class,"get_language"]);
-Route::get("ajax/language/{search}",[AjaxController::class,"search_language"]);
-Route::get("ajax/permissions",[AjaxController::class,"get_permissions"]);
+Route::delete("ajax/language/{id}",[AjaxController::class,"destroy_language"]);
+Route::get("ajax/language/{search?}",[AjaxController::class,"search_language"]);
+
+Route::get("ajax/permissions/{search?}",[AjaxController::class,"get_permissions"]);
 Route::post("ajax/roles",[AjaxController::class,"add_roles"]);
 Route::put("ajax/update/status",[AjaxController::class,"update_status"]);

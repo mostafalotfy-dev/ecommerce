@@ -24,22 +24,28 @@ class AjaxController extends Controller
 
       ],204);
     }
-    public function get_language()
-    {
 
-        return response()->json([
-            "data"=>factory("lang")->orderBY("id","desc")->paginate()
-        ]);
-    }
 
     public function search_language()
     {
         $search_value = str(\request("search"))->replace("-","/");
         return response()->json(
 
-            factory("lang")->search($search_value)->orderBy("id","desc")->get()
+            factory("lang")->search($search_value)->orderBy("id","desc")->paginate()
 
             );
+    }
+    public function destroy_language($id)
+    {
+        factory("lang")
+            ->find($id)
+            ->delete();
+        return \response()->json(
+            [
+                "message"=>lang("success"),
+                "data"=>factory("lang")->paginate()
+            ]
+        );
     }
     public function get_permissions(string $searchKeyword = null)
     {

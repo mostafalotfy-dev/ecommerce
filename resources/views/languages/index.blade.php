@@ -6,7 +6,12 @@
         <div class="input-group-prepend">
             <div class="input-group-text"><i class="fas fa-search"></i></div>
         </div>
-        <input x-data type="text"  x-model="$store.search.searchInput" name="search" class="form-control" placeholder="{{lang("search by id,key or value")}}" @input="$store.search.search()">
+        <input x-data type="text"
+               x-model="$store.search.searchInput" name="search"
+               class="form-control" placeholder="{{lang("search by id,key or value")}}"
+               @input="$store.search.get()">
+
+
     </div>
     <table id="language-table" class="table table-responsive">
         <thead>
@@ -14,6 +19,7 @@
                 <th>{{lang("models/language.fields.id")}}</th>
                 <th>{{lang("models/language.fields.key")}}</th>
                 <th>{{lang("models/language.fields.value")}}</th>
+
             </tr>
         </thead>
         <tbody x-data x-init="$store.search.get()">
@@ -25,6 +31,7 @@
                 <td><input x-data name="value" @change="$store.search.send(lang.id)" @keyup.enter="$store.search.send(lang.id)" :value="$store.search.value = lang.value" x-model="$store.search.value = lang.value">
 
                 </td>
+
 
             </tr>
 

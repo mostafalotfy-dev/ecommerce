@@ -14,7 +14,7 @@
         {!! html()->text("last_name")->class("form-control")->id("last_name") !!}
         @error("last_name")
         <div class="alert alert-danger">{{$errors->first("last_name")}}</div>
-        @enderror("last_name")
+        @enderror
     </div>
     <div class="col-md-3">
         {!! html()->label()->for("email")->class("required")->text(lang("models/admins.fields.email")) !!}

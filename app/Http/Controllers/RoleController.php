@@ -30,7 +30,8 @@ class RoleController extends Controller
     }
     public function create()
     {
-        return view("roles.create");
+        $permissions = cache()->rememberForever("permissions",fn()=>  factory("permission")->get());
+        return view("roles.create",compact("permissions"));
     }
     public function store(CreateRoleRequest $request)
     {
@@ -45,11 +46,12 @@ class RoleController extends Controller
     }
     public function edit(Role $role)
     {
-        return view("roles.edit",compact("role"));
+        $permissions = cache()->rememberForever("permissions",fn()=>  factory("permission")->get());
+        return view("roles.edit",compact("role","permissions"));
     }
     public function update(UpdateRoleRequest $request,$id)
     {
-        
+
          factory("role")->updateFields($request->validated(),$id);
          return to_route("roles.index");
     }

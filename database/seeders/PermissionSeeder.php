@@ -16,7 +16,7 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         \Schema::disableForeignKeyConstraints();
-        Role::truncate();
+
         Permission::truncate();
         $role = Admin::find(1)->role;
 
