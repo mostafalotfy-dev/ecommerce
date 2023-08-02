@@ -7,10 +7,10 @@ use App\Traits\HasImage;
 
 class ImageRepository extends Repository{
     use HasImage;
-  
+
     public function setImageName($name)
     {
-        $this->imageName = $name;
+        $this->imageField = $name;
         return $this;
     }
     public function setImagePath($path)

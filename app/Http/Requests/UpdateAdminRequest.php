@@ -12,7 +12,7 @@ class UpdateAdminRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,7 @@ class UpdateAdminRequest extends FormRequest
         $rules= AdminRepository::$rules;
         $rules["phone_number"] .= ",". request("admin");
         $rules["email"] .= ",". request("admin");
+        unset($rules["password"]);
         return $rules;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\AdminDataTable;
 use App\Http\Requests\CreateAdminRequest;
 
+use App\Http\Requests\UpdateAdminRequest;
 use App\Models\Admin;
 
 
@@ -31,13 +32,12 @@ class AdminController extends Controller
 
             $image = image("profile_image","images");
             $input = $request->except("_token","_method","save_and_edit","save");
-            if(isset($input["password"]))
-            {
+
                 $input["password"] = bcrypt($request->password);
-            }
+
             $image->add($input);
             factory("admin")->insertGetId($input);
-            return request("save_and_edit") == lang("save_and_edit") ? to_route("admins.create") : to_route("admins.index");
+            return request()->has("save_and_edit")  ? to_route("admins.create") : to_route("admins.index");
         }
         public function edit(Admin $admin)
         {
@@ -48,9 +48,26 @@ class AdminController extends Controller
             ]);
 
         }
-        public function update(Admin $admin)
+        public function update(UpdateAdminRequest $request ,$id)
+        {
+            $admin = factory("admin");
+            $input = $request->except("_token","_method","save");
+
+            if ($request->password)
+            {
+                $input["password"]=bcrypt($request->password);
+            }else{
+                unset($input["password"]);
+            }
+            image("profile_image","images")->add($input);
+            $admin->where("id",$id)->update($input);
+
+            return to_route("admins.index");
+        }
+        public function destroy(Admin $admin)
         {
             $admin->delete();
+            image("profile_image","images")->delete($admin->profile_image);
             return back();
         }
 }
