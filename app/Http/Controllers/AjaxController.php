@@ -18,6 +18,7 @@ class AjaxController extends Controller
             "key"=>"required|integer",
             "value"=>"required|string"
         ]);
+
       factory("lang")->updateById(\request("key"),\request("value"));
       return response([
 

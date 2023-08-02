@@ -9,45 +9,45 @@ document.addEventListener("alpine:init", () => {
 
                 length:0,
                 send(id){
-                   const that = this
 
-                    $.post("http://"+location.host + "/api/ajax/language",{
-                        "key":id,
-                        value: that.value
+                    formData = new FormData();
+                    formData.append("key",id)
+                    formData.append("value",this.value)
+                   fetch("http://"+location.host + "/api/ajax/language",{
+                       method:"post",
+                        body:formData,
+                       headers:{
+                           "Accept":"application/json"
+                       }
                     });
 
                 },
                 search(){
-                    const  that = this
+
 
                     if(!this.searchInput.length && this.searchInput.length <= 3  || this.searchInput.length === 0)
                     {
                         return;
                     }
 
-                   $.get(location.protocol + "/api/ajax/language/"+encodeURIComponent(that.searchInput.replace(/\//g,"-")),function (result){
-                        that.result = result;
-
-
-                    })
+                   fetch(location.protocol + "/api/ajax/language/"+encodeURIComponent(that.searchInput.replace(/\//g,"-")))
+                       .then((r)=>r.json())
+                       .then((r)=>this.result = r)
                 },
                 get()
                 {
-                   const that = this
-                    return $.get(location.protocol + "/api/ajax/language?page=" +this.page_number,function ({data})
-                    {
 
+                    fetch(location.protocol + "/api/ajax/language?page=" +this.page_number)
+                        .then((r)=>r.json())
+                        .then(({data})=>{
+                            this.result = data.data;
+                            this.length = data.data.length
 
-                        that.result = data.data
-                        that.length = data.data.length
-
-
-                    }).fail(()=>{
-
-                        alert("something went wrong");
-                    }).always(function (){
-                        that.loading = false
-                    })
+                        })
+                        .catch((e)=>{
+                            console.log(e.message)
+                            this.loading = false
+                        })
                 },
                 nextPage(){
 
@@ -72,12 +72,12 @@ document.addEventListener("alpine:init", () => {
         Alpine.data("status",function(){
             return {
                 update(id,tableId){
-                    $.post(`http://${location.host}/api/ajax/update/status`,{
-                        id:id,
-                        _method:"put"
-                    },function(){
-                       location.reload()
-                    })
+                    // $.post(`http://${location.host}/api/ajax/update/status`,{
+                    //     id:id,
+                    //     _method:"put"
+                    // },function(){
+                    //    location.reload()
+                    // })
 
                 }
             }

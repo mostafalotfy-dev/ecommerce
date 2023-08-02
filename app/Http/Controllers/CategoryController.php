@@ -19,15 +19,10 @@ class CategoryController extends Controller
     }
     public function store(CreateCategoryRequest $request)
     {
-        factory("category")->create([
-            "name_en"=>$request->name_en,
-            "name_ar"=>$request->name_ar,
-            "newIndex"=>$request->newIndex,
-            "oldIndex"=>$request->oldIndex,
-            "category_id"=>$request->category_id
-            ]
-        );
-        return request("save_and_create") ? to_route("category.create") : to_route("category.index");
+
+        $input = $request->except("_token","_method","save");
+        factory("category")->create($input);
+        return request()->has("save_and_add_more") ? to_route("category.create") : to_route("category.index");
     }
     public function update(Category $category, UpdateCategoryRequest $request)
     {
@@ -54,4 +49,3 @@ class CategoryController extends Controller
         return back();
     }
 }
- 
