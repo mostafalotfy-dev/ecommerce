@@ -46,7 +46,8 @@ class RoleController extends Controller
     }
     public function edit(Role $role)
     {
-        $permissions = cache()->rememberForever("permissions",fn()=>  factory("permission")->get());
+        $permissions =  factory("permission")->get();
+
         return view("roles.edit",compact("role","permissions"));
     }
     public function update(UpdateRoleRequest $request,$id)

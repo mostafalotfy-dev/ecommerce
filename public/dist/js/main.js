@@ -74,12 +74,20 @@ document.addEventListener("alpine:init", () => {
             searchInput: "",
             currentPage:1,
             errors:null,
-
+            role_name_en:"",
+            role_name_ar:"",
             paginate()
             {
-                fetch(`http://${location.host}/api/ajax/permissions/${encodeURIComponent(this.searchInput)}?page=${this.currentPage}`)
+                fetch(`http://${location.host}/api/ajax/permissions/${encodeURIComponent(this.searchInput)}?page=${this.currentPage}`,{
+
+                    headers:{
+                      "Accept":"application/json",
+            }})
                     .then((r)=> r.json())
-                    .then(({permissions})=>this.permissions = permissions)
+                    .then(({permissions})=>{
+
+                        this.permissions = permissions
+                    })
             },
             add(){
                 let formData = new FormData(document.getElementById("role-form"))
@@ -98,35 +106,30 @@ document.addEventListener("alpine:init", () => {
                        this.errors = r.message
 
                    }else{
-                       location = r.redirect_to
+                       console.log(r)
+                        location = r.redirect_to
                    }
               })
 
 
             },
 
-            next()
-            {
 
-                this.currentPage++;
-                if(this.currentPage > this.permissions.length)
-                {
-                    this.currentPage = this.permissions.length - 1;
-
-                }
-                this.paginate()
-            },
-            previous()
-            {
-
-                this.currentPage--;
-                if(this.currentPage < 1)
-                {
-                    this.currentPage = 1;
-
-                }
-                this.paginate()
+            update(){
+                const form = document.getElementById("role-form")
+                fetch(form.getAttribute("action"),{
+                    method:"put",
+                    body:new FormData(form),
+                    headers:{
+                        "Accept":"application/json"
+                    }
+                }).then((r)=>r.json())
+                    .then((r)=>{
+                        console.log(r)
+                    })
             }
+
+
         })
     })
 

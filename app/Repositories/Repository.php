@@ -35,14 +35,14 @@ abstract class Repository
 
     public function commitIf($a):void
     {
-        if ($a) {
+        if ($a === true) {
             \DB::commit();
         }
     }
 
     public function rollbackIf($a): void
     {
-        if (!$a) {
+        if ($a === false) {
            \DB::rollBack();
         }
     }
@@ -63,7 +63,7 @@ abstract class Repository
         $input= array_merge($input,[
             "updated_at"=>now()
         ]);
-        $this->find($id)->update($input);
+        return $this->find($id)->update($input);
     }
     public function search($keyword = null):Builder|self
     {
@@ -74,7 +74,7 @@ abstract class Repository
         }
         foreach ($this->searchableFields as $searchableField) {
 
-            $result = $result->orWhere($searchableField, "LIKE", "%{$keyword}%") ;
+            $result = $result->orWhere($this->tableName().".".$searchableField, "LIKE", "%{$keyword}%") ;
         }
         return $result;
     }

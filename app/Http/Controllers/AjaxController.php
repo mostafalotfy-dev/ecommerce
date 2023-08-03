@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\CreateRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use App\Repositories\RoleRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Query\Builder;
@@ -52,9 +53,9 @@ class AjaxController extends Controller
     public function get_permissions(string $searchKeyword = null)
     {
 
-        $permissions = factory("permission_role")->search($searchKeyword)
-            ->select("permissions.name_en as permission_en","permissions.name_ar as permission_ar","roles.name_en as role_en" , "roles.name_ar as role_ar")
-            ->join("permissions","permissions.id","permission_role.permission_id")
+        $permissions = factory("permission")->search($searchKeyword)
+            ->select("roles.id as role_id","permissions.id as permission_id","permissions.name_en as permission_en","permissions.name_ar as permission_ar","roles.name_en as role_en" , "roles.name_ar as role_ar")
+            ->join("permission_role","permissions.id","permission_role.permission_id")
             ->join("roles","roles.id","permission_role.role_id");
         if(request("role"))
         {
@@ -75,12 +76,17 @@ class AjaxController extends Controller
                "permission_id" =>$permission,
                 "role_id"=>$role_id
             ]);
+
             factory("permission_role")->insert($permissions->toArray());
             return true;
         });
         return response()->json([
             "redirect_to"=>route("roles.index")
         ]);
+
+    }
+    public function update_role($id)
+    {
 
     }
     public function add_roles(CreateRoleRequest $request)

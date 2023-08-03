@@ -5,18 +5,17 @@
 </template>
 <div class="row">
     <div class="col-md-3">
-        {!! html()->label()->for("name_en")->class("required")->text(lang("models/admins.fields.name_en")) !!}
-        {!! html()->text("name_en")->attribute("autocomplete","nope")->class("form-control")->id("name_en") !!}
+        <label for="name_en">{{lang("model/role.fields.name_en")}}</label>
+        <input type="text"  class="form-control" value="{{isset($role ) ? $role->name_en : ""}}" name="name_en" id="name_en">
 
     </div>
     <div class="col-md-3">
-        {!! html()->label()->for("name_ar")->class("required")->text(lang("models/admins.fields.name_ar")) !!}
-        {!! html()->text("name_ar")->class("form-control")->id("name_ar") !!}
-
+        <label for="name_ar">{{lang("model/role.fields.name_ar")}}</label>
+        <input type="text" class="form-control" name="name_ar" id="name_ar" value="{{isset($role) ? $role->name_ar : ""}}">
     </div>
 </div>
-    <hr>
-<input type="text" x-data placeholder="{{lang("Search By Name in English Or Name In Arabic")}}" @input="$store.permission.paginate()" class="form-control" x-model="$store.permission.searchInput">
+
+
 <hr>
 <table x-data x-init="$store.permission.paginate()" class="table table-responsive table-bordered">
     <thead>
@@ -29,14 +28,16 @@
         <th>
             {{lang("models/permissions.name_ar")}}
         </th>
+
     </tr>
     </thead>
 
     <template x-data x-for="permission in $store.permission.permissions">
         <tr>
-            <td><input type="checkbox" name="permissions[]"   :value="permission.id"></td>
+            <td><input type="checkbox" name="permissions[]"  checked=""   :value="permission.permission_id"></td>
             <td x-text="permission.permission_en"></td>
             <td x-text="permission.permission_ar"></td>
+
         </tr>
     </template>
 </table>
