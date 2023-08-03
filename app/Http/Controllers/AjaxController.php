@@ -51,12 +51,19 @@ class AjaxController extends Controller
     }
     public function get_permissions(string $searchKeyword = null)
     {
-        $result = factory("permission")->search($searchKeyword)->paginate();
 
+        $permissions = factory("permission_role")->search($searchKeyword)
+            ->select("permissions.name_en as permission_en","permissions.name_ar as permission_ar","roles.name_en as role_en" , "roles.name_ar as role_ar")
+            ->join("permissions","permissions.id","permission_role.permission_id")
+            ->join("roles","roles.id","permission_role.role_id");
+        if(request("role"))
+        {
+            $permissions->where("role_id",request("role"));
+        }
         return response()->json(
             [
-                "permissions"=>$result,
-                "has_permission"=>factory("permission_role")->whereIn("role_id",$result->pluck("role_id"))->get()
+                "permissions"=> $permissions->get(),
+
             ]);
 
     }

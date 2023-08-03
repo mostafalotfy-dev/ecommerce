@@ -1,7 +1,6 @@
 <template x-data x-if="$store.permission.errors" >
     <div class="alert alert-danger" x-text="$store.permission.errors">
 
-
     </div>
 </template>
 <div class="row">
@@ -17,6 +16,8 @@
     </div>
 </div>
     <hr>
+<input type="text" x-data placeholder="{{lang("Search By Name in English Or Name In Arabic")}}" @input="$store.permission.paginate()" class="form-control" x-model="$store.permission.searchInput">
+<hr>
 <table x-data x-init="$store.permission.paginate()" class="table table-responsive table-bordered">
     <thead>
     <tr>
@@ -30,14 +31,16 @@
         </th>
     </tr>
     </thead>
+
     <template x-data x-for="permission in $store.permission.permissions">
         <tr>
-            <td><input type="checkbox" name="permissions[]"  :value="permission.id"></td>
-            <td x-text="permission.name_en"></td>
-            <td x-text="permission.name_ar"></td>
+            <td><input type="checkbox" name="permissions[]"   :value="permission.id"></td>
+            <td x-text="permission.permission_en"></td>
+            <td x-text="permission.permission_ar"></td>
         </tr>
     </template>
 </table>
+
 <input class="btn btn-primary"  type="submit" name="save" value="{{lang("save")}}">
 <hr>
 <template x-data x-if="$store.permission.errors" >

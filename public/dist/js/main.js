@@ -74,6 +74,7 @@ document.addEventListener("alpine:init", () => {
             searchInput: "",
             currentPage:1,
             errors:null,
+
             paginate()
             {
                 fetch(`http://${location.host}/api/ajax/permissions/${encodeURIComponent(this.searchInput)}?page=${this.currentPage}`)
@@ -103,6 +104,7 @@ document.addEventListener("alpine:init", () => {
 
 
             },
+
             next()
             {
 
