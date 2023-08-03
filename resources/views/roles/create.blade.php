@@ -5,7 +5,8 @@
     {{lang("models/roles.plural")}}
 @endsection
 @section("content")
-    {!! html()->form("POST",url("roles"))->acceptsFiles()->open() !!}
+    <form method="post" id="role-form" x-data @submit.prevent="$store.permission.add()">
+
         @include("roles.form")
     {!! html()->form()->close() !!}
 @endsection

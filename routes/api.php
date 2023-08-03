@@ -20,5 +20,6 @@ Route::delete("ajax/language/{id}",[AjaxController::class,"destroy_language"]);
 Route::get("ajax/language/{search?}",[AjaxController::class,"search_language"]);
 
 Route::get("ajax/permissions/{search?}",[AjaxController::class,"get_permissions"]);
+Route::post("ajax/permissions",[AjaxController::class,"add_permission"]);
 Route::post("ajax/roles",[AjaxController::class,"add_roles"]);
 Route::put("ajax/update/status",[AjaxController::class,"update_status"]);

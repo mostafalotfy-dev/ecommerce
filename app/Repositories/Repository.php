@@ -22,14 +22,11 @@ abstract class Repository
        return $this->table()->$name(...$args);
     }
 
-    public function db():\DB
-    {
-        return app(DB::class);
-    }
+
 
     public function transaction(\Closure $cb)
     {
-        $this->db()->beginTransaction();
+        \DB::beginTransaction();
         $result = $cb($this->table());
 
         $this->commitIf($result);
@@ -39,14 +36,14 @@ abstract class Repository
     public function commitIf($a):void
     {
         if ($a) {
-            $this->db()->commit();
+            \DB::commit();
         }
     }
 
     public function rollbackIf($a): void
     {
         if (!$a) {
-            $this->db()->rollBack();
+           \DB::rollBack();
         }
     }
 
@@ -56,7 +53,9 @@ abstract class Repository
     }
     public function create($input):bool
     {
-
+        $input= array_merge($input,[
+            "created_at"=>now()
+        ]);
         return $this->insert($input);
     }
     public function updateFields($input,$id):bool

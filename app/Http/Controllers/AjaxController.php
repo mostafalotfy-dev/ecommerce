@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\CreateRoleRequest;
+use App\Repositories\RoleRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Response;
 
@@ -50,7 +52,28 @@ class AjaxController extends Controller
     public function get_permissions(string $searchKeyword = null)
     {
         $result = factory("permission")->search($searchKeyword)->paginate();
-        return response()->json($result);
+
+        return response()->json(
+            [
+                "permissions"=>$result,
+                "has_permission"=>factory("permission_role")->whereIn("role_id",$result->pluck("role_id"))->get()
+            ]);
+
+    }
+    public function add_permission(CreateRoleRequest $request)
+    {
+        factory("role")->transaction(function(Builder $query){
+            $role_id = $query->insertGetId(request()->only("name_en","name_ar"));
+            $permissions = collect(request("permissions"))->map(fn($permission)=>[
+               "permission_id" =>$permission,
+                "role_id"=>$role_id
+            ]);
+            factory("permission_role")->insert($permissions->toArray());
+            return true;
+        });
+        return response()->json([
+            "redirect_to"=>route("roles.index")
+        ]);
 
     }
     public function add_roles(CreateRoleRequest $request)

@@ -6,7 +6,7 @@
     @lang("models/roles.plural")
 @endsection
 @section("content")
-    {!! html()->form("POST",url("roles/{$role->id}"))->acceptsFiles()->open() !!}
+    {!! html()->modelForm($role,"POST",url("roles/{$role->id}"))->acceptsFiles()->open() !!}
          @include("roles.form",compact("role"))
     {!! html()->form()->close() !!}
 @endsection

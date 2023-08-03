@@ -73,11 +73,35 @@ document.addEventListener("alpine:init", () => {
             permissions:[],
             searchInput: "",
             currentPage:1,
+            errors:null,
             paginate()
             {
                 fetch(`http://${location.host}/api/ajax/permissions/${encodeURIComponent(this.searchInput)}?page=${this.currentPage}`)
                     .then((r)=> r.json())
-                    .then(({data})=>this.permissions = data)
+                    .then(({permissions})=>this.permissions = permissions)
+            },
+            add(){
+                let formData = new FormData(document.getElementById("role-form"))
+              fetch(`http://${location.host}/api/ajax/permissions`,{
+                  method:"post",
+                  body:formData,
+                  headers:{
+                      "Accept":"application/json"
+                  }
+              }).then((r)=> {
+
+                return r.json();
+              }).then((r)=>{
+                   if(r.hasOwnProperty("errors"))
+                   {
+                       this.errors = r.message
+
+                   }else{
+                       location = r.redirect_to
+                   }
+              })
+
+
             },
             next()
             {

@@ -25,7 +25,7 @@ class CreateRoleRequest extends FormRequest
             "name_ar" => "required|string|max:255|unique:roles,name_ar",
             "name_en"=>"required|string|max:255|unique:roles,name_en",
             "permissions"=>"required|array",
-            "admin_id"=>"required|exists:admins,id"
+
         ];
     }
 }
