@@ -74,4 +74,4 @@
 </div>
 <hr>
 <input class="btn btn-primary" type="submit" name="save" value="{{lang("save")}}">
-
+<hr>
