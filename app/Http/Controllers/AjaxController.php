@@ -53,18 +53,13 @@ class AjaxController extends Controller
     public function get_permissions(string $searchKeyword = null)
     {
 
-        $permissions = factory("permission")->search($searchKeyword)
-            ->select("roles.id as role_id","permissions.id as permission_id","permissions.name_en as permission_en","permissions.name_ar as permission_ar","roles.name_en as role_en" , "roles.name_ar as role_ar")
-            ->join("permission_role","permissions.id","permission_role.permission_id")
-            ->join("roles","roles.id","permission_role.role_id");
-        if(request("role"))
-        {
-            $permissions->where("role_id",request("role"));
-        }
+        $permissions = factory("permission")->search($searchKeyword);
+         $roles = factory("role")->search()->paginate();
+
         return response()->json(
             [
-                "permissions"=> $permissions->get(),
-
+                "permissions"=> $permissions->paginate(),
+                "roles"=>$roles
             ]);
 
     }

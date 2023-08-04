@@ -7,11 +7,11 @@
 @endsection
 @section("content")
     {!! html()->modelForm($role,"put",route("roles.update",$role->id))->open() !!}
-    <template x-data x-if="$store.permission.errors" >
-        <div class="alert alert-danger" x-text="$store.permission.errors">
-
+    @foreach($errors->all() as $error)
+        <div class="alert alert-danger">
+        {{$error}}
         </div>
-    </template>
+    @endforeach
     <div class="row">
         <div class="col-md-3">
             <label for="name_en">{{lang("model/role.fields.name_en")}}</label>
