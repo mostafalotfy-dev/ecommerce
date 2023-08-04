@@ -41,10 +41,10 @@ class AdminController extends Controller
         }
         public function edit(Admin $admin)
         {
-            $role = $admin->role;
+            $role = $admin?->role;
             return view("admins.edit",[
                 "admin"=>$admin,
-                "roles"=>[$role->id=>$role->{"name_".app()->getLocale()}]
+                "roles"=>[$role?->id=>$role?->{"name_".app()->getLocale()}]
             ]);
 
         }
