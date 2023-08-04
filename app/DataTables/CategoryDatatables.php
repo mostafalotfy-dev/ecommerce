@@ -3,8 +3,9 @@
 namespace App\DataTables;
 
 
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Yajra\DataTables\QueryDataTable;
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -18,17 +19,16 @@ class CategoryDatatables extends DataTable
      *
      * @param QueryBuilder $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query): QueryDataTable
+    public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $category = factory("category");
 
-        return (new QueryDataTable($query))
+        return (new EloquentDataTable($query))
             ->addColumn('action', 'categories.action')
-            ->editColumn("category_id",function($model) use($category){
-                $data =  $category
-                ->where("category_id",$model->category_id)
-                ->where("category_id","!=",0)->first();
-                return $data->{"name_".app()->getLocale()} ?? "-";
+            ->editColumn("category_id",function($model) {
+
+                return $model->parents($model->category_id)?->name_en;
+
+
             })
             ->setRowId('id');
     }
@@ -36,13 +36,9 @@ class CategoryDatatables extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(): QueryBuilder
+    public function query(Category $category ): QueryBuilder
     {
-        $repo = factory("category");
-       
-        return \DB::table($repo->tableName());
-       
-        
+        return $category->newQuery();
     }
 
     /**
@@ -51,7 +47,7 @@ class CategoryDatatables extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('categorydatatables-table')
+                    ->setTableId('category-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -73,7 +69,7 @@ class CategoryDatatables extends DataTable
     public function getColumns(): array
     {
         return [
-          
+
             Column::make([
                 "name"=>"id",
                 "data"=>"id",
@@ -95,6 +91,11 @@ class CategoryDatatables extends DataTable
                 "title"=>lang("models/category.fields.category_id"),
             ]),
             Column::make([
+                "name"=>"status",
+                "data"=>"status",
+                "title"=>lang("models/category.fields.status"),
+            ]),
+            Column::make([
                 "name"=>"created_at",
                 "data"=>"created_at",
                 "title"=>lang("models/category.fields.created_at"),
@@ -104,7 +105,7 @@ class CategoryDatatables extends DataTable
                 "data"=>"updated_at",
                 "title"=>lang("models/category.fields.updated_at"),
             ]),
-        
+
             Column::computed('action')
             ->exportable(false)
             ->printable(false)

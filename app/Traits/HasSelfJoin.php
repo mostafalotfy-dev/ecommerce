@@ -1,12 +1,13 @@
-<?php 
+<?php
 
 
 namespace App\Traits;
 
 trait HasSelfJoin{
-    public function parents()
+    public function parents($id)
     {
-        return $this->where("category_id" ,0)->cursor();
+        return $this->where("category_id" ,0)
+            ->where("id",$id)->first();
     }
     public function children($parentId)
     {

@@ -45,7 +45,7 @@
     </div>
     <div class="col-md-3">
         {!! html()->label()->text(lang("models/admins.fields.role_name")) !!}
-        {!! html()->select("role_id")->options($roles )->class("form-control")!!}
+        {!! html()->select("role_id")->options($roles)->class("form-control")!!}
         @error("role_id")
         <span class="alert alert-danger">{{$errors->first("role_id")}}</span>
         @enderror

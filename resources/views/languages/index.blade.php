@@ -30,7 +30,7 @@
 
                 <td x-text="lang.id"></td>
                 <td x-text="lang.key"></td>
-                <td><input x-data name="value" @change="$store.search.send(lang.id)" @keyup.enter="$store.search.send(lang.id)" :value="$store.search.value = lang.value" x-model="$store.search.value = lang.value">
+                <td><input x-data name="value"  @change="$store.search.send(lang.id)" @keyup.enter="$store.search.send(lang.id)" :value="$store.search.value = lang.value" x-model="$store.search.value = lang.value">
 
                 </td>
 

@@ -6,6 +6,10 @@ use App\DataTables\CategoryDatatables;
 use App\Models\Category;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
@@ -13,13 +17,13 @@ class CategoryController extends Controller
     {
         return app(CategoryDatatables::class)->render("categories.index");
     }
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = factory("category")->take(10)->get()->toArray();
 
         return view("categories.create",compact("categories"));
     }
-    public function store(CreateCategoryRequest $request)
+    public function store(CreateCategoryRequest $request): RedirectResponse
     {
 
         $input = $request->except("_token","_method","save","save_and_add","category_image");
@@ -27,28 +31,35 @@ class CategoryController extends Controller
         factory("category")->create($input);
         return request()->has("save_and_add") ? to_route("category.create") : to_route("category.index");
     }
-    public function update(Category $category, UpdateCategoryRequest $request)
+    public function update(Category $category, UpdateCategoryRequest $request): RedirectResponse
     {
-        factory("category")->updateFields([
-            "name_en"=>$request->name_en,
-            "name_ar"=>$request->name_ar,
-            "newIndex"=>$request->newIndex,
-            "oldIndex"=>$request->oldIndex,
-            "category_id"=>$request->category_id
-        ]);
-        return request("save_and_edit") ? to_route("cateogry.edit",$category->id) : to_route("category.index");
+        $image = image("category_image","images");
+        $input = $request->except("save_and_more","_token","category_image","_method","save_and_add","save");
+        $image->delete($category->category_image);
+        $image->add($input);
+
+        factory("category")->updateFields($input,$category->id);
+
+        return request("save_and_add") ? to_route("category.edit",$category->id) : to_route("category.index");
     }
-    public function edit(Category $category)
+    public function edit(Category $category): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view("categories.edit",compact("category"));
+        $categories = factory("category")
+            ->where("id","!=" , $category->id)
+            ->where("status",1)
+            ->take(10)->get();
+        return view("categories.edit",compact("category","categories"));
     }
-    public function show(Category $category)
+
+
+    public function show(Category $category): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view("categories.show", compact("category"));
     }
     public function destroy(Category $category)
     {
         $category->delete();
+        image("category_image","images")->delete($category->category_image);
         return back();
     }
 }

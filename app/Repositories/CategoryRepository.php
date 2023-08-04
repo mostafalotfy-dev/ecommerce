@@ -14,7 +14,7 @@ class CategoryRepository extends Repository
     static $rules = [
         "name_en" => "required|string|max:255|regex:(^[A-z])",
         "name_ar" => "required|string|max:255|regex:(^[ء-ي])",
-        "category_id"=>"nullable|integer|exists:categories,category_id"
+        "category_id"=>"nullable|integer"
     ];
     public function tableName(): string
     {

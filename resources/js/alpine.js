@@ -19,7 +19,7 @@ document.addEventListener("alpine:init", () => {
 
             send(id){
 
-                formData = new FormData();
+                const formData = new FormData();
                 formData.append("key",id)
                 formData.append("value",this.value)
                 fetch("http://"+location.host + "/api/ajax/language",{
