@@ -39,8 +39,9 @@ document.addEventListener("alpine:init", () => {
                         })
                         .catch((e)=>{
                             console.log(e.message)
-                            this.loading = false
+
                         })
+                        .finally(()=>this.loading = false)
                 },
             delete(id){
                     fetch(location.protocol+"/api/ajax/language/"+id,{
@@ -48,6 +49,7 @@ document.addEventListener("alpine:init", () => {
 
                     }).then((r)=> r.json())
                         .then((r)=>this.result = r.data.data)
+
             },
                 nextPage(){
 
@@ -105,9 +107,11 @@ document.addEventListener("alpine:init", () => {
                    {
                        this.errors = r.message
 
+                   }else if(r.hasOwnProperty("redirect_to")){
+
+                         location = r.redirect_to
                    }else{
                        console.log(r)
-                        location = r.redirect_to
                    }
               })
 
@@ -130,6 +134,27 @@ document.addEventListener("alpine:init", () => {
             }
 
 
+        })
+        Alpine.data("status",function (){
+            return {
+                update(id,status)
+                {
+                    const formData = new FormData()
+                    formData.append("id",id)
+                    formData.append("status",status)
+                    formData.append("_method","put")
+                    fetch(`http://${location.host}/api/ajax/update/status`,{
+                        method:"post",
+                        body:formData,
+                        headers:{
+                            "Accept":"application/json"
+                        }
+
+                    })
+                        .then((r)=>location.reload())
+
+                }
+            }
         })
     })
 

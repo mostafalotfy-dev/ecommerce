@@ -27,7 +27,8 @@ class AdminDataTable extends DataTable
 
                 return view("shared.status",[
                     "status"=>$db->status,
-                    "id"=>$db->id
+                    "id"=>$db->id,
+                    "tableId"=>"admin-table"
                 ]);
             })
 

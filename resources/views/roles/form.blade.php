@@ -34,9 +34,9 @@
 
     <template x-data x-for="permission in $store.permission.permissions">
         <tr>
-            <td><input type="checkbox" name="permissions[]"  checked=""   :value="permission.permission_id"></td>
-            <td x-text="permission.permission_en"></td>
-            <td x-text="permission.permission_ar"></td>
+            <td><input type="checkbox" name="permissions[]" :value="permission.id"></td>
+            <td x-text="permission.name_en"></td>
+            <td x-text="permission.name_ar"></td>
 
         </tr>
     </template>

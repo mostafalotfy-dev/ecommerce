@@ -54,17 +54,18 @@ class AjaxController extends Controller
     {
 
         $permissions = factory("permission")->search($searchKeyword);
-         $roles = factory("role")->search()->paginate();
+
 
         return response()->json(
             [
-                "permissions"=> $permissions->paginate(),
-                "roles"=>$roles
+                "permissions"=> $permissions->get(),
+
             ]);
 
     }
     public function add_permission(CreateRoleRequest $request)
     {
+
         factory("role")->transaction(function(Builder $query){
             $role_id = $query->insertGetId(request()->only("name_en","name_ar"));
             $permissions = collect(request("permissions"))->map(fn($permission)=>[
@@ -104,19 +105,17 @@ class AjaxController extends Controller
     }
     public function update_status()
     {
+        request()->validate([
+            "id"=>"required|exists:admins,id",
+            "status"=>"required|in:0,1"
+        ]);
         $repo = factory("admin")->find(request("id"));
         $admin = $repo->first();
-        if($admin->status === 1)
-        {
-            $repo->where("status",1)->update([
-                "status"=>0
+
+            $repo->update([
+                "status"=>request("status")
             ]);
-        }elseif ($admin->status == 0)
-        {
-            $repo->where("status",0)->update([
-                "status"=>1
-            ]);
-        }
+
         return \response()->json([
             "status"=>$admin->status
         ]);
