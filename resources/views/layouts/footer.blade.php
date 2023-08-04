@@ -20,15 +20,12 @@
 
 {{-- <script src= {{url("js/demo.js")}}></script> --}}
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="{{url("moment/moment.min.js")}}"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.3/cdn.min.js" integrity="sha512-XpPnaYn/Y/hcDzJa//4tOusxoA8/blkeeehF/qLAQPm3rej3Ds3msq1lLZCsFtnvnTtpIDQcyua4ZnELbwyy1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script  src="{{url("dist/js/main.js")}}"></script>
 
-    <script src="{{url("moment/moment.min.js")}}"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.3/cdn.min.js" integrity="sha512-XpPnaYn/Y/hcDzJa//4tOusxoA8/blkeeehF/qLAQPm3rej3Ds3msq1lLZCsFtnvnTtpIDQcyua4ZnELbwyy1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script  src="{{url("dist/js/main.js")}}"></script>
+
+<script  defer src="{{url("dist/js/app.js")}}"></script>
+<script src="{{url("dist/js/alpine.js")}}"></script>
+
 
 {{-- <!-- Sparkline -->
 <script src={{asset("plugins/sparklines/sparkline.js")}}></script> --}}

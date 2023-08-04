@@ -15,7 +15,7 @@
 <hr>
 <div class="row">
     <div class="col-md-3">
-        {{html()->label()->for("category_id")->text(lang("models/category.fields.parent_id"))}}
+        {{ html()->label()->for("category_id")->text(lang("models/category.fields.parent_id")) }}
        <select name="category_id" class="form-control">
            <option value="0">{{lang("models/category.fields.parent_id")}}</option>
            @foreach($categories as $category)
