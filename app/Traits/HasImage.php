@@ -13,8 +13,8 @@ trait HasImage {
         if(isset($input[$this->imageField]))
         {
             $file = request()->file($this->imageField);
-            $fileName = $file->getClientOriginalName();
-            \Storage::disk('public')->put($this->imagePath . $fileName, \File::get($file));
+            $fileName = uniqid().".".$file->extension();
+            \Storage::disk('public')->put($fileName, \File::get($file));
             $input[$this->imageField] = $fileName;
         }
     }

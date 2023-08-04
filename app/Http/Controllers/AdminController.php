@@ -50,7 +50,7 @@ class AdminController extends Controller
         }
         public function update(UpdateAdminRequest $request ,$id)
         {
-            $admin = factory("admin");
+            $admin = factory("admin")->find($id);
             $input = $request->except("_token","_method","save");
 
             if ($request->password)
@@ -59,10 +59,15 @@ class AdminController extends Controller
             }else{
                 unset($input["password"]);
             }
+            image("profile_image","images")->delete($admin->first()->profile_image);
             image("profile_image","images")->add($input);
-            $admin->where("id",$id)->update($input);
+            $admin->update($input);
 
             return to_route("admins.index");
+        }
+        public  function show(Admin $admin)
+        {
+            return view("admins.show",compact("admin"));
         }
         public function destroy(Admin $admin)
         {
