@@ -7,9 +7,15 @@ document.addEventListener("alpine:init", () => {
                 page_number:1,
                 value:"",
 
-                controller : new AbortController(),
+                controller : null,
 
-                length:0,
+                clear()
+                {
+                    if(this.searchInput.length === 0)
+                    {
+                        this.get()
+                    }
+                },
 
                 send(id){
 
@@ -30,18 +36,26 @@ document.addEventListener("alpine:init", () => {
                 get()
                 {
 
-                    fetch(location.protocol + "/api/ajax/language/"+encodeURIComponent(this.searchInput.replace(/\//g,"-"))+"?page=" +this.page_number,{ signal:this.controller.signal})
+
+                    fetch(location.protocol + "/api/ajax/language/"+encodeURIComponent(this.searchInput.replace(/\//g,"-"))+"?page=" +this.page_number,{ signal:this.controller?.signal})
                         .then((r)=>r.json())
                         .then(({data})=>{
+
+
                             this.result = data;
-                            this.length = data.length
+
+                            if(this.controller)
+                            {
+                                this.controller.abort()
+                            }
+                            this.controller = new AbortController
 
                         })
                         .catch((e)=>{
                             console.log(e.message)
 
                         })
-                        .finally(()=>this.loading = false)
+                        .finally(()=>{this.loading = false})
                 },
             delete(id){
                     fetch(location.protocol+"/api/ajax/language/"+id,{
@@ -71,6 +85,19 @@ document.addEventListener("alpine:init", () => {
 
             }
         )
+        Alpine.data("sweetalert",function (){
+            return {
+                show(obj)
+                {
+                    Swal.fire({
+                        title: obj.title,
+                        text: obj.text,
+                        icon: obj.icon,
+                        confirmButtonText: obj.confirmButtonText
+                    })
+                }
+            }
+        })
         Alpine.store("permission",{
             permissions:[],
             searchInput: "",

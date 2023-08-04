@@ -4,12 +4,14 @@
 @section("content")
     <div  class="input-group">
         <div class="input-group-prepend">
-            <div class="input-group-text"><i class="fas fa-search"></i></div>
+            <button type="button" :disabled="$store.search.loading" x-data class="input-group-text btn btn-primary btn-xs" @click="$store.search.get()"><i class="fas fa-search"></i></button>
         </div>
         <input x-data type="text"
                x-model="$store.search.searchInput" name="search"
                class="form-control" placeholder="{{lang("search by id,key or value")}}"
-               @input="$store.search.get()">
+               @input="$store.search.clear()"
+               @keyup.enter="$store.search.get()">
+
 
 
     </div>

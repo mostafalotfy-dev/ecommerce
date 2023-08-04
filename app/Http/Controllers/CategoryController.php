@@ -15,14 +15,17 @@ class CategoryController extends Controller
     }
     public function create()
     {
-        return view("categories.create");
+        $categories = factory("category")->take(10)->get()->toArray();
+
+        return view("categories.create",compact("categories"));
     }
     public function store(CreateCategoryRequest $request)
     {
 
-        $input = $request->except("_token","_method","save");
+        $input = $request->except("_token","_method","save","save_and_add","category_image");
+        image("category_image","images")->add($input);
         factory("category")->create($input);
-        return request()->has("save_and_add_more") ? to_route("category.create") : to_route("category.index");
+        return request()->has("save_and_add") ? to_route("category.create") : to_route("category.index");
     }
     public function update(Category $category, UpdateCategoryRequest $request)
     {
