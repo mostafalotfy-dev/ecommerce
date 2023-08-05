@@ -30,6 +30,11 @@
 
        </select>
     </div>
+    <div class="col-md-3">
+        {{html()->label()->for("status")->text(lang("models/category.fields.status"))}}
+        <div class="clearfix"></div>
+        {{html()->checkbox("status")}}
+    </div>
 </div>
 <hr>
 
