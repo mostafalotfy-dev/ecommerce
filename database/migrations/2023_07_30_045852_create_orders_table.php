@@ -16,13 +16,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("order_status_id")->foreignIdFor(OrderStatus::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("customer_id")->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->refrences("id")->on("products")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("order_status_id")->foreignIdFor(OrderStatus::class)->refrences("id")->on("order_statuses")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("customer_id")->foreignIdFor(User::class)->refrences("id")->on("users")->constrained()->cascadeOnDelete();
             $table->bigInteger("quantity")->default(0);
-            
+
             $table->timestamps();
-            
+
         });
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("mobile_code")->unique()->comment("country_code for mobile");
             $table->string("email")->unique();
             $table->string("profile_image")->default("image.png");
+            $table->string("dob")->comment("date of birth");
             $table->string("password")->nullable();
             $table->boolean("is_active")->default(0);
             $table->rememberToken();

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("open_time");
             $table->string("close_time");
-            $table->unsignedBigInteger("branch_id")->foreignIdFor(Branch::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("branch_id")->foreignIdFor(Branch::class)->refrences("id")->on("branches")->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

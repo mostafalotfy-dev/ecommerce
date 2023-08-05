@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("key");
             $table->string("type");
-            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->refrences("id")->on("products")->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

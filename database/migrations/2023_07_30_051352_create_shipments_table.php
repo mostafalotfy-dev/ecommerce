@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("order_id")->foreignIdFor(Order::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("user_id")->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("order_id")->foreignIdFor(Order::class)->refrences("id")->on("orders")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("user_id")->foreignIdFor(User::class)->refrences("id")->on("users")->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
