@@ -17,7 +17,7 @@ class PermissionRepository extends Repository
     {
         return "permissions";
     }
-    public function has($name,$user_id)
+    public function hasPermission($name,$user_id)
     {
         return factory("permission_role")
                 ->join("permissions","permissions.id","permission_role.permission_id")

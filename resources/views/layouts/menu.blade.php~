@@ -9,7 +9,7 @@
             </p>
           </a>
 	  @endif
-	  @if(factory('permission')->has(["view-categories"],$id))
+	  @if(factory('permission')->has(["view-category"],$id))
           <a href="{{route('category.index')}}" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
