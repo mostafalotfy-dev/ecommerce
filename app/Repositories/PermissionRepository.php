@@ -19,10 +19,13 @@ class PermissionRepository extends Repository
     }
     public function hasPermission($name,$user_id)
     {
-        return $this
-        ->select("permission_role.*,roles.*,role_user.*")
-        ->where("role_user.user_type",Admin::class)
-        ->where("role_user.user_id",$user_id)
-        ->where("permissions.name_en",$name)->count() !== 0;
+        return factory("permission_role")
+                ->join("permissions","permissions.id","permission_role.permission_id")
+                ->join("roles","roles.id","permission_role.permission_id")
+                ->join("admins","roles.id","admins.role_id")
+
+        ->where("admins.id",$user_id)
+        ->where("permissions.name_en",$name)->orWhere("permissions.name_ar",$name)
+                ->count("permissions.id") !== 0 ;
     }
 }
