@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,6 +30,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::resource("category",CategoryController::class);
     Route::get("language",[LanguageController::class,"index"])->name("language.index");
     Route::resource("admins",AdminController::class);
+    Route::resource("branches",BranchController::class);
+    
 });
 
 

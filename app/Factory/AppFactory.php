@@ -13,6 +13,9 @@ use App\Repositories\ProductInfoRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\SettingRepository;
 use Illuminate\Support\Facades\Lang;
+use App\Repsitories\OfferRepository;
+use App\Repsitories\BrandRepository;
+use App\Repsitories\BranchRepository;
 
 
 class AppFactory {
@@ -59,5 +62,18 @@ class AppFactory {
     public function permission_role():PermissionRoleRepository
     {
         return app(PermissionRoleRepository::class);
+    }
+    public function branch()
+    {
+	    return app(BrandRepository::class);
+
+    }
+    public function brand()
+    {
+	    return app(BranchRepository::class);
+    }
+    public function offer()
+    {
+	    return app(OfferRepository::class);
     }
 }

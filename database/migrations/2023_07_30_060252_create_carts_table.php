@@ -17,10 +17,10 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("user_id")->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("branch_id")->foreignIdFor(Branch::class)->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("brand_id")->foreignIdFor(Brand::class)->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->refrences("id")->on("products")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("user_id")->foreignIdFor(User::class)->refrences("id")->on("users")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("branch_id")->foreignIdFor(Branch::class)->refrences("id")->on("branches")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("brand_id")->foreignIdFor(Brand::class)->refrences("id")->on("brands")->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

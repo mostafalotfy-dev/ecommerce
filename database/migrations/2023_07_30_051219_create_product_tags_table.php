@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
-            $table->string("tag_name");
-           
+            $table->string("tag_name_en");
+            $table->string("tag_name_ar");
+
             $table->timestamps();
         });
     }

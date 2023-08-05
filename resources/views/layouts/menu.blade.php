@@ -27,7 +27,7 @@
          </p>
      </a>
      @endif
-	  @if(factory("permission")->has(["view-admins"],$id))
+	  @if(factory("permission")->has(["view-languages"],$id))
     
      <a href="{{route('admins.index')}}" class="nav-link active">
          <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -36,9 +36,16 @@
              <i class="right fas fa-angle-left"></i>
          </p>
      </a>
-@endif
-
-
+     @endif
+     @if(factory('permission')->has(["view-branches"],$id))
+ <a href="{{route('branches.index')}}" class="nav-link active">
+         <i class="nav-icon fas fa-tachometer-alt"></i>
+         <p>
+             {{lang("models/branches.plural")}}
+             <i class="right fas fa-angle-left"></i>
+         </p>
+     </a>
+	@endif
  </li>
 
 
