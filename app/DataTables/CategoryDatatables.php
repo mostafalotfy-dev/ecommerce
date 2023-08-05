@@ -30,6 +30,12 @@ class CategoryDatatables extends DataTable
 
 
             })
+            ->editColumn("status",function ($model){
+                return view("categories.status",[
+                    "status"=>$model->status,
+                    "id"=>$model->id
+                ]);
+            })
             ->setRowId('id');
     }
 

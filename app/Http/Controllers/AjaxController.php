@@ -103,7 +103,7 @@ class AjaxController extends Controller
         return \response()->json(lang("done"));
 
     }
-    public function update_status()
+    public function update_admin_status()
     {
         request()->validate([
             "id"=>"required|exists:admins,id",
@@ -118,6 +118,19 @@ class AjaxController extends Controller
 
         return \response()->json([
             "status"=>$admin->status
+        ]);
+    }
+    public function update_status($name)
+    {
+        request()->validate([
+           "id"=>"required|integer",
+           "status"=>"required|integer|in:0,1"
+        ]);
+        $repo = factory($name);
+        $repo
+            ->where("id",request("id"))
+            ->update([
+            "status"=>request("status")
         ]);
     }
 }

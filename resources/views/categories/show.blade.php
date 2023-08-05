@@ -21,7 +21,7 @@
         <tr>
             <td>{{$category->name_en}}</td>
             <td>{{$category->name_ar}}</td>
-            @php($parent = $category->parents($category->id))
+            @php($parent = $category->parents($category->category_id))
             <td>{{$parent?->name_en}}</td>
             <td>{{$parent?->name_ar}}</td>
             <td>@if($category->category_image) <img src="{{url("storage/".$category->category_image)}}" height="100"> @else - @endif</td>

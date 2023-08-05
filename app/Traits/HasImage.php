@@ -10,7 +10,7 @@ trait HasImage {
 
     public function add(&$input)
     {
-        if(isset($input[$this->imageField]))
+        if(request($this->imageField))
         {
             $file = request()->file($this->imageField);
             $fileName = uniqid().".".$file->extension();

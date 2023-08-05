@@ -23,4 +23,5 @@ Route::get("ajax/permissions/{search?}",[AjaxController::class,"get_permissions"
 Route::post("ajax/permissions",[AjaxController::class,"add_permission"]);
 Route::put("ajax/roles/{role}",[AjaxController::class,"update_role"])->name("update_role");
 Route::post("ajax/roles",[AjaxController::class,"add_roles"]);
-Route::put("ajax/update/status",[AjaxController::class,"update_status"]);
+Route::put("ajax/update/status",[AjaxController::class, "update_admin_status"]);
+Route::put("ajax/update/{name}/status",[AjaxController::class, "update_status"]);

@@ -183,6 +183,28 @@ document.addEventListener("alpine:init", () => {
             }
         }
     })
+    Alpine.data("status",function (){
+        return {
+            update(id,status,name)
+            {
+
+                const formData = new FormData()
+                formData.append("id",id)
+                formData.append("status",status)
+                formData.append("_method","put")
+                fetch(`http://${location.host}/api/ajax/update/${name}/status`,{
+                    method:"post",
+                    body:formData,
+                    headers:{
+                        "Accept":"application/json"
+                    }
+
+                })
+                    .then((r)=>location.reload())
+
+            }
+        }
+    })
 })
 
 

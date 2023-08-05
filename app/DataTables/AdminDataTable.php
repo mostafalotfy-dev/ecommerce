@@ -25,7 +25,7 @@ class AdminDataTable extends DataTable
             ->addColumn('action', 'admins.action')
             ->editColumn("status",function ($db){
 
-                return view("shared.status",[
+                return view("admins.status",[
                     "status"=>$db->status,
                     "id"=>$db->id,
                     "tableId"=>"admin-table"

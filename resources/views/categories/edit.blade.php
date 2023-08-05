@@ -5,9 +5,9 @@
 @section("card_title",lang("models/category.plural"))
 @section("content")
 
-   {!! html()->modelForm($category,"put",route("category.update",$category->id))->open() !!}
+   {!! html()->modelForm($category,"put",route("category.update",$category->id))->acceptsFiles()->open() !!}
    @include("categories.form")
 
-{!! html()->closeModelForm() !!}
+    {!! html()->closeModelForm() !!}
 @endsection
 

@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
         factory("category")->updateFields($input,$category->id);
 
-        return request("save_and_add") ? to_route("category.edit",$category->id) : to_route("category.index");
+        return   to_route("category.index");
     }
     public function edit(Category $category): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
