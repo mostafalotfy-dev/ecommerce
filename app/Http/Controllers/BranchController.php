@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BranchesDataTable;
 use App\Http\Requests\CreateBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
 use App\Models\Branch;
@@ -14,7 +15,7 @@ class BranchController extends Controller
 {
 	public function index()
 	{
-		return view("branches.index");
+		return app(BranchesDataTable::class)->render("branches.index");
 	}
 	public function show(Branch $branch)
 	{

@@ -10,11 +10,12 @@ use App\Repositories\RoleRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class AjaxController extends Controller
 {
-    public  function get_roles()
+    public  function get_roles(): JsonResponse
     {
         $roles = factory("role")->search(request("q"))->where("id","!=","1")->paginate();
 

@@ -67,6 +67,7 @@ class PermissionSeeder extends Seeder
 
 
         }
+
         foreach ($p as $permission) {
 
             $role->permissions()->create($permission);

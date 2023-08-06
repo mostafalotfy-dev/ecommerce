@@ -40,7 +40,7 @@ class  LangRepository extends Repository {
     public function key($key)
     {
 
-       if($this->comparator->isProduction())
+       if($this->comparator->isCacheLangEnables())
             $keys = cache()->rememberForever("language",fn()=>$this->data);
         else{
             $keys = $this->data;
@@ -53,7 +53,7 @@ class  LangRepository extends Repository {
     {
 
         $this->comparator->unless(
-            $this->comparator->exists("key",$key)
+         $this->comparator->addLangPermission()
             ,fn($repo)=>$repo
                         ->insert([
                             "key"=>$key,
@@ -61,7 +61,7 @@ class  LangRepository extends Repository {
     }
     public function set($key,$value){
 
-        return $this->comparator->when(!$this->comparator->isProduction() && !$this->comparator->exists("key",$key),
+        return $this->comparator->when($this->comparator->addLangPermission() && !$this->comparator->exists("key",$key),
             fn($repo)=> $repo->insert([
                 "key"=>$key,
                 "value"=>$value,

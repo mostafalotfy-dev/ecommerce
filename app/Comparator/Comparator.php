@@ -8,7 +8,14 @@ class Comparator
 {
     private Repository $repository;
 
-
+    public function isCacheLangEnables()
+    {
+        return env("CACHE_LANG",false);
+    }
+    public  function addLangPermission()
+    {
+        return env("ADD_LANG",true);
+    }
     public function setRepository($repository): void
     {
         $this->repository = $repository;

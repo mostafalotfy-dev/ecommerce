@@ -18,8 +18,8 @@ class PermissionMiddleware
         // if(!auth("admin") ){
         //     abort(403);
         // }
-         $role = auth("admin")->user()->role;
-         if( $role->permissions()->where("name_en",$permission)->count() == 0)
+         $user = auth("admin")->user();
+         if( !factory("permission")->hasPermission([$permission],$user->id) )
          {
              abort(403);
          }

@@ -225,10 +225,10 @@
 
                              <li class="breadcrumb-item"><a href="{{url('/admin')}}">{{lang("home")}}</a></li>
                         @php
-                            $level_2 = lang(str(request()->route()->getName())->split("/\./")[0]);
+                            $level_2 = str(request()->route()->getName())->split("/\./")[0];
 
                         @endphp
-                            <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{str($level_2)->title()}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{lang(str($level_2)->title())}}</a></li>
 
                         @php
                             $breadcrumb  = str(request()->route()->uri);

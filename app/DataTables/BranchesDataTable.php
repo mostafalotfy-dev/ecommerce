@@ -3,7 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Branch;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -32,7 +32,7 @@ class BranchesDataTable extends DataTable
      */
     public function query(): QueryBuilder
     {
-        return DB::table("branches");
+        return \DB::table("branches");
     }
 
     /**
@@ -69,7 +69,31 @@ class BranchesDataTable extends DataTable
                   ->width(60)
                   ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
+            Column::make([
+                "name"=>"name_en",
+                "id"=>"name_en",
+                "title"=> lang("models/branches.fields.name_en")
+            ]),
+            Column::make([
+                "name"=>"name_ar",
+                "id"=>"name_ar",
+                "title"=> lang("models/branches.fields.name_ar")
+            ]),
+            Column::make([
+                "name"=>"status",
+                "id"=>"status",
+                "title"=> lang("models/branches.fields.status")
+            ]),
+            Column::make([
+                "name"=>"is_open",
+                "id"=>"is_open",
+                "title"=> lang("models/branches.fields.is_open")
+            ]),
+            Column::make([
+                "name"=>"is_cod",
+                "id"=>"is_cod",
+                "title"=> lang("models/branches.fields.is_cod")
+            ]),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
