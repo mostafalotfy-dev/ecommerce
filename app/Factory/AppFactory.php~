@@ -25,7 +25,7 @@ use App\Repositories\BranchWorkingHoursRepository;
 class AppFactory {
 	public function working_hours()
 	{
-		return app(BranchWorkingHourseRepository::class);
+		return app(BranchWorkingHourseRepostiory::class);
 	}
     public function cart()
     {

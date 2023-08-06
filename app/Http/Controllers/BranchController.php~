@@ -30,7 +30,7 @@ class BranchController extends Controller
 	    
 
 	   
-	    \DB::transaction(function() use($request){	
+	    \DB::transacation(function() use($request){	
 	    $input = $request->only("name_en","name_ar","description_en","description_ar"); 
 	    	    
 	    $branch_id = factory("branch")->insertGetId($input);

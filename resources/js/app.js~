@@ -2,7 +2,6 @@
 
 import Alpine from 'alpinejs'
 import "../plugins/select2/js/select2.full.min.js"
-import "../plugins/sweetalert2/sweetalert2.all.min.js"
 window.Alpine = Alpine
 
 Alpine.start()

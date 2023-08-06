@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Repositories\BranchRepository;
+
 class UpdateBranchRequest extends FormRequest
 {
     /**
@@ -11,7 +11,7 @@ class UpdateBranchRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -21,9 +21,8 @@ class UpdateBranchRequest extends FormRequest
      */
     public function rules(): array
     {
-	    $rules = BranchRepository::class;
-	    return $rules;
+        return [
             //
-        
+        ];
     }
 }

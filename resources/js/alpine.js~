@@ -225,7 +225,7 @@ document.addEventListener("alpine:init", () => {
                         {
                             this.message = r.message
 
-                        }else if(r.hasOwnProperty("redirect_to")){
+                        }else if(r.hasOwnProperty("redirect_to"){
 				Swal.fire()	
                         }
 
