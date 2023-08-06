@@ -44,11 +44,22 @@
         @enderror
     </div>
     <div class="col-md-3">
-        {!! html()->label()->text(lang("models/admins.fields.role_name")) !!}
-        {!! html()->select("role_id")->options($roles)->class("form-control")!!}
+        {!! html()->label("role_id")->text(lang("models/roles.fields.role_id")) !!}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span  class="btn btn-primary input-group-text btn-xs d-inline-block" data-toggle="modal" data-target="#role-modal" id="basic-addon1">+</span>
+
+                {!! html()->select("role_id")->options($roles)->class("form-control select2")!!}
+
+
+            </div>
+        </div>
+
+
         @error("role_id")
         <span class="alert alert-danger">{{$errors->first("role_id")}}</span>
         @enderror
+
     </div>
 </div>
 
@@ -75,3 +86,6 @@
 <hr>
 <input class="btn btn-primary" type="submit" name="save" value="{{lang("save")}}">
 <hr>
+
+
+

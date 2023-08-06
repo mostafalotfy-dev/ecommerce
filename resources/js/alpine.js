@@ -205,6 +205,32 @@ document.addEventListener("alpine:init", () => {
             }
         }
     })
+    Alpine.data("crud",function (){
+        return {
+            message:null,
+            send(id){
+                const form = document.getElementById(id)
+                fetch(form.action,{
+                    method:form.getAttribute("method"),
+                    body:new FormData(form),
+                    headers:{
+                        "Accept":"application/json"
+                    }
+                }).then((r)=>r.json())
+                    .then((r)=>{
+                        if(r.hasOwnProperty("errors"))
+                        {
+                            this.message = r.message
+
+                        }else{
+                           location.reload()
+
+                        }
+
+                    })
+            }
+        }
+    })
 })
 
 

@@ -1,13 +1,13 @@
+<script src="{{url("jquery/jquery.min.js")}}"></script>
+<script src= {{url('plugins/bootstrap/js/bootstrap.bundle.js')}}></script>
 @if(request()->routeIs("*.index") && !request()->routeIs("language.index"))
 
-<script src="{{url("jquery/jquery.min.js")}}"></script>
-<script src="{{url("moment/moment.min.js")}}"></script>
 
 
 
 <script src= {{url("plugins/jquery-ui/jquery-ui.js")}}></script>
 <script src= {{url("plugins/chart.js/Chart.js")}}></script>
-<script src= {{url('plugins/bootstrap/js/bootstrap.bundle.js')}}></script>
+
 <script src= {{url("plugins/daterangepicker/daterangepicker.js")}}></script>
 <script src= {{url("plugins/overlayScrollbars/js/OverlayScrollbars.min.js")}}></script>
 <script src= {{url("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
