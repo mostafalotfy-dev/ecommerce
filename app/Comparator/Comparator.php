@@ -8,11 +8,11 @@ class Comparator
 {
     private Repository $repository;
 
-    public function __construct( Repository $repository)
+
+    public function setRepository($repository): void
     {
         $this->repository = $repository;
     }
-
     public function equal($a, $b)
     {
         return $a == $b;

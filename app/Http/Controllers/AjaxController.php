@@ -17,12 +17,37 @@ class AjaxController extends Controller
     public  function get_roles()
     {
         $roles = factory("role")->search(request("q"))->where("id","!=","1")->paginate();
-        $roles = $roles->map(fn($role)=>[
-            "text"=>$role->{"name_".app()->getLocale()},
-            "id"=>$role->id,
 
-        ]);
-        return \response()->json($roles);
+
+
+        return \response()->json([
+            "results"=>$roles->map(fn($role)=>[
+                "text"=>$role->{"name_".app()->getLocale()},
+                "id"=>$role->id
+            ]),
+                "pagination"=>[
+                    "hasMore"=>(bool) $roles->count()
+                ]
+            ]
+        );
+    }
+    public function get_category()
+    {
+
+            $response =  factory("category")->search(request("q"))->where("status",1)->paginate();
+            return response()->json(
+                [
+                    "results"=>  $response->map(fn($r)=>[
+                        "text"=>$r->{"name_".app()->getLocale()},
+                        "id"=>$r->id
+                    ]),
+                    "pagination"=>[
+                        "hasMore"=>(bool) $response->count()
+                    ]
+                ]
+
+            );
+
     }
     public function store_language(): Application|Response|\Illuminate\Contracts\Foundation\Application|ResponseFactory
     {

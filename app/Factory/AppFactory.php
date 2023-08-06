@@ -2,6 +2,7 @@
 
 
 namespace App\Factory;
+use App\Comparator\Comparator;
 use App\Repositories\AdminRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CategoryRepository;
@@ -13,14 +14,17 @@ use App\Repositories\ProductInfoRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\SettingRepository;
 use Illuminate\Support\Facades\Lang;
-use App\Repsitories\OfferRepository;
-use App\Repsitories\BrandRepository;
-use App\Repsitories\BranchRepository;
+use App\Repositories\OfferRepository;
+use App\Repositories\BrandRepository;
+use App\Repositories\BranchRepository;
 
 
 class AppFactory {
 
-
+    public function compare()
+    {
+        return app(Comparator::class);
+    }
     public function admin():AdminRepository
     {
         return app(AdminRepository::class);

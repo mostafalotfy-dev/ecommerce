@@ -12,8 +12,8 @@ class CategoryRepository extends Repository
         "category_id",
     ];
     static $rules = [
-        "name_en" => "required|string|max:255|regex:(^[A-z])",
-        "name_ar" => "required|string|max:255|regex:(^[ء-ي])",
+        "name_en" => "required|string|max:255|regex:(^[A-z])|unique:categories,name_en",
+        "name_ar" => "required|string|max:255|regex:(^[ء-ي])|unique:categories,name_ar",
         "category_id"=>"nullable|integer",
         "category_image"=>"nullable|image"
 

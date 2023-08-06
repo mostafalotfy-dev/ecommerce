@@ -9,16 +9,19 @@ use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
     public function index()
     {
+
         return app(CategoryDatatables::class)->render("categories.index");
     }
-    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function create(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|JsonResponse
     {
+
         $categories = factory("category")->take(10)->get()->toArray();
 
         return view("categories.create",compact("categories"));

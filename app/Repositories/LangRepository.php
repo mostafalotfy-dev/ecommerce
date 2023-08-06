@@ -26,7 +26,8 @@ class  LangRepository extends Repository {
 
     public function  __construct()
     {
-        $this->comparator = new Comparator($this);
+        $this->comparator = app(Comparator::class);
+        $this->comparator->setRepository($this);
         $this->data = $this->get();
 
     }

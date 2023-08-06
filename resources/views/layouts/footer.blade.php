@@ -1,6 +1,6 @@
 <script src="{{url("jquery/jquery.min.js")}}"></script>
 <script src= {{url('plugins/bootstrap/js/bootstrap.bundle.js')}}></script>
-@if(request()->routeIs("*.index") && !request()->routeIs("language.index"))
+@if(request()->routeIs("*.index") )
 
 
 
@@ -11,10 +11,10 @@
 <script src= {{url("plugins/daterangepicker/daterangepicker.js")}}></script>
 <script src= {{url("plugins/overlayScrollbars/js/OverlayScrollbars.min.js")}}></script>
 <script src= {{url("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
-<script src= {{url("dist/js/adminlte.min.js")}}></script>
+
 <script src={{url("plugins/datatables/jquery.dataTables.min.js")}}></script>
 @endif
-
+<script src= {{url("dist/js/adminlte.min.js")}}></script>
 {{-- <script src= {{url("dist/js/pages/dashboard.js")}}></script> --}}
 @stack("scripts")
 

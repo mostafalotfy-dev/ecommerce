@@ -21,13 +21,8 @@
 <div class="row">
     <div class="col-md-3">
         {{ html()->label()->for("category_id")->text(lang("models/category.fields.parent_id")) }}
-       <select name="category_id" class="form-control">
+       <select name="category_id" class="form-control" data-ajax-url="{{route("category.get")}}">
            <option value="0">{{lang("models/category.fields.parent_id")}}</option>
-
-           @foreach($categories as $c)
-               <option @isset($category) {{$category->category_id == $c->id ? "selected" : ""}} @endisset value="{{$c->id}}" >{{$c->{"name_".app()->getLocale()} }}</option>
-           @endforeach
-
        </select>
     </div>
     <div class="col-md-3">
