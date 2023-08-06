@@ -12,4 +12,5 @@
     </div>
     <a href="{{url("storage/".$admin->profile_image)}}" target="_blank">  <img height="150"  src="{{url("storage/".$admin->profile_image)}}" alt=""></a>
     {!! html()->closeModelForm() !!}
+    @include("admins.modal")
 @endsection

@@ -43,16 +43,19 @@
         <span class="alert alert-danger">{{$errors->first("password")}}</span>
         @enderror
     </div>
-    <div class="col-md-3">
-        {!! html()->label("role_id")->text(lang("models/roles.fields.role_id")) !!}
+    <div class="col-md-6">
+        {{html()->label("role_id")->text(lang("models/roles.fields.role_id"))}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span  class="btn btn-primary input-group-text btn-xs d-inline-block" data-toggle="modal" data-target="#role-modal" id="basic-addon1">+</span>
+                <span  class=" input-group-text btn-xs d-inline-block" data-toggle="modal" data-target="#role-modal" id="basic-addon1">+</span>
 
-                {!! html()->select("role_id")->options($roles)->class("form-control select2")!!}
+
 
 
             </div>
+
+            <select class="form-control select2" x-ref="role_id" x-data="crud" data-ajax-url="{{route("roles.get")}}"  id="role_id" name="role_id">
+            </select>
         </div>
 
 

@@ -208,6 +208,9 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("crud",function (){
         return {
             message:null,
+            currentPage: 1,
+
+
             send(id){
                 const form = document.getElementById(id)
                 fetch(form.action,{

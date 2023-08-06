@@ -15,7 +15,7 @@ class Admin extends Authenticatable
     protected $guarded = ["_token"];
     public function role():BelongsTo
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class)->withDefault([0=>""]);
     }
 
     protected function scopeHasRole($query)

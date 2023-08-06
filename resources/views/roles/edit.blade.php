@@ -64,4 +64,5 @@
 
 
     {!! html()->form()->close() !!}
+
 @endsection

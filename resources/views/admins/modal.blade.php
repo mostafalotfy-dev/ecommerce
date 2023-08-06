@@ -1,5 +1,5 @@
 <!-- Modal -->
-<form method="post" action="{{route("roles.store")}}" x-data="crud" @submit.prevent="send('role-form')" id="role-form">
+<form method="post" action="{{route("roles.store")}}" x-data="crud"  @submit.prevent="send('role-form')" id="role-form">
     @csrf
     <div class="modal fade" id="role-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-xl modal-dialog" role="document">

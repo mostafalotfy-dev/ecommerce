@@ -14,6 +14,16 @@ use Illuminate\Http\Response;
 
 class AjaxController extends Controller
 {
+    public  function get_roles()
+    {
+        $roles = factory("role")->search(request("q"))->where("id","!=","1")->paginate();
+        $roles = $roles->map(fn($role)=>[
+            "text"=>$role->{"name_".app()->getLocale()},
+            "id"=>$role->id,
+
+        ]);
+        return \response()->json($roles);
+    }
     public function store_language(): Application|Response|\Illuminate\Contracts\Foundation\Application|ResponseFactory
     {
         request()->validate(

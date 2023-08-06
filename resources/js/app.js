@@ -7,5 +7,14 @@ window.Alpine = Alpine
 
 Alpine.start()
 
-
-$(".select2").select2()
+const $ajax_url = $("[data-ajax-url]")
+$(".select2").select2({
+    ajax:{
+      url:$ajax_url.attr("data-ajax-url"),
+        processResults:function (r){
+          return {
+                results:  r
+          }
+}
+    }
+})
