@@ -5,7 +5,9 @@ namespace App\Factory;
 use App\Comparator\Comparator;
 use App\Repositories\AdminRepository;
 use App\Repositories\BannerRepository;
+use App\Repositories\CartRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CustomerRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\LangRepository;
 use App\Repositories\PermissionRepository;
@@ -20,7 +22,14 @@ use App\Repositories\BranchRepository;
 
 
 class AppFactory {
-
+    public function cart()
+    {
+        return app(CartRepository::class);
+    }
+    public function customer()
+    {
+        return app(CustomerRepository::class);
+    }
     public function compare()
     {
         return app(Comparator::class);
@@ -69,12 +78,12 @@ class AppFactory {
     }
     public function branch()
     {
-	    return app(BrandRepository::class);
+	    return app(BranchRepository::class);
 
     }
     public function brand()
     {
-	    return app(BranchRepository::class);
+	    return app(BrandRepository::class);
     }
     public function offer()
     {

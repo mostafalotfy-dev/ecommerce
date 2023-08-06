@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("dob")->comment("date of birth");
             $table->string("password")->nullable();
             $table->boolean("is_active")->default(0);
+            $table->string("ip_address");
             $table->rememberToken();
             $table->timestamps();
         });

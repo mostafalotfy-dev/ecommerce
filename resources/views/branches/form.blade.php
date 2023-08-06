@@ -31,7 +31,7 @@
 
     </div>
     <div class="col-md-3">
-        {{html()->label("open_time")->text(lang("models/branches.fields.open_time"))}}
+        {{html()->label("open_time")->text(lang("models/branches.fields.close_time"))}}
         {{html()->datetime("close_time")->class("form-control")}}
     </div>
 

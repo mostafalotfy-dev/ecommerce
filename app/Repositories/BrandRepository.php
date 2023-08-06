@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 
 namespace App\Repositories;
 
 class BrandRepository extends Repository
 {
-	public function tableName()
+	public function tableName():string
 	{
-		return "branches";
+		return "brands";
 	}
 }

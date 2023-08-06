@@ -5,12 +5,9 @@
 
 
 
-<script src= {{url("plugins/jquery-ui/jquery-ui.js")}}></script>
-<script src= {{url("plugins/chart.js/Chart.js")}}></script>
 
-<script src= {{url("plugins/daterangepicker/daterangepicker.js")}}></script>
-<script src= {{url("plugins/overlayScrollbars/js/OverlayScrollbars.min.js")}}></script>
-<script src= {{url("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js")}}></script>
+
+
 
 <script src={{url("plugins/datatables/jquery.dataTables.min.js")}}></script>
 @endif
@@ -23,7 +20,7 @@
 
 
 
-<script  defer src="{{url("dist/js/app.js")}}"></script>
+<script  defer src="{{url("dist/js/app.min.js")}}"></script>
 <script src="{{url("dist/js/alpine.js")}}"></script>
 
 

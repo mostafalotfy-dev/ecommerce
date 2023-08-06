@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string("name_ar");
 
             $table->boolean("status")->default(0);
-            $table->string("description_en");
-            $table->string("description_ar");
+            $table->text("description_en");
+            $table->text("description_ar");
 
             $table->tinyInteger("is_open")->default(1);
             $table->tinyInteger("is_cod")->default(1);

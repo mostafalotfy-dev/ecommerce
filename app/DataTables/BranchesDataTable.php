@@ -63,12 +63,12 @@ class BranchesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
+           
+            Column::make([
+                "data"=>"id",
+                "name"=>"id",
+                "title"=>"#"
+            ]),
             Column::make([
                 "name"=>"name_en",
                 "id"=>"name_en",
@@ -96,6 +96,11 @@ class BranchesDataTable extends DataTable
             ]),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
         ];
     }
 
