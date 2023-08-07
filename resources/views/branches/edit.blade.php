@@ -5,10 +5,13 @@
 @section("title",lang("models/branches.plural"))
 @section("content")
 
-    <form action="{{route("branches.update",$branch->id)}}" x-data="crud" @submit.prevent="send('branch-form')" id="branch-form" method="post">
-        @csrf
-        @method("put")
+    {{html()->modelForm($branch,"put",route("branches.update",$branch->id))
+->attribute("id","branch-form")
+->attribute("x-data","crud")
+->attribute("@submit.prevent","send('branch-form')")
+->open()}}
+
         @include("branches.form")
-    </form>
+    {{html()->form()->close()}}
 @endsection
 

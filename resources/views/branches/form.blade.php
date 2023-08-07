@@ -34,9 +34,11 @@
         {{html()->label("open_time")->text(lang("models/branches.fields.close_time"))}}
         {{html()->datetime("close_time")->class("form-control")}}
     </div>
-
+    <div class="col-md-3">
+        {{html()->label("status")->text(lang("models/branches.fields.status"))}}
+        {{html()->checkbox("status")}}
+    </div>
 </div>
 <hr>
 <input class="btn btn-primary" name="save"  value="{{lang("save")}}" type="submit">
 <hr>
-<input class="btn btn-warning" name="save_and_add" value="{{lang("save_and_add_more")}}" type="submit" >

@@ -28,9 +28,6 @@ class BranchController extends Controller
     public  function store(CreateBranchRequest $request)
     {
 
-
-
-
 	    $input = $request->only("name_en","name_ar","description_en","description_ar","open_time","close_time");
 
 	    factory("branch")->create($input);
@@ -47,7 +44,8 @@ class BranchController extends Controller
     }
     public function update(UpdateBranchRequest $request,Branch $branch)
     {
-
+        $branch->update($request->only($branch->getFillable()));
+        return \factory("response")->success(route("branches.update",$branch->id),route("branches.index"));
     }
 
     public  function destroy(Branch $branch)

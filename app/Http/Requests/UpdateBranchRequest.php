@@ -21,9 +21,9 @@ class UpdateBranchRequest extends FormRequest
      */
     public function rules(): array
     {
-	    $rules = BranchRepository::class;
+	    $rules = BranchRepository::$rules;
 	    return $rules;
             //
-        
+
     }
 }
