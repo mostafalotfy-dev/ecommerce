@@ -24,6 +24,10 @@ class BranchesDataTable extends DataTable
     {
         return (new QueryDataTable($query))
             ->addColumn('action', 'branches.action')
+            ->editColumn("status",function ($branch)
+            {
+                return view("branches.status",compact("branch"));
+            })
             ->setRowId('id');
     }
 

@@ -169,4 +169,17 @@ class AjaxController extends Controller
             "status"=>request("status")
         ]);
     }
+    public function update_code()
+    {
+        request()->validate(
+            [
+                "status"=>"in:1,0",
+
+            ]
+        );
+        factory("branch")->find(request("id"))->update([
+            "is_cod"=>request("status")
+        ]);
+        return \response()->json();
+    }
 }

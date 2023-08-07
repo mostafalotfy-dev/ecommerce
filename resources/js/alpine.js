@@ -163,7 +163,15 @@ document.addEventListener("alpine:init", () => {
 
     })
 
-
+    Alpine.data("cod",function (){
+        return {
+            update(id,status,name)
+            {
+                fetch(`http://${location.host}/api/ajax/${name}/cod/${status}/${id}`)
+                    .then(()=>location.reload())
+            }
+        }
+    })
     Alpine.data("status",function (){
         return {
             update(id,status,name)
