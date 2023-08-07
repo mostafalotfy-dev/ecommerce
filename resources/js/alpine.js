@@ -36,8 +36,7 @@ document.addEventListener("alpine:init", () => {
             get()
             {
 
-
-                fetch(location.protocol + "/api/ajax/language/"+encodeURIComponent(this.searchInput.replace(/\//g,"-"))+"?page=" +this.page_number,{ signal:this.controller?.signal})
+fetch(`http://${location.host}/api/ajax/language/${encodeURIComponent(this.searchInput.replace(/\//g,"-"))}?page= ${this.page_number}`,{ signal:this.controller?.signal})
                     .then((r)=>r.json())
                     .then(({data})=>{
 
@@ -48,9 +47,9 @@ document.addEventListener("alpine:init", () => {
                         {
                             this.controller.abort()
                         }
-                        this.controller = new AbortController
+                        this.controller = new AbortController()
 
-                    })
+		    })
                     .catch((e)=>{
                         console.log(e.message)
 
@@ -198,7 +197,7 @@ document.addEventListener("alpine:init", () => {
         return {
             message:null,
             currentPage: 1,
-
+	    errors:null,
 
             send(id){
                 const form = document.getElementById(id)
@@ -212,8 +211,8 @@ document.addEventListener("alpine:init", () => {
                     .then((r)=>{
                         if(r.hasOwnProperty("errors"))
                         {
-                            this.message = r.message
-
+                            this.message = r.message;
+			    this.errors = r.errors;
                         }else if(r.hasOwnProperty("redirect_to")){
                             Swal.fire(r.message).then(()=>{
                                 location = r.redirect_to

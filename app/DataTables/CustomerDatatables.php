@@ -2,8 +2,8 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
-use Illuminate\Database\Query\Builder as QueryBuilder;
+use App\Models\CustomerDatatable;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class CustomerDatatables extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,15 +22,14 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-		->addColumn('action', 'users.action')
-		
+            ->addColumn('action', 'customerdatatables.action')
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(CustomerDatatable $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -41,7 +40,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
+                    ->setTableId('customerdatatables-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -68,41 +67,10 @@ class UsersDataTable extends DataTable
                   ->printable(false)
                   ->width(60)
                   ->addClass('text-center'),
-	  Column::make([
-		  "data"=>"id",
-		  "name"=>"id",
-		  "title"=>"#"
-	  ]),
-	  Column::make(([
-		  "data"=>"name",
-		  "name"=>"name",
-		  "title"=>lang("models/customers.fields.name")
-	  ])),
-            Column::make([
-		  "data"=>"mobile_code",
-		  "name"=>"mobile_code",
-		  "title"=>lang("models/customers.fields.mobile_code"
-	    ])
-	    Column::make([
-		    "data"=>"email",
-		    "name"=>"email",
-		    "title"=>lang("models/customers.fields.email")
-	    ]),
-	    Column::make([
-		    "data"=>"dob",
-		    "name"=>"dob",
-		    "title"=>lang("models/customers.fields.date_of_birth")
- 
-	    ]),
-
-            Column::make( ["data"=>"created_at",
-		    "name"=>"created_at",
-		    "title"=>lang("models/customers.fields.created_at`")
-	    ]),
-	    Column::make([ "data"=>"updated_at",
-		    "name"=>"updated_at",
-		    "title"=>lang("models/customers.fields.updated_at")
-]),
+            Column::make('id'),
+            Column::make('add your columns'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
         ];
     }
 
@@ -111,6 +79,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'CustomerDatatables_' . date('YmdHis');
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::get("language",[LanguageController::class,"index"])->name("language.index");
     Route::resource("admins",AdminController::class);
     Route::resource("branches",BranchController::class);
-    
+    Route::resource("customers",CustomerController::class);    
 });
 
 

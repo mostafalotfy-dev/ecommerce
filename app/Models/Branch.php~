@@ -13,5 +13,9 @@ class Branch extends Model
 		"name_ar",
 		"description_en",
 		"description_ar",
+        "open_time",
+        "close_time",
+        "is_cod",
+        "status"
 	];
 }
