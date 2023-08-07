@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Datatables\CustomerDatatables;
 use Illuminate\Http\Request;
-
 class CustomerController extends Controller
 {
 	public function index()
 	{
-	
+		return app(CustomerDatatables::class)->render("customers.index");
 	
 	}
 	public function show(User $user)
@@ -17,7 +16,7 @@ class CustomerController extends Controller
 	}
 	public function edit( User $user)
 	{
-		return view("customers.edit",compact("user");
+		return view("customers.edit",compact("user"));
 	}
 	public function update(UpdateCustomerRequest $request,User $user)
 	{
