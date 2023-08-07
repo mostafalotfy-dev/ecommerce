@@ -27,21 +27,19 @@ class BranchController extends Controller
 	}
     public  function store(CreateBranchRequest $request)
     {
-	    
 
-	   
-	    \DB::transaction(function() use($request){	
-	    $input = $request->only("name_en","name_ar","description_en","description_ar"); 
-	    	    
-	    $branch_id = factory("branch")->insertGetId($input);
-	    factory('working_hours')->insert([
-		    "open_time"=>now()->parse($request->open_time),
-		    "close_time"=>now()->parse($request->close_time),
-		    "branch_id" =>$branch_id
-	    ]);
-	});
-	
- 	
+
+
+
+	    $input = $request->only("name_en","name_ar","description_en","description_ar","open_time","close_time");
+
+	    factory("branch")->create($input);
+    return response()->json([
+        "redirect_to"=>$request->save_and_add ? route("branches.index") : route("branches.create"),
+        "message"=> lang("success")
+    ]);
+
+
     }
     public function edit(Branch $branch)
     {
@@ -49,12 +47,12 @@ class BranchController extends Controller
     }
     public function update(UpdateBranchRequest $request,Branch $branch)
     {
-	
+
     }
 
     public  function destroy(Branch $branch)
     {
         $branch->delete();
-        return response()->json();
+        return back();
     }
 }

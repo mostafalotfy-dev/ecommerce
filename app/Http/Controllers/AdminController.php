@@ -37,7 +37,7 @@ class AdminController extends Controller
 
             $image->add($input);
             factory("admin")->insertGetId($input);
-            return request()->has("save_and_edit")  ? to_route("admins.create") : to_route("admins.index");
+            return factory("response")->success(route("admins.create"),route("admins.index"));
         }
         public function edit(Admin $admin)
         {
@@ -63,7 +63,7 @@ class AdminController extends Controller
             image("profile_image","images")->add($input);
             $admin->update($input);
 
-            return to_route("admins.index");
+            return factory("response")->success(route("admins.edit",$id),route("admins.index"));
         }
         public  function show(Admin $admin)
         {

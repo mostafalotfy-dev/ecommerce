@@ -2,13 +2,12 @@
 
 import Alpine from 'alpinejs'
 import "../plugins/select2/js/select2.full.min.js"
-import "../plugins/sweetalert2/sweetalert2.all.min.js"
 window.Alpine = Alpine
 
 Alpine.start()
 
 
-$(document).ready(function ()
+$(document).on("ready",function ()
 {
     $("[data-ajax-url]").select2({
         ajax:{

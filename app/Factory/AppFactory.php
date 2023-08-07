@@ -13,6 +13,7 @@ use App\Repositories\LangRepository;
 use App\Repositories\PermissionRepository;
 use App\Repositories\PermissionRoleRepository;
 use App\Repositories\ProductInfoRepository;
+use App\Repositories\ResponseRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\SettingRepository;
 use Illuminate\Support\Facades\Lang;
@@ -23,10 +24,11 @@ use App\Repositories\BranchWorkingHoursRepository;
 
 
 class AppFactory {
-	public function working_hours()
-	{
-		return app(BranchWorkingHourseRepository::class);
-	}
+
+    public function response()
+    {
+        return app(ResponseRepository::class);
+    }
     public function cart()
     {
         return app(CartRepository::class);

@@ -63,7 +63,7 @@ class BranchesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-           
+
             Column::make([
                 "data"=>"id",
                 "name"=>"id",
@@ -71,31 +71,39 @@ class BranchesDataTable extends DataTable
             ]),
             Column::make([
                 "name"=>"name_en",
-                "id"=>"name_en",
+                "data"=>"name_en",
                 "title"=> lang("models/branches.fields.name_en")
             ]),
             Column::make([
                 "name"=>"name_ar",
-                "id"=>"name_ar",
+                "data"=>"name_ar",
                 "title"=> lang("models/branches.fields.name_ar")
             ]),
             Column::make([
                 "name"=>"status",
-                "id"=>"status",
+                "data"=>"status",
                 "title"=> lang("models/branches.fields.status")
             ]),
             Column::make([
                 "name"=>"is_open",
-                "id"=>"is_open",
+                "data"=>"is_open",
                 "title"=> lang("models/branches.fields.is_open")
             ]),
             Column::make([
                 "name"=>"is_cod",
-                "id"=>"is_cod",
+                "data"=>"is_cod",
                 "title"=> lang("models/branches.fields.is_cod")
             ]),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make([
+                "data"=>"created_at",
+                "name"=>"created_at",
+                "title"=>lang("models/branches.fields.created_at")
+            ]),
+            Column::make([
+                "data"=>"updated_at",
+                "name"=>"updated_at",
+                "title"=>lang("models/branches.fields.updated_at")
+            ]),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)

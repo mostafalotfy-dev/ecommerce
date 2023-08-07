@@ -28,7 +28,8 @@ class AdminDataTable extends DataTable
                 return view("admins.status",[
                     "status"=>$db->status,
                     "id"=>$db->id,
-                    "tableId"=>"admin-table"
+                    "tableId"=>"admin-table",
+                    "name"=>"admin"
                 ]);
             })
 

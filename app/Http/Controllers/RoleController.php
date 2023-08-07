@@ -50,7 +50,7 @@ class RoleController extends Controller
             factory("permission_role")->insert($permissions->toArray());
 
         });
-        return response()->json(factory("role")->get());
+        return factory("response")->succeessResponse();
     }
 
     public function show(Role $role)

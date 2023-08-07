@@ -3,11 +3,17 @@
 @section("title",lang("models/admins.create.admin"))
 @section("content")
 
-{!! html()->form("post",route("admins.store"))->acceptsFiles()->attribute("autocomplete","off")->open() !!}
+    <form action="{{route("admins.store")}}" method="post" id="admin-form" x-data="crud"  @submit.prevent="send('admin-form')">
+        @csrf
+
     @include("admins.form")
+        <template x-if="message">
+            <span class="text text-danger" x-text="message"></span>
+            <hr>
+        </template>
 
-    <input type="submit" class="btn btn-danger" name="save_and_edit" value="{{lang("save_and_add_more")}}">
+    <input type="submit" class="btn btn-danger" name="save_and_add" value="{{lang("save_and_add_more")}}">
 
-    {!! html()->form()->close() !!}
+    </form>
 @include("admins.modal")
 @endsection
