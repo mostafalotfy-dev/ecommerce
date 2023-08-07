@@ -169,7 +169,7 @@ class AjaxController extends Controller
             "status"=>request("status")
         ]);
     }
-    public function update_code()
+    public function update_code($name,$status,$id)
     {
         request()->validate(
             [
@@ -177,8 +177,8 @@ class AjaxController extends Controller
 
             ]
         );
-        factory("branch")->find(request("id"))->update([
-            "is_cod"=>request("status")
+        factory("branch")->find($id)->update([
+            "is_cod"=>$status
         ]);
         return \response()->json();
     }
