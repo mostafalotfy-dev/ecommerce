@@ -31,7 +31,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::get("language",[LanguageController::class,"index"])->name("language.index");
     Route::resource("admins",AdminController::class);
     Route::resource("branches",BranchController::class);
-    
+    Route::resource("customers",CustomerController::class);    
 });
 
 

@@ -44,6 +44,7 @@ class BranchController extends Controller
     }
     public function update(UpdateBranchRequest $request,Branch $branch)
     {
+	    
         $branch->update($request->only($branch->getFillable()));
         return \factory("response")->success(route("branches.update",$branch->id),route("branches.index"));
     }

@@ -29,7 +29,7 @@ class BranchesDataTable extends DataTable
                 return view("branches.status",compact("branch"));
 	    })->editColumn("is_cod",function($branch){
 		    return view("branches.cod",compact("branch"));
-	    })
+	    }
             ->setRowId('id');
     }
 

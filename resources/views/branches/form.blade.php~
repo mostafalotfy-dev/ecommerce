@@ -2,7 +2,7 @@
     <div class="col-md-3">
         {{html()->label("name_en")->text(lang("models/branches.fields.name_en"))}}
 	{{html()->text("name_en")->class("form-control")->attribute("max",255)}}
-<template x-if="errors?.name_en">
+<template x-if="errors">
 <span class="text text-danger" x-text="errors.name_en[0]"></span>
 </template>
     </div>

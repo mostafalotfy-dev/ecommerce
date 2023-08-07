@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
+Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:admin"]], function() {
     Route::post("ajax/language", [AjaxController::class, "store_language"]);
     Route::delete("ajax/language/{id}", [AjaxController::class, "destroy_language"]);
     Route::get("ajax/language/{search?}", [AjaxController::class, "search_language"]);

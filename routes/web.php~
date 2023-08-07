@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controller\BranchController;
+use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
 
 
