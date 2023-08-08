@@ -74,6 +74,13 @@ class AjaxController extends Controller
 
             );
     }
+    public function get_countries()
+    {
+	    return DB::table("countries")->get()->map(fn($counrty)=>[
+		    "text"=>request("lang","en") == "en" ? $country->country_enName : $country->country_arName,
+		    "id"=>$country->country_code
+	    ]);
+    }
     public function destroy_language($id)
     {
         factory("lang")

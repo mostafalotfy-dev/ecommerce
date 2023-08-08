@@ -67,4 +67,5 @@ set ttimeout
 set ttimeoutlen=100
 set undofile
 set wildmenu
+set colorscheme slate
 " vim: set ft=vim :

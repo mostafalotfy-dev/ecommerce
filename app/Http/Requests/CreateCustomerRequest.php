@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Repositories\CustomerRepository;
 class CreateCustomerRequest extends FormRequest
 {
     /**
@@ -21,8 +21,6 @@ class CreateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return CustomerRepository::$rules;
     }
 }

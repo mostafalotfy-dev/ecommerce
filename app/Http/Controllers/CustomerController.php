@@ -15,31 +15,55 @@ class CustomerController extends Controller
 	}
     public function create()
     {
-        return view("customers.create");
+	    $countries = \DB::table("countries")->pluck("country_".app()->getLocale()."Name","country_code");
+        return view("customers.create",compact("countries"));
     }
 
 	public function show(User $user)
 	{
 		return view("customers.show",compact("user"));
 	}
-	public function edit( User $user)
+	public function edit( $id)
 	{
+	  $countries = \DB::table("countries")->pluck("country_".app()->getLocale()."Name","country_code");
+ $user = factory("customer")->find($id)->first();	
 
 
-		return view("customers.edit",compact("customer"));
+		return view("customers.edit",compact("user","countries"));
 	}
-	public function update(UpdateCustomerRequest $request,User $user)
+	public function update(UpdateCustomerRequest $request,$id)
 	{
+		$customer = factory("customer")->find($id);
+	$input = $request->validated();
+		image('profile_image',"images")->delete($customer->first()->profile_image);
+		image('profile_image',"images")->add($input);
+		$customer->update($input);		
+			return response()->json([
+				"redirect_to"=>route("customers.index"),
+
+				"message"=>lang("success")
+			]);
 
 	}
 	public function store(CreateCustomerRequest $request)
 	{
-	}
-	public function destroy(User $user)
-	{
-		image("profile_image","images")->delete($user->profile_image);
+		$input = $request->validated();
+		$input["ip_address"] = $request->ip();
+		image("profile_image","images")->add($input);
+		$customer = factory("customer")->create($input);
 
-		$user->delete();
+		return factory("response")
+			->success(route("customers.index"),route("customers.store"));
+	}
+	public function destroy( $id)
+	{
+		
+		
+		$customer = factory("customer")->find($id);
+
+		image("profile_image","images")->delete($customer->first()->profile_image);
+	$customer->delete();	
+		return to_route("customers.index");
 	}
 }
 

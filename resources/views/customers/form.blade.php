@@ -2,7 +2,10 @@
     <div class="col-md-3">
         {{html()->label("name")->text(lang("models/customers.fields.name"))}}
         {{html()->text("name")->class("form-control")->placeholder(lang("models/customers.fields.name"))}}
+<template x-if="errors?.name">
 
+<span class="text text-danger" x-text="errors.name[0]"></span>
+</template>
     </div>
     <div class=" col-md-5">
         {{html()->label("mobile")->text(lang("models/customers.fields.mobile"))}}
@@ -10,15 +13,19 @@
             <div class="input-group-prepend ">
 
                 <div class="input-group-text">
-                    {{html()->select("mobile_code")->options([])->class("select2")->placeholder(lang("models/customers.fields.mobile_code"))}}
+                    {{html()->select("mobile_code")->options($countries)->class("select2")->placeholder(lang("models/customers.fields.mobile_code"))}}
                 </div>
 
 
             </div>
-            {{html()->text("mobile")->placeholder(lang("models/customers.fields.mobile"))->class("form-control d-inline-block")}}
+            {{html()->text("mobile")->placeholder(lang("models/customers.fields.phone_number"))->class("form-control")}}
 
         </div>
+<template x-if="errors?.mobile">
 
+<span class="text text-danger" x-text="errors.mobile[0]">
+</span>
+</template> 
     </div>
     <div class="col-md-3">
         {{html()->label("email")->text(lang("models/customers.fields.email"))}}
@@ -33,7 +40,7 @@
 
     <div class="col-md-3">
         {{html()->label("profile_image")->text(lang("models/customers.fields.profile_image"))}}
-        {{html()->file("profile_image")->class("form-control")}}
+        {{html()->file("profile_image")->acceptImage()->class("form-control")}}
         <template x-if="errors?.profile_image">
             <span class="text text-danger" x-text="errors.profile_image[0]"></span>
         </template>

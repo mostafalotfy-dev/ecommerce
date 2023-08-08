@@ -24,7 +24,7 @@ class CustomerDatatables extends DataTable
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
         return (new QueryDataTable($query))
-            ->addColumn('action', 'customerdatatables.action')
+            ->addColumn('action', 'customers.action')
             ->setRowId('id');
     }
 
@@ -77,9 +77,9 @@ class CustomerDatatables extends DataTable
             ]),
 
             Column::make([
-                "data"=>"phone_number",
-                "name"=>"phone_number",
-                "title"=>lang("models/customers.fields.phone_number")
+                "data"=>"mobile",
+                "name"=>"mobile",
+                "title"=>lang("models/customers.fields.mobile")
             ]),
             Column::make([
                 "data"=>"email",

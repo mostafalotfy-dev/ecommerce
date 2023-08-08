@@ -200,6 +200,7 @@ fetch(`http://${location.host}/api/ajax/language/${encodeURIComponent(this.searc
 	    errors:null,
 
             send(id){
+		    this.errors = null;
                 const form = document.getElementById(id)
                 fetch(form.action,{
                     method:form.getAttribute("method"),

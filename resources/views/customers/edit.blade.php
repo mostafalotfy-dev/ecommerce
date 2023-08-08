@@ -7,7 +7,7 @@
 
 @section("content")
 
-    {{html()->modelForm($user,"put",route("customers.update",$user->id))
+    {{html()->modelForm($user,"put",route("customers.update",["customer"=>$user->id]))
     ->attribute("x-data","crud")
     ->attribute("@submit.prevent","send('customer-form')")
     ->id("customer-form")
