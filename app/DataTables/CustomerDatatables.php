@@ -2,14 +2,16 @@
 
 namespace App\DataTables;
 
-use App\Models\CustomerDatatable;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+
+use App\Models\User;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
+use Yajra\DataTables\QueryDataTable;
 use Yajra\DataTables\Services\DataTable;
 
 class CustomerDatatables extends DataTable
@@ -19,9 +21,9 @@ class CustomerDatatables extends DataTable
      *
      * @param QueryBuilder $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query): EloquentDataTable
+    public function dataTable(QueryBuilder $query): QueryDataTable
     {
-        return (new EloquentDataTable($query))
+        return (new QueryDataTable($query))
             ->addColumn('action', 'customerdatatables.action')
             ->setRowId('id');
     }
@@ -29,9 +31,9 @@ class CustomerDatatables extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(CustomerDatatable $model): QueryBuilder
+    public function query(): QueryBuilder
     {
-        return $model->newQuery();
+        return \DB::table("users");
     }
 
     /**
@@ -62,15 +64,38 @@ class CustomerDatatables extends DataTable
     public function getColumns(): array
     {
         return [
+
+            Column::make([
+                "data"=>"id",
+                "name"=>"id",
+                "title"=>"#"
+            ]),
+            Column::make([
+                "data"=>"name",
+                 "name"=>"name",
+                "title"=>lang("models/customers.fields.full_name")
+            ]),
+            Column::make([
+                "data"=>"name",
+                "name"=>"name",
+                "title"=>lang("models/customers.fields.full_name")
+            ]),
+
+            Column::make([
+                "data"=>"created_at",
+                "name"=>"created_at",
+                "title"=>lang("models/customers.fields.created_at")
+            ]),
+            Column::make([
+                "data"=>"updated_at",
+                "name"=>"updated_at",
+                "title"=>lang("models/customers.fields.updated_at")
+            ]),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

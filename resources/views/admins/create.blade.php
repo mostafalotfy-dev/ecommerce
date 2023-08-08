@@ -7,10 +7,7 @@
         @csrf
 
     @include("admins.form")
-        <template x-if="message">
-            <span class="text text-danger" x-text="message"></span>
-            <hr>
-        </template>
+
 
     <input type="submit" class="btn btn-danger" name="save_and_add" value="{{lang("save_and_add_more")}}">
 

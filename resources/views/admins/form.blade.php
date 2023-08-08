@@ -3,34 +3,34 @@
     <div class="col-md-3">
         {!! html()->label()->for("first_name")->class("required")->text(lang("models/admins.fields.first_name")) !!}
         {!! html()->text("first_name")->attribute("autocomplete","nope")->class("form-control")->id("first_name") !!}
-        @error("first_name")
-        <div class="alert alert-danger">
-            {{$errors->first("first_name")}}
+        <template x-if="errors?.first_name">
+        <div class="text text-danger" x-text="errors.first_name[0]">
+
 
         </div>
-        @enderror
+        </template>
     </div>
     <div class="col-md-3">
         {!! html()->label()->for("last_name")->class("required")->text(lang("models/admins.fields.last_name")) !!}
         {!! html()->text("last_name")->class("form-control")->id("last_name") !!}
-        @error("last_name")
-        <div class="alert alert-danger">{{$errors->first("last_name")}}</div>
-        @enderror
+        <template x-if="errors?.last_name">
+        <div class="text text-danger" x-text="errors.last_name[0]"></div>
+        </template>
     </div>
     <div class="col-md-3">
         {!! html()->label()->for("email")->class("required")->text(lang("models/admins.fields.email")) !!}
         {!! html()->email("email")->attribute("autocomplete","email")->class("form-control")->id("email") !!}
-        @error("email")
-            <div class="alert alert-danger">{{$errors->first("email")}}</div>
-        @enderror
+        <template x-if="errors?.email">
+            <div class="text text-danger" x-text="errors.email[0]"></div>
+        </template>
     </div>
 
     <div class="col-md-3">
         {!! html()->label()->for("phone_number")->class("required")->text(lang("models/admins.fields.phone_number")) !!}
         {!! html()->text("phone_number")->attribute("autocomplete","nope")->class("form-control")->id("phone_number") !!}
-        @error("phone_number")
-        <div class="alert alert-danger">{{$errors->first("phone_number")}}</div>
-        @enderror
+        <template x-if="errors?.phone_number">
+            <div class="text text-danger" x-text="errors.phone_number[0]"></div>
+        </template>
     </div>
 
 </div>
@@ -40,9 +40,9 @@
     <div class="col-md-3">
         {!! html()->label()->text(lang("models/admins.fields.password")) !!}
         {!! html()->password()->attribute("autocomplete","new-password")->class("form-control")->name("password")!!}
-        @error("password")
-        <span class="alert alert-danger">{{$errors->first("password")}}</span>
-        @enderror
+        <template x-if="errors?.password">
+            <div class="text text-danger" x-text="errors.password[0]"></div>
+        </template>
     </div>
     <div class="col-md-6">
         {{html()->label("role_id")->text(lang("models/roles.fields.role_id"))}}
@@ -55,14 +55,15 @@
 
             </div>
 
-            <select class="form-control select2" x-ref="role_id" x-data="crud" data-ajax-url="{{route("roles.get")}}"  id="role_id" name="role_id">
+            <select class="form-control select2" x-ref="role_id" x-data="crud" data-ajax-url="{{route("roles.get",["lang"=>app()->getLocale()])}}"  id="role_id" name="role_id">
             </select>
+            <template x-if="errors?.role_id">
+                <div class="text text-danger" x-text="errors.role_id"></div>
+            </template>
         </div>
 
 
-        @error("role_id")
-        <span class="alert alert-danger">{{$errors->first("role_id")}}</span>
-        @enderror
+
 
     </div>
 </div>

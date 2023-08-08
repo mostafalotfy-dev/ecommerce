@@ -166,7 +166,7 @@ fetch(`http://${location.host}/api/ajax/language/${encodeURIComponent(this.searc
         return {
             update(id,status,name)
             {
-                fetch(`http://${location.host}/api/ajax/${name}/cod/${status}/${id}`)
+                fetch(`http://${location.host}/api/ajax/cod/${status}/${id}`)
                     .then(()=>location.reload())
             }
         }

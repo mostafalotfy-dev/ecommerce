@@ -20,10 +20,10 @@ class AjaxController extends Controller
         $roles = factory("role")->search(request("q"))->where("id","!=","1")->paginate();
 
 
-
+        $lang = request("lang");
         return \response()->json([
             "results"=>$roles->map(fn($role)=>[
-                "text"=>$role->{"name_".app()->getLocale()},
+                "text"=>$role->{"name_".$lang},
                 "id"=>$role->id
             ]),
                 "pagination"=>[
