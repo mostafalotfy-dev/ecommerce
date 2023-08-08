@@ -75,12 +75,27 @@ class CustomerDatatables extends DataTable
                  "name"=>"name",
                 "title"=>lang("models/customers.fields.full_name")
             ]),
-            Column::make([
-                "data"=>"name",
-                "name"=>"name",
-                "title"=>lang("models/customers.fields.full_name")
-            ]),
 
+            Column::make([
+                "data"=>"phone_number",
+                "name"=>"phone_number",
+                "title"=>lang("models/customers.fields.phone_number")
+            ]),
+            Column::make([
+                "data"=>"email",
+                "name"=>"email",
+                "title"=>lang("models/customers.fields.email")
+            ]),
+            Column::make([
+                "data"=>"dob",
+                "name"=>"dob",
+                "title"=>lang("models/customers.fields.date_of_birth")
+            ]),
+            Column::make([
+                "data"=>"is_active",
+                "name"=>"is_active",
+                "title"=>lang("models/customers.fields.is_active")
+            ]),
             Column::make([
                 "data"=>"created_at",
                 "name"=>"created_at",
