@@ -22,7 +22,7 @@ class CategoryController extends Controller
     public function create(): \Illuminate\Contracts\Foundation\Application|Factory|View|Application|JsonResponse
     {
 
-        $categories = factory("category")->take(10)->get()->toArray();
+        $categories = factory("category")->take(10)->get();
 
         return view("categories.create",compact("categories"));
     }
@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $input = $request->except("_token","_method","save","save_and_add","category_image");
         image("category_image","images")->add($input);
         factory("category")->create($input);
-        return request()->has("save_and_add") ? to_route("category.create") : to_route("category.index");
+        return \factory("response")->success(route("category.index"));
     }
     public function update(Category $category, UpdateCategoryRequest $request): RedirectResponse
     {

@@ -21,9 +21,8 @@
 <div class="row">
     <div class="col-md-3">
         {{ html()->label()->for("category_id")->text(lang("models/category.fields.parent_id")) }}
-       <select name="category_id" class="form-control" data-ajax-url="{{route("category.get")}}">
-           <option value="0">{{lang("models/category.fields.parent_id")}}</option>
-       </select>
+        {{html()->select("category_id")->options($categories->pluck("name_".app()->getLocale(),"id"))
+->class("form-control select2")->attribute("data-ajax-url",route("category.get"))}}
     </div>
     <div class="col-md-3">
         {{html()->label()->for("status")->text(lang("models/category.fields.status"))}}

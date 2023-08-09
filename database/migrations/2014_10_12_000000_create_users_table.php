@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('mobile')->unique();
-            $table->string("mobile_code")->unique()->comment("country_code for mobile");
+            $table->string("mobile_code")->comment("country_code for mobile");
             $table->string("email")->unique();
             $table->string("profile_image")->default("image.png");
             $table->string("dob")->comment("date of birth");

@@ -9,7 +9,6 @@
     @include("admins.form")
 
 
-    <input type="submit" class="btn btn-danger" name="save_and_add" value="{{lang("save_and_add_more")}}">
 
     </form>
 @include("admins.modal")

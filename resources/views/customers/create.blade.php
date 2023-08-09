@@ -13,6 +13,6 @@
     ->id("customer-form")
     ->open()}}
     @include("customers.form")
-    <input class="btn btn-warning" type="submit" name="save" value="{{lang("save_and_add")}}">
+    <input   class="btn btn-warning" type="submit" name="save" value="{{lang("save_and_add")}}">
     {{html()->form()->close()}}
 @endsection

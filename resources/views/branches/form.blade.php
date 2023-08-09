@@ -6,7 +6,7 @@
 <span class="text text-danger" x-text="errors.name_en[0]"></span>
 </template>
     </div>
-	
+
     <div class="col-md-3">
         {{html()->label("name_ar")->text(lang("models/branches.fields.name_ar"))}}
 	{{html()->text("name_ar")->class("form-control")->attribute("max",255)}}
@@ -41,7 +41,8 @@
         {{html()->label("open_time")->text(lang("models/branches.fields.open_time"))}}
         {{html()->datetime("open_time")->class("form-control")}}
 <template x-if="errors?.open_time">
-<span class="errors.open_time[0]" x-text="errors.open_time[0]">
+    <span class="text text-danger" x-text="errors.open_time[0]"></span>
+
 </template>
 
     </div>
@@ -49,14 +50,14 @@
         {{html()->label("close_time")->text(lang("models/branches.fields.close_time"))}}
 	{{html()->datetime("close_time")->class("form-control")}}
 <template x-if="errors?.close_time">
-<span class="text text-danger" x-text="errors.close_time">
+    <span class="text text-danger" x-text="errors.close_time"></span>
 </template>
     </div>
     <div class="col-md-3">
         {{html()->label("status")->text(lang("models/branches.fields.status"))}}
 	{{html()->checkbox("status")}}
 <template x-if="errors?.status">
-<span class="text text-danger" x-text="errors.status">
+    <span class="text text-danger" x-text="errors.status"></span>
 </template>
     </div>
 </div>

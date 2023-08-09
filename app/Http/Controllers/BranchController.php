@@ -32,7 +32,7 @@ class BranchController extends Controller
 
 	    factory("branch")->create($input);
     return response()->json([
-        "redirect_to"=>$request->save_and_add ? route("branches.index") : route("branches.create"),
+        "redirect_to"=>route("branches.index") ,
         "message"=> lang("success")
     ]);
 
@@ -44,7 +44,7 @@ class BranchController extends Controller
     }
     public function update(UpdateBranchRequest $request,Branch $branch)
     {
-	    
+
         $branch->update($request->only($branch->getFillable()));
         return \factory("response")->success(route("branches.update",$branch->id),route("branches.index"));
     }

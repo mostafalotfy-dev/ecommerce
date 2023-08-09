@@ -14,18 +14,24 @@
 
                 <div class="input-group-text">
                     {{html()->select("mobile_code")->options($countries)->class("select2")->placeholder(lang("models/customers.fields.mobile_code"))}}
+
                 </div>
 
 
             </div>
+
             {{html()->text("mobile")->placeholder(lang("models/customers.fields.phone_number"))->class("form-control")}}
 
         </div>
+        <template x-if="errors?.mobile_code">
+            <span class="text-danger text" x-text="errors.mobile_code[0]"></span>
+        </template>
 <template x-if="errors?.mobile">
 
 <span class="text text-danger" x-text="errors.mobile[0]">
 </span>
-</template> 
+</template>
+
     </div>
     <div class="col-md-3">
         {{html()->label("email")->text(lang("models/customers.fields.email"))}}
@@ -53,7 +59,10 @@
             <span class="text text-danger" x-text="errors.dob[0]"></span>
         </template>
     </div>
-
+<div class="col-md-3">
+    {{html()->label("password")->text(lang("models/customers.fields.password"))}}
+    {{html()->password("password")->class("form-control")->attribute("autocomplete","new-password")}}
+</div>
     <div class="col-md-3">
         {{html()->label("is_active")->text(lang("models/customers.fields.is_active"))}}
         <div class="clearfix"></div>

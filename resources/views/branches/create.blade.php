@@ -8,7 +8,7 @@
     <form action="{{route("branches.store")}}" x-data="crud" @submit.prevent="send('branch-form')" id="branch-form" method="post">
         @csrf
         @include("branches.form")
-        <input class="btn btn-warning" name="save_and_add" value="{{lang("save_and_add_more")}}" type="submit" >
+
 
     </form>
 @endsection

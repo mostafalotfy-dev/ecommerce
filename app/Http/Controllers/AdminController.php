@@ -63,7 +63,7 @@ class AdminController extends Controller
             image("profile_image","images")->add($input);
             $admin->update($input);
 
-            return factory("response")->success(route("admins.edit",$id),route("admins.index"));
+            return factory("response")->success(route("admins.index"));
         }
         public  function show(Admin $admin)
         {
