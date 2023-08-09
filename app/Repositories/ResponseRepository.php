@@ -3,9 +3,11 @@
 namespace App\Repositories;
 
 
+use Illuminate\Http\JsonResponse;
+
 class ResponseRepository {
 
-    public  function success($routeOnSave)
+    public  function success($routeOnSave): JsonResponse
     {
 
         return response()->json([

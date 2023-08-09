@@ -3,6 +3,7 @@
 
 namespace App\Factory;
 use App\Comparator\Comparator;
+use App\Repositories\AddressRepository;
 use App\Repositories\AdminRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CartRepository;
@@ -10,21 +11,35 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\CustomerRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\LangRepository;
+use App\Repositories\OrderRepository;
 use App\Repositories\PermissionRepository;
 use App\Repositories\PermissionRoleRepository;
 use App\Repositories\ProductInfoRepository;
 use App\Repositories\ResponseRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\SettingRepository;
+use App\Repositories\ShipmentRepository;
 use Illuminate\Support\Facades\Lang;
 use App\Repositories\OfferRepository;
 use App\Repositories\BrandRepository;
 use App\Repositories\BranchRepository;
-use App\Repositories\BranchWorkingHoursRepository;
+
+
 
 
 class AppFactory {
-
+    public function shipment()
+    {
+        return app(ShipmentRepository::class);
+    }
+    public function address()
+    {
+        return app(AddressRepository::class);
+    }
+    public function order()
+    {
+        return app(OrderRepository::class);
+    }
     public function response()
     {
         return app(ResponseRepository::class);
