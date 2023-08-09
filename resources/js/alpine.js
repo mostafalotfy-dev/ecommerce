@@ -211,6 +211,8 @@ document.addEventListener("alpine:init", () => {
                                 location = r.redirect_to
                             })
 
+                        }else if (r.hasOwnProperty("message")){
+                           Swal.fire(r.message)
                         }
 
                     })

@@ -1,5 +1,5 @@
 <template x-data x-if="$store.permission.errors" >
-    <div class="alert alert-danger" x-text="$store.permission.errors">
+    <div class="text text-danger" x-text="$store.permission.errors">
 
     </div>
 </template>
@@ -45,7 +45,7 @@
 <input class="btn btn-primary"  type="submit" name="save" value="{{lang("save")}}">
 <hr>
 <template x-data x-if="$store.permission.errors" >
-    <div class="alert alert-danger" x-text="$store.permission.errors">
+    <div class="text-danger text" x-text="$store.permission.errors">
 
 
     </div>

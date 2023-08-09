@@ -210,6 +210,8 @@ document.addEventListener("alpine:init", function () {
             Swal.fire(r.message).then(function () {
               location = r.redirect_to;
             });
+          } else if (r.hasOwnProperty("message")) {
+            Swal.fire(r.message);
           }
         });
       }

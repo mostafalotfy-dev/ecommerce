@@ -21,8 +21,10 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return CustomerRepository::$rules;
-            
-        
+        $rules =  CustomerRepository::$rules;
+        unset($rules["password"]);
+        return  $rules;
+
+
     }
 }

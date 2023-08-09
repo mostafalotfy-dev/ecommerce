@@ -13,7 +13,7 @@
             <div class="input-group-prepend ">
 
                 <div class="input-group-text">
-                    {{html()->select("mobile_code")->options($countries)->class("select2")->placeholder(lang("models/customers.fields.mobile_code"))}}
+                    {{html()->text("mobile_code")->class("form-control")->placeholder(lang("models/customers.fields.mobile_code"))}}
 
                 </div>
 
@@ -62,6 +62,9 @@
 <div class="col-md-3">
     {{html()->label("password")->text(lang("models/customers.fields.password"))}}
     {{html()->password("password")->class("form-control")->attribute("autocomplete","new-password")}}
+    <template x-if="errors?.password">
+        <span class="text text-danger" x-text="errors.password"></span>
+    </template>
 </div>
     <div class="col-md-3">
         {{html()->label("is_active")->text(lang("models/customers.fields.is_active"))}}
