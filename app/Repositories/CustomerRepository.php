@@ -5,7 +5,7 @@ namespace App\Repositories;
 
 class CustomerRepository extends  Repository
 {
-	static $rules = [
+	static array $rules = [
 		"name"=>"required|max:255",
 		"mobile_code"=>"required|min:2|max:3|string",
 		"mobile"=>"required|string",
