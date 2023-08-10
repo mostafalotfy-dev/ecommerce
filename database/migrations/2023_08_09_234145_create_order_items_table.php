@@ -1,22 +1,23 @@
 <?php
 
 use App\Models\Order;
-use App\Models\Shipment;
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class extends Migrtion
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('order_shipments', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("shipment_id")->foreignIdFor(Shipment::class)->refrences("id")->on("shipments")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->refrences("id")->on("products")->constrained()->cascadeOnDelete();
             $table->unsignedBigInteger("order_id")->foreignIdFor(Order::class)->refrences("id")->on("orders")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger("quantity");
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_shipments');
+        Schema::dropIfExists('order_items');
     }
 };

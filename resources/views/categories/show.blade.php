@@ -24,8 +24,12 @@
             @php($parent = $category->parents($category->category_id))
             <td>{{$parent?->name_en}}</td>
             <td>{{$parent?->name_ar}}</td>
-            <td>@if($category->category_image) <img src="{{url("storage/".$category->category_image)}}" height="100"> @else - @endif</td>
-            <td>@if(isset($parent->category_image)) <img src="{{url("storage/".$parent->category_image)}}" height="100"> @else - @endif</td>
+            <td>@if($category->category_image) <a href="{{url("storage/".$category->category_image)}}">
+                    <img src="{{url("storage/".$category->category_image)}}" height="100">
+                </a> @else
+                    -
+                @endif</td>
+            <td>@if(isset($parent->category_image))<a href="{{url("storage/".$parent->category_image)}}"><img src="{{url("storage/".$parent->category_image)}}" height="100"> </a> @else - @endif</td>
         </tr>
     </tbody>
 </table>
