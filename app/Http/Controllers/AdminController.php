@@ -37,7 +37,7 @@ class AdminController extends Controller
 
             $image->add($input);
             factory("admin")->insertGetId($input);
-            return factory("response")->success(route("admins.create"),route("admins.index"));
+            return factory("response")->success(route("admins.index"));
         }
         public function edit(Admin $admin)
         {

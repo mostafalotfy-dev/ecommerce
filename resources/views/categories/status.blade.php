@@ -1,5 +1,5 @@
 @if($status == 1)
-    <button x-data="status" @click.prevent="update('{{$id}}',0,'category')" class="btn btn-danger ">{{lang("active")}}    </button>
+    <span  class="badge badge-primary">{{lang("active")}}    </span>
 @elseif($status == 0)
-    <button x-data="status" @click.prevent="update('{{$id}}',1,'category')"  class="btn btn-primary">{{lang("inactive")}}</button>
+    <span class="badge badge-warning">{{lang("inactive")}}</span>
 @endif

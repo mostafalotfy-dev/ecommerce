@@ -27,7 +27,11 @@
     <div class="col-md-3">
         {{html()->label()->for("status")->text(lang("models/category.fields.status"))}}
         <div class="clearfix"></div>
-        {{html()->checkbox("status")}}
+        <input type="checkbox" name="status" id="status" @isset($category)
+                                                             @if($category->status == 1)
+                                                                 checked
+                                                                 @endif
+        @endisset>
     </div>
 </div>
 <hr>

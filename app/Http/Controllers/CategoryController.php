@@ -37,12 +37,22 @@ class CategoryController extends Controller
     }
     public function update(Category $category, UpdateCategoryRequest $request): RedirectResponse
     {
+//        dd($request->all());
         $image = image("category_image","images");
         $input = $request->except("save_and_more","_token","category_image","_method","save_and_add","save");
+        if(!$request->status)
+        {
+            $input["status"] = 0;
+        }
+        if($request->status == "on")
+        {
+            $input["status"] = 1;
+        }
         $image->delete($category->category_image);
+
         $image->add($input);
 
-        factory("category")->updateFields($input,$category->id);
+       $category->update($input);
 
         return   to_route("category.index");
     }

@@ -1,5 +1,5 @@
 @extends("layouts.app")
-
+@section("title",lang("models/lang.plural"))
 @section("card_title",lang("models/lang.plural"))
 @section("content")
     <div  class="input-group">

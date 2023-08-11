@@ -227,11 +227,12 @@
                         @php
                             $level_2 = str(request()->route()->getName())->split("/\./")[0];
 
+
                         @endphp
-                            <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{lang(str($level_2)->title())}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{lang($level_2)}}</a></li>
 
                         @php
-                            $breadcrumb  = str(request()->route()->uri);
+                                $breadcrumb  = str(request()->route()->uri);
 
                             $breadcrumb_text = match (true){
                                 $breadcrumb->contains("create") =>  lang("Create"),

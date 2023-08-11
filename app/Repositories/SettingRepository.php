@@ -7,19 +7,19 @@ use App\Traits\Singleton;
 use Illuminate\Support\Collection;
 
 class SettingRepository extends Repository{
-
+    use Singleton;
     /** @var Comparator */
     private Comparator $compare;
     private Collection $data;
-    use Singleton;
-    protected $searchableField = [
+
+    protected $searchableFields = [
         "key",
         "value"
     ];
-    
+
     public function __construct()
     {
-        $this->compare = new Comparator($this);
+        $this->compare = new Comparator;
         $this->data = $this->get();
     }
     public function tableName(): string
@@ -40,7 +40,6 @@ class SettingRepository extends Repository{
     }
     public function setKey($key,$value)
     {
-        
        return  $this->insert([
             "key"=>$key,
             "value"=>$value
@@ -49,8 +48,8 @@ class SettingRepository extends Repository{
     public function update($key,$value)
     {
         $this
-        ->where("key",$key)->first()
-        ->updateOrCreate([
+        ->where("key",$key)
+        ->update([
             "key"=>$key,
             "value",$value
         ]);
