@@ -3,18 +3,16 @@
 namespace App\DataTables;
 
 
-use App\Models\User;
 use Illuminate\Database\Query\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
+
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+
 use Yajra\DataTables\QueryDataTable;
 use Yajra\DataTables\Services\DataTable;
 
-class CustomerDatatables extends DataTable
+class BrandDatatables extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -24,7 +22,7 @@ class CustomerDatatables extends DataTable
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
         return (new QueryDataTable($query))
-            ->addColumn('action', 'customers.action')
+            ->addColumn('action', 'brands.action')
             ->setRowId('id');
     }
 
@@ -33,7 +31,7 @@ class CustomerDatatables extends DataTable
      */
     public function query(): QueryBuilder
     {
-        return \DB::table("customers");
+        return \DB::table("brands");
     }
 
     /**
@@ -42,7 +40,7 @@ class CustomerDatatables extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('customerdatatables-table')
+                    ->setTableId('branddatatables-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -66,49 +64,28 @@ class CustomerDatatables extends DataTable
         return [
 
             Column::make([
-                "data"=>"id",
                 "name"=>"id",
+                "data"=>"id",
                 "title"=>"#"
             ]),
             Column::make([
-                "data"=>"first_name",
-                 "name"=>"first_name",
-                "title"=>lang("models/customers.fields.first_name")
-            ]),   Column::make([
-                "data"=>"last_name",
-                 "name"=>"last_name",
-                "title"=>lang("models/customers.fields.last_name")
-            ]),
-
-            Column::make([
-                "data"=>"mobile",
-                "name"=>"mobile",
-                "title"=>lang("models/customers.fields.mobile")
+                "name"=>"name_en",
+                "data"=>"name_en",
+                "title"=>lang("model/brands.fields.name_en")
+            ]),Column::make([
+                "name"=>"name_ar",
+                "data"=>"name_ar",
+                "title"=>lang("model/brands.fields.name_ar")
             ]),
             Column::make([
-                "data"=>"email",
-                "name"=>"email",
-                "title"=>lang("models/customers.fields.email")
-            ]),
-            Column::make([
-                "data"=>"dob",
-                "name"=>"dob",
-                "title"=>lang("models/customers.fields.date_of_birth")
-            ]),
-            Column::make([
-                "data"=>"is_active",
-                "name"=>"is_active",
-                "title"=>lang("models/customers.fields.is_active")
-            ]),
-            Column::make([
-                "data"=>"created_at",
                 "name"=>"created_at",
-                "title"=>lang("models/customers.fields.created_at")
+                "data"=>"created_at",
+                "title"=>lang("models/brands.fields.created_at")
             ]),
             Column::make([
-                "data"=>"updated_at",
                 "name"=>"updated_at",
-                "title"=>lang("models/customers.fields.updated_at")
+                "data"=>"updated_at",
+                "title"=>lang("models/brands.fields.updated_at")
             ]),
             Column::computed('action')
                 ->exportable(false)
@@ -123,6 +100,6 @@ class CustomerDatatables extends DataTable
      */
     protected function filename(): string
     {
-        return 'CustomerDatatables_' . date('YmdHis');
+        return 'BrandDatatables_' . date('YmdHis');
     }
 }

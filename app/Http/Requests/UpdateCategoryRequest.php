@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Repositories\CategoryRepository;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest
@@ -18,12 +19,13 @@ class UpdateCategoryRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
        $rules = CategoryRepository::$rules;
-
+       $rules["name_en"] = "required|regex:(^[A-z])";
+       $rules["name_ar"] = "required|regex:(^[ي-ء])";
        return $rules;
     }
 }

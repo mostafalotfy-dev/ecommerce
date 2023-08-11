@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
@@ -31,7 +32,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::get("language",[LanguageController::class,"index"])->name("language.index");
     Route::resource("admins",AdminController::class);
     Route::resource("branches",BranchController::class);
-    Route::resource("customers",CustomerController::class);    
+    Route::resource("customers",CustomerController::class);
+    Route::resource("brands", BrandController::class)->except("show");
 });
 
 

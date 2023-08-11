@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-3">
         {{html()->label()->for("category_image")->text(lang("models/category.fields.category_image"))}}
-        {{html()->file("category_image")->class("form-control")}}
+        {{html()->file("category_image")->acceptImage()->class("form-control")}}
     </div>
 </div>
 <hr>
