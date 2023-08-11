@@ -229,7 +229,7 @@
 
 
                         @endphp
-                            <li class="breadcrumb-item"><a href="{{url($level_2)}}">{{lang($level_2)}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route($level_2.".index")}}">{{lang($level_2)}}</a></li>
 
                         @php
                                 $breadcrumb  = str(request()->route()->uri);

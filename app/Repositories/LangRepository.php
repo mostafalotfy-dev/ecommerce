@@ -76,7 +76,7 @@ class  LangRepository extends Repository {
     }
    public function getCompare()
    {
-    return $this->comparator;
+        return $this->comparator;
    }
 
 }
