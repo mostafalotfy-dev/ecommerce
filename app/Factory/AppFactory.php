@@ -5,6 +5,7 @@ namespace App\Factory;
 use App\Comparator\Comparator;
 use App\Repositories\AddressRepository;
 use App\Repositories\AdminRepository;
+use App\Repositories\AttributeRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CartRepository;
 use App\Repositories\CategoryRepository;
@@ -28,6 +29,10 @@ use App\Repositories\BranchRepository;
 
 
 class AppFactory {
+    public function attribute()
+    {
+        return app(AttributeRepository::class);
+    }
     public function shipment()
     {
         return app(ShipmentRepository::class);
