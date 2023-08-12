@@ -18,9 +18,7 @@ return new class extends Migration
             $table->integer("price")->default(0);
             $table->text("description")->default("");
             $table->integer("discount")->default(0);
-            $table->boolean("in_stock")->default(1);
             $table->integer("quantity")->default(0);
-            $table->text("keywords");
             
             $table->integer("views")->default(0);
             

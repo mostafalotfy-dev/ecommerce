@@ -34,12 +34,12 @@ class PermissionSeeder extends Seeder
             ["name_en" => "settings", "name_ar" => "الاعدادات"],
             ["name_en" => "shipment_companies", "name_ar" => "شركات الشحن"],
             ["name_en" => "shipping_zones", "name_ar" => "مناطق الشحن"],
-            :"name_en" => "customers", "name_ar" => "العملاء"],
+            ["name_en" => "customers", "name_ar" => "العملاء"],
             ["name_en" => "invoices", "name_ar" => "الفواتير"],
             ["name_en" => "offers", "name_ar" => "العروض"],
             ["name_en" => "cities", "name_ar" => "المدن"],
             ["name_en" => "admins", "name_ar" => "المدراء"],
-            ["name_en" => "countries", "name_ar" => "الدول"],
+            ["name_en" => "countries", "name_ar" => "الدول"]
             ["name_en" => "banners", "name_ar" => "بانر"],
 
 
