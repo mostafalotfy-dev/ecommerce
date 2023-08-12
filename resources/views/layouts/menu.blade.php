@@ -64,6 +64,15 @@
              </p>
          </a>
      @endif
+     @if(factory('permission')->hasPermission(["view-products"],$id))
+         <a href="{{route('products.index')}}" class="nav-link @if(request()->routeIs('products.*')) active @endif">
+             <i class="nav-icon fas fa-tachometer-alt"></i>
+             <p>
+                 {{lang("models/products.plural")}}
+                 <i class="right fas fa-angle-left"></i>
+             </p>
+         </a>
+     @endif
  </li>
 
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::resource("branches",BranchController::class);
     Route::resource("customers",CustomerController::class);
     Route::resource("brands", BrandController::class)->except("show");
+    Route::resource("products", ProductController::class);
 });
 
 
