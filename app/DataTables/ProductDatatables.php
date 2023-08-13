@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 
+use App\Models\Product;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -23,7 +24,10 @@ class ProductDatatables extends DataTable
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
         return (new QueryDataTable($query))
-            ->addColumn('action', 'productdatatables.action')
+            ->addColumn('action', 'products.action')
+            ->addColumn('in_stock', function(Product $product){
+                return view("products.in_stock",compact("product"));
+            })
             ->setRowId('id');
     }
 
@@ -63,15 +67,42 @@ class ProductDatatables extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+
+            Column::make([
+                "title"=>"#",
+                "name"=>"id",
+                "data"=>"id"
+            ]),
+            Column::make([
+                "title"=>lang("product.fields.name_en"),
+                "name"=>"name_en",
+                "data"=>"name_en"
+            ]),
+            Column::make([
+                "title"=>lang("product.fields.name_ar"),
+                "name"=>"name_ar",
+                "data"=>"name_ar"
+            ]),
+            Column::make([
+                "title"=>lang("products.fields.price"),
+                "name"=>"price",
+                "data"=>"price",
+
+            ]),
+            Column::make([
+                "title"=>lang("products.fields.discount"),
+                "name"=>"discount",
+                "data"=>"discount",
+
+            ]),
+            Column::computed("in_stock",lang("products.fields.in_stock"))
+            ->printable()
+            ->exportable(),
+            Column::computed('action',lang("action"))
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

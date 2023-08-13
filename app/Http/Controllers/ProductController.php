@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProductDatatables;
+use App\Http\Requests\CreateProductRequest;
 use App\Repositories\ProductRepository;
 
 
@@ -13,6 +14,10 @@ class ProductController extends Controller
         return app(ProductDatatables::class)->render("products.index");
     }
     public function create()
+    {
+        return view("products.create");
+    }
+    public function store(CreateProductRequest $request)
     {
 
     }

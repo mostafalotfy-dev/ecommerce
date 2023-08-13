@@ -1,1 +1,11 @@
 @extends("layouts.app")
+@section("title",lang("models/products.plural"))
+@section("card_title",lang("models/products.plural"))
+@section("content")
+     {{html()->form("post",route("products.store"))
+->attribute("x-data","crud")
+->attribute("@submit.prevent","send('products-form')")
+->attribute("id","products-form")}}
+    @include("products.form")
+    {{html()->form()->close()}}
+@endsection

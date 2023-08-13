@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateAttributeRequest;
+use App\Http\Requests\UpdateAttributeRequest;
 use App\Models\AttributeModel;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,7 @@ class AttributeModelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAttributeRequest $request)
     {
         //
     }
@@ -50,7 +52,7 @@ class AttributeModelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AttributeModel $attributeModel)
+    public function update(UpdateAttributeRequest $request, AttributeModel $attributeModel)
     {
         //
     }
