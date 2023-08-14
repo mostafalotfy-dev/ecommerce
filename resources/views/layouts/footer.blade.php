@@ -20,6 +20,7 @@
 
 
 <script src="{{url("plugins/sweetalert2/sweetalert2.all.min.js")}}"></script>
+<script  defer src="{{url("js/tinymce/tinymce.js")}}"></script>
 <script  defer src="{{url("dist/js/app.js")}}"></script>
 <script src="{{url("dist/js/alpine.js")}}"></script>
 

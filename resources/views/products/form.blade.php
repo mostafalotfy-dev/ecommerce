@@ -18,11 +18,11 @@
 </div>
 <hr>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-6">
         {{html()->label("description_en")->text(lang("products.fields.description_en"))->class("required")}}
         {{html()->textarea("description_en")->class("form-control tinymce")}}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-6">
         {{html()->label("description_ar")->text(lang("products.fields.description_ar"))->class("required")}}
         {{html()->textarea("description_ar")->class("form-control tinymce")}}
     </div>
