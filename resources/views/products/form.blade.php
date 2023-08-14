@@ -18,6 +18,21 @@
 </div>
 <hr>
 <div class="row">
+    <div class="col-md-3">
+        {{html()->label("brand_name")->text(lang("brands.name"))->class("required")}}
+        {{html()->select("brand_name")->class("form-control")}}
+    </div>
+    <div class="col-md-3">
+        {{html()->label("branch_name")->text(lang("branches.name"))->class("required")}}
+        {{html()->select("branch_name")->class("form-control")}}
+    </div>
+    <div class="col-md-6">
+        {{html()->label("meta_key")->text(lang("branches.name"))}}
+        {{html()->multiselect("meta_key")->class("form-control")}}
+    </div>
+</div>
+<hr>
+<div class="row">
     <div class="col-md-6">
         {{html()->label("description_en")->text(lang("products.fields.description_en"))->class("required")}}
         {{html()->textarea("description_en")->class("form-control tinymce")}}
@@ -28,3 +43,6 @@
     </div>
 
 </div>
+
+<hr>
+
