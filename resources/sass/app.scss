@@ -10,8 +10,11 @@
 @import "../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css";
 @import "https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css";
 @import "../plugins/icheck-bootstrap/icheck-bootstrap.min.css";
+
 //@import "../plugins/select2/css/select2.min.css";
 @import "../plugins/select2/css/select2.min.css";
+//Fontawesome
+@import "../plugins/fontawesome-free/css/all.css";
 
 // DataTables
 @import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -19,3 +22,8 @@
 @import "datatables.net-buttons-bs5/css/buttons.bootstrap5.css";
 
 @import 'datatables.net-select-bs5/css/select.bootstrap5.css';
+.required::after{
+    content:" \f005";
+    font-family: "Font Awesome 5 Free", serif;
+    color: red;
+}

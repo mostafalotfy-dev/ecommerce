@@ -2,7 +2,8 @@
 
 import Alpine from 'alpinejs'
 import "../plugins/select2/js/select2.full.min.js"
-import {head} from "axios";
+import "../plugins/tinymce/tinymce.min.js"
+import "./tinymce.js"
 window.Alpine = Alpine
 
 Alpine.start()
@@ -22,25 +23,9 @@ $(document).on("ready",function ()
                     results:results.map((d)=>{
 
 
-                        if(lang === "en")
-                        {
-
-                            return {
-                                text:d.name_en,
-                                id:d.id
-                            }
-                        }else if(lang === "ar")
-                        {
-                            console.log(lang)
-                            return {
-                                text:d.name_ar,
-                                id:d.id
-                            }
-                        }
-                        console.log(lang)
 
                         return {
-                            text: d.name_en,
+                            text: d.text,
                             id:d.id
                         }
 

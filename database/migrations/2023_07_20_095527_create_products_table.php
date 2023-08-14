@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string("name_en")->unique();
             $table->string("name_ar")->unique();
             $table->integer("price")->default(0);
-            $table->text("description")->default("");
+            $table->text("description_en");
+            $table->text("description_ar");
             $table->integer("discount")->default(0);
             $table->integer("quantity")->default(0);
-            
+
             $table->integer("views")->default(0);
-            
+
             $table->timestamps();
             $table->engine = "myisam";
         });
