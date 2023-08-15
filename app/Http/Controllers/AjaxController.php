@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Http\Resources\Select2AjaxResource;
 use App\Repositories\RoleRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Query\Builder;
@@ -188,5 +189,20 @@ class AjaxController extends Controller
             "is_cod"=>$status
         ]);
         return \response()->json();
+    }
+    public function get_brands()
+    {
+
+        $brands = factory("brand")->paginate();
+        return \response()->json([
+            "results"=>Select2AjaxResource::collection($brands)
+        ]);
+    }
+    public function get_branches()
+    {
+        $branches = factory("branch")->paginate();
+        return \response()->json([
+            "results"=> Select2AjaxResource::collection($branches)
+        ]);
     }
 }
