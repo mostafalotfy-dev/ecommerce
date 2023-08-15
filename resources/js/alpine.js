@@ -192,7 +192,7 @@ document.addEventListener("alpine:init", () => {
             currentPage: 1,
             errors: null,
 
-            send(id) {
+            send(id,isModal = false) {
                 this.errors = null;
                 const form = document.getElementById(id)
                 fetch(form.action, {
@@ -206,13 +206,17 @@ document.addEventListener("alpine:init", () => {
                         if (r.hasOwnProperty("errors")) {
                             this.message = r.message;
                             this.errors = r.errors;
-                        } else if (r.hasOwnProperty("redirect_to")) {
+                        } else if (r.hasOwnProperty("redirect_to") && !isModal) {
                             Swal.fire(r.message).then(() => {
                                 location = r.redirect_to
                             })
 
                         }else if (r.hasOwnProperty("message")){
                            Swal.fire(r.message)
+                            if(isModal)
+                            {
+                                document.dispatchEvent(new MouseEvent("click"))
+                            }
                         }
 
                     })

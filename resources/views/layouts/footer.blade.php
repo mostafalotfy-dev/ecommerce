@@ -25,8 +25,7 @@
 <script src="{{url("dist/js/alpine.js")}}"></script>
 
 
-{{-- <!-- Sparkline -->
-<script src={{asset("plugins/sparklines/sparkline.js")}}></script> --}}
+
 
 
 

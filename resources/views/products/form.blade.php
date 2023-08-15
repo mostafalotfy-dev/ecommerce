@@ -20,15 +20,28 @@
 <div class="row">
     <div class="col-md-3">
         {{html()->label("brand_name")->text(lang("brands.name"))->class("required")}}
-        {{html()->select("brand_name")->class("form-control")}}
+        <div class="input-group mb-3">
+
+            <div class="input-group-prepend">
+                <button data-toggle="modal" data-target="#brand" type="button" class="input-group-text" id="basic-addon1"><i class="fa fa-plus"></i></button>
+            </div>
+
+            {{html()->select("brand_name")->attribute("data-ajax-url",route("brands.get",["lang"=>app()->getLocale()]))->class("form-control")}}
+        </div>
+
     </div>
     <div class="col-md-3">
         {{html()->label("branch_name")->text(lang("branches.name"))->class("required")}}
-        {{html()->select("branch_name")->class("form-control")}}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button data-toggle="modal" data-target="#branches" type="button" class="input-group-text" id="basic-addon1"><i class="fa fa-plus"></i></button>
+            </div>
+        {{html()->select("branch_name")->attribute("data-ajax-url",route("branches.get",["lang"=>app()->getLocale()]))->class("form-control")}}
+        </div>
     </div>
     <div class="col-md-6">
-        {{html()->label("meta_key")->text(lang("branches.name"))}}
-        {{html()->multiselect("meta_key")->class("form-control")}}
+        {{html()->label("meta_key")->text(lang("products.fields.meta_key"))}}
+        {{html()->multiselect("meta_key")->class("form-control select2")}}
     </div>
 </div>
 <hr>

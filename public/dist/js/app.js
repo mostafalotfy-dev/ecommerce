@@ -3186,28 +3186,24 @@ tinymce.init({
 });
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
-$(document).on("ready", function () {
-  $("[data-ajax-url]").select2({
+$("select[data-ajax-url]").select2({
+  ajax: {
+    url: $(undefined).attr("data-ajax-url")
+  }
+});
+function select2(id) {
+  $("#" + id).select2({
     ajax: {
-      url: $("[data-ajax-url]").attr("data-ajax-url"),
-      processResults: function processResults(_ref) {
-        var results = _ref.results,
-          pagination = _ref.pagination;
-        var lang = document.querySelector("html").getAttribute("lang");
-        return {
-          results: results.map(function (d) {
-            return {
-              text: d.text,
-              id: d.id
-            };
-          }),
-          pagination: pagination
-        };
-      }
+      url: $("#" + id).attr("data-ajax-url"),
+      processResults: function processResults(data) {
+        return data;
+      },
+      method: "GET"
     }
   });
-});
-$(".select2").select2();
+}
+select2("brand_name");
+select2("branch_name");
 
 /***/ }),
 

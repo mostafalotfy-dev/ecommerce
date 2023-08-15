@@ -27,6 +27,6 @@ Route::get("ajax/roles", [AjaxController::class, "get_roles"])->name("roles.get"
 Route::put("ajax/update/status", [AjaxController::class, "update_admin_status"]);
 Route::put("ajax/update/{name}/status", [AjaxController::class, "update_status"]);
 Route::get("ajax/update/cod/{status}/{id}", [AjaxController::class, "update_cod"]);
-Route::get("ajax/branches",[AjaxController::class,"get_branches"]);
-Route::get("ajax/brands",[AjaxController::class,"get_brands"]);
+Route::get("ajax/branches",[AjaxController::class,"get_branches"])->name("branches.get");
+Route::get("ajax/brands",[AjaxController::class,"get_brands"])->name("brands.get");
 

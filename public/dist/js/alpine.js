@@ -192,6 +192,7 @@ document.addEventListener("alpine:init", function () {
       errors: null,
       send: function send(id) {
         var _this5 = this;
+        var isModal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         this.errors = null;
         var form = document.getElementById(id);
         fetch(form.action, {
@@ -206,12 +207,15 @@ document.addEventListener("alpine:init", function () {
           if (r.hasOwnProperty("errors")) {
             _this5.message = r.message;
             _this5.errors = r.errors;
-          } else if (r.hasOwnProperty("redirect_to")) {
+          } else if (r.hasOwnProperty("redirect_to") && !isModal) {
             Swal.fire(r.message).then(function () {
               location = r.redirect_to;
             });
           } else if (r.hasOwnProperty("message")) {
             Swal.fire(r.message);
+            if (isModal) {
+              document.dispatchEvent(new MouseEvent("click"));
+            }
           }
         });
       }

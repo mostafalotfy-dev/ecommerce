@@ -81,7 +81,7 @@
     <div class="col-md-3">
         <div class="icheck-primary">
             {!! html()->checkbox("status")->class("status") !!}
-            <label for="status"  class="required">{{lang("models/admins.fields.status")}}</label>
+            <label for="status"  >{{lang("models/admins.fields.status")}}</label>
             @error("status")
             <div class="alert alert-danger">{{$errors->first("status")}}</div>
             @enderror

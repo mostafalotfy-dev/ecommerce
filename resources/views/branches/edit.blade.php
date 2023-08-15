@@ -12,6 +12,8 @@
 ->open()}}
 
         @include("branches.form")
+    <input type="submit" name="save" class="btn btn-primary" value="{{lang("save")}}">
+
     {{html()->form()->close()}}
 @endsection
 

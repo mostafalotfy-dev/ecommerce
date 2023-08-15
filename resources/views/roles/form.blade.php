@@ -5,22 +5,21 @@
 </template>
 <div class="row">
     <div class="col-md-3">
-        <label for="name_en">{{lang("model/role.fields.name_en")}}</label>
+        <label class="required" for="name_en">{{lang("model/role.fields.name_en")}}</label>
         <input type="text"  class="form-control" value="{{isset($role ) ? $role->name_en : ""}}" name="name_en" id="name_en">
 
     </div>
     <div class="col-md-3">
-        <label for="name_ar">{{lang("model/role.fields.name_ar")}}</label>
+        <label class="required" for="name_ar">{{lang("model/role.fields.name_ar")}}</label>
         <input type="text" class="form-control" name="name_ar" id="name_ar" value="{{isset($role) ? $role->name_ar : ""}}">
     </div>
 </div>
-
 
 <hr>
 <table x-data x-init="$store.permission.paginate()" class="table table-responsive table-bordered">
     <thead>
     <tr>
-        <th>#</th>
+        <th class="required">#</th>
         <th>
             {{lang("models/permissions.name_en")}}
         </th>
