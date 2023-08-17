@@ -79,7 +79,7 @@
     <div class="col-md-3">
         {{html()->label("price")->text(lang("products.fields.price"))->class("required")}}
         {{html()->number("price")
-   ->attribute("@input",'totalPrice =   (1 - ($refs.discount.value / 100)).toFixed(2) ')
+   ->attribute("@input",'totalPrice =   (1 - ($refs.discount.value / 100)).toFixed(2) * $refs.price.value ')
     ->attribute("x-ref","price")
 ->minlength(1)->class("form-control")}}
         <template x-if="errors?.price">
@@ -97,7 +97,7 @@
             {{html()->number("discount")
                 ->attribute("x-ref","discount")
                 ->attribute("step",1)
-                ->attribute("@input",'totalPrice =  (1 -  ($refs.discount.value / 100)).toFixed(2)')
+                ->attribute("@input",'totalPrice =  (1 -  ($refs.discount.value / 100)).toFixed(2) * $refs.price.value')
                 ->class("form-control")}}
             <template x-if="errors?.discount">
                 <span x-text="errors.discount" class="text text-danger"></span>
@@ -105,14 +105,14 @@
 
         </div>
         <div class="col-md-12">
-        <template x-if="totalPrice">
-            <span class="text-fuchsia text" x-text="'{{lang("discount amount ")}}' + ($refs.price.value - totalPrice).toFixed(2) + ' {{lang(" ")}}'"></span>
-        </template>
+
+            <span class="text-fuchsia text" x-text="'{{lang("discount amount ")}}' + ($refs.price.value - totalPrice).toFixed(2) + ' {{lang("EGP")}}'"></span>
+
         </div>
         <div class="col-md-12">
-        <template x-if="totalPrice">
-            <span class="text-danger text" x-text="'{{lang("totalPrice ")}}' +  parseFloat(totalPrice).toFixed(2)  + ' {{lang("EGP")}}'"></span>
-        </template>
+
+            <span class="text-danger text" x-text="'{{lang("totalPrice")}} ' +  parseFloat(totalPrice).toFixed(2)  + ' {{lang("EGP")}}'"></span>
+
         </div>
     </div>
 
