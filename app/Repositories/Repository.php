@@ -22,6 +22,10 @@ abstract class Repository
        return $this->table()->$name(...$args);
     }
 
+    public function exists($keyName, $key ,$operator = "LIKE"): bool
+    {
+        return $this->where($keyName, $operator, "%$key%")->count() > 0;
+    }
 
 
     public function transaction(\Closure $cb)

@@ -1,6 +1,6 @@
 @extends("layouts.app")
 @section("create_button")
-    <a class="btn btn-primary m-1" href="{{route("brands.create")}}">{{lang("crud.actions.create")}}</a>
+    <a class="btn btn-primary m-1" href="{{route("branches.create")}}">{{lang("branches.actions.create")}}</a>
 @endsection
 @section("card_title",lang("models/branches.plural"))
 @section("content")
