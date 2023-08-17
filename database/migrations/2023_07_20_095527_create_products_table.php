@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text("description_ar");
             $table->integer("discount")->default(0);
             $table->integer("quantity")->default(0);
-
+            $table->tinyInteger("status")->default(0);
             $table->integer("views")->default(0);
 
             $table->timestamps();

@@ -1,6 +1,8 @@
 import Alpine from 'alpinejs'
 import "../plugins/select2/js/select2.full.min.js"
 import "../plugins/bootstrap-slider/bootstrap-slider.min.js"
+import Tagify from '@yaireo/tagify'
+
 
 // tinymce
 
@@ -16,7 +18,8 @@ window.Alpine = Alpine
 Alpine.start()
 
 // boot up
-
+const tagifyElement = document.querySelector("textarea.tagify")
+new Tagify(tagifyElement)
  document.querySelectorAll("input[type='checkbox']").forEach((html)=>  new Switchery(html))
 // bootstrap slider
  $("input.slider").slider();

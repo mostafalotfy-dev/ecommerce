@@ -7,6 +7,7 @@
 ->attribute("@submit.prevent","send('products-form')")
 ->attribute("id","products-form")->open()}}
     @include("products.form")
+    <input class="btn btn-primary" type="submit" name="save" value="{{lang("save")}}">
     {{html()->form()->close()}}
   @include("products.modals")
 @endsection
