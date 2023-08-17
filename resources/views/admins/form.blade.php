@@ -4,7 +4,7 @@
         {!! html()->label()->for("first_name")->class("required")->text(lang("models/admins.fields.first_name")) !!}
         {!! html()->text("first_name")->attribute("autocomplete","nope")->class("form-control")->id("first_name") !!}
         <template x-if="errors?.first_name">
-        <div class="text text-danger" x-text="errors.first_name[0]">
+        <div class="text text-danger" x-text="errors.first_name">
 
 
         </div>
@@ -14,14 +14,14 @@
         {!! html()->label()->for("last_name")->class("required")->text(lang("models/admins.fields.last_name")) !!}
         {!! html()->text("last_name")->class("form-control")->id("last_name") !!}
         <template x-if="errors?.last_name">
-        <div class="text text-danger" x-text="errors.last_name[0]"></div>
+        <div class="text text-danger" x-text="errors.last_name"></div>
         </template>
     </div>
     <div class="col-md-3">
         {!! html()->label()->for("email")->class("required")->text(lang("models/admins.fields.email")) !!}
         {!! html()->email("email")->attribute("autocomplete","email")->class("form-control")->id("email") !!}
         <template x-if="errors?.email">
-            <div class="text text-danger" x-text="errors.email[0]"></div>
+            <div class="text text-danger" x-text="errors.email"></div>
         </template>
     </div>
 
@@ -29,7 +29,7 @@
         {!! html()->label()->for("phone_number")->class("required")->text(lang("models/admins.fields.phone_number")) !!}
         {!! html()->text("phone_number")->attribute("autocomplete","nope")->class("form-control")->id("phone_number") !!}
         <template x-if="errors?.phone_number">
-            <div class="text text-danger" x-text="errors.phone_number[0]"></div>
+            <div class="text text-danger" x-text="errors.phone_number"></div>
         </template>
     </div>
 
@@ -41,7 +41,7 @@
         {!! html()->label()->text(lang("models/admins.fields.password")) !!}
         {!! html()->password()->attribute("autocomplete","new-password")->class("form-control")->name("password")!!}
         <template x-if="errors?.password">
-            <div class="text text-danger" x-text="errors.password[0]"></div>
+            <div class="text text-danger" x-text="errors.password"></div>
         </template>
     </div>
     <div class="col-md-6">

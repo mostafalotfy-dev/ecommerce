@@ -27,15 +27,21 @@ class CategoryController extends Controller
 
         return view("categories.create",compact("categories"));
     }
-    public function store(CreateCategoryRequest $request): RedirectResponse
+    public function store(CreateCategoryRequest $request):JsonResponse
     {
 
         $input = $request->except("_token","_method","save","save_and_add","category_image");
         image("category_image","images")->add($input);
-        factory("category")->create($input);
-        return to_route("category.index");
+        if($request->status == "on")
+        {
+            $input["status"] = 1;
+        }else{
+            $input["status"] = 0;
+        }
+        factory("category")->insert($input);
+        return \factory("response")->success(route("category.index"));
     }
-    public function update(Category $category, UpdateCategoryRequest $request): RedirectResponse
+    public function update(Category $category, UpdateCategoryRequest $request): JsonResponse
     {
 //        dd($request->all());
         $image = image("category_image","images");
@@ -54,7 +60,7 @@ class CategoryController extends Controller
 
        $category->update($input);
 
-        return   to_route("category.index");
+        return  \factory("response")->success(route("category.index"));
     }
     public function edit(Category $category): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
