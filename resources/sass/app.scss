@@ -3,7 +3,7 @@
 
 // Variables
 @import 'variables';
-// Bootstrap
+// plugins
 @import "../plugins/fontawesome-free/css/all.min.css";
 @import '../css/adminlte.min.css';
 @import "../plugins/overlayScrollbars/css/OverlayScrollbars.min.css";
@@ -13,9 +13,10 @@
 
 //@import "../plugins/select2/css/select2.min.css";
 @import "../plugins/select2/css/select2.min.css";
-//Fontawesome
-@import "../plugins/fontawesome-free/css/all.css";
 
+@import "../plugins/fontawesome-free/css/all.css";
+@import "../plugins/switchary/switchery.min.css";
+@import "../plugins/bootstrap-slider/css/bootstrap-slider.min.css";
 // DataTables
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 @import "datatables.net-bs5/css/dataTables.bootstrap5.css";

@@ -23,7 +23,8 @@
         <div class="input-group mb-3">
 
             <div class="input-group-prepend">
-                <button data-toggle="modal" data-target="#brand" type="button" class="input-group-text" id="basic-addon1"><i class="fa fa-plus"></i></button>
+                <button data-toggle="modal" data-target="#brand" type="button" class="input-group-text"
+                        id="basic-addon1"><i class="fa fa-plus"></i></button>
             </div>
 
             {{html()->select("brand_name")->attribute("data-ajax-url",route("brands.get",["lang"=>app()->getLocale()]))->class("form-control")}}
@@ -34,14 +35,48 @@
         {{html()->label("branch_name")->text(lang("branches.name"))->class("required")}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <button data-toggle="modal" data-target="#branches" type="button" class="input-group-text" id="basic-addon1"><i class="fa fa-plus"></i></button>
+                <button data-toggle="modal" data-target="#branches" type="button" class="input-group-text"
+                        id="basic-addon1"><i class="fa fa-plus"></i></button>
             </div>
-        {{html()->select("branch_name")->attribute("data-ajax-url",route("branches.get",["lang"=>app()->getLocale()]))->class("form-control")}}
+            {{html()->select("branch_name")->attribute("data-ajax-url",route("branches.get",["lang"=>app()->getLocale()]))->class("form-control")}}
         </div>
     </div>
     <div class="col-md-6">
         {{html()->label("meta_key")->text(lang("products.fields.meta_key"))}}
         {{html()->multiselect("meta_key")->class("form-control select2")}}
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-3">
+        {{html()->label("quantity")->text(lang("products.fields.quantity"))->class("required")}}
+        <div class="clearfix"></div>
+        {{html()->number("quantity")->class("slider")
+    ->attribute("data-slider-min","0")
+    ->attribute("data-slider-max","999")
+    }}
+
+
+    </div>
+    <div class="col-md-3">
+        {{html()->label("discount")->text(lang("products.fields.discount"))}}
+        <div class="input-group mb-3">
+
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-percent"></i></span>
+            </div>
+
+            {{html()->number("discount")->class("form-control")}}
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-check form-switch">
+        {{html()->label("status")->text(lang("products.fields.status"))->attribute("for","flexSwitchCheckDefault")}}
+            <div class="clearfix"></div>
+        {{html()->checkbox("status")->class(" js-switch")}}
+        </div>
     </div>
 </div>
 <hr>
