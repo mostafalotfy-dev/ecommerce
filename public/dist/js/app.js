@@ -3234,7 +3234,7 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
 // boot up
 var tagifyElement = document.querySelector("textarea.tagify");
-new _yaireo_tagify__WEBPACK_IMPORTED_MODULE_3__(tagifyElement);
+if (tagifyElement) new _yaireo_tagify__WEBPACK_IMPORTED_MODULE_3__(tagifyElement);
 document.querySelectorAll("input[type='checkbox']").forEach(function (html) {
   return new Switchery(html);
 });

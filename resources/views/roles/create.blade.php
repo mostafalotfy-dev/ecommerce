@@ -5,7 +5,8 @@
     {{lang("models/roles.plural")}}
 @endsection
 @section("content")
-    <form method="post" id="role-form" x-data @submit.prevent="$store.permission.add()">
+    <form method="post" action="{{route("roles.store")}}" id="roles-form" x-data="crud" @submit.prevent="send('roles-form')">
+@csrf
 
         @include("roles.form")
     {!! html()->form()->close() !!}

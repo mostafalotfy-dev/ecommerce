@@ -19,7 +19,8 @@ Alpine.start()
 
 // boot up
 const tagifyElement = document.querySelector("textarea.tagify")
-new Tagify(tagifyElement)
+if(tagifyElement)
+    new Tagify(tagifyElement)
  document.querySelectorAll("input[type='checkbox']").forEach((html)=>  new Switchery(html))
 // bootstrap slider
  $("input.slider").slider();

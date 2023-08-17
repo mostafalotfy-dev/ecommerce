@@ -51,7 +51,8 @@ class RoleController extends Controller
 
         });
         return response()->json([
-            "message"=>lang("success")
+            "message"=>lang("success"),
+            "redirect_to"=> route("roles.index")
         ]);
     }
 

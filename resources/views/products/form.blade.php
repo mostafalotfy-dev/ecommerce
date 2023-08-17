@@ -3,21 +3,21 @@
         {{html()->label("name_en")->text(lang("products.fields.name_en"))->class("required")}}
         {{html()->text("name_en")->class("form-control")}}
         <template x-if="errors?.name_en">
-            <span x-text="errors.name_en[0]" class="text text-danger"></span>
+            <span x-text="errors.name_en" class="text text-danger"></span>
         </template>
     </div>
     <div class="col-md-3">
         {{html()->label("name_ar")->text(lang("products.fields.name_ar"))->class("required")}}
         {{html()->text("name_ar")->class("form-control")}}
         <template x-if="errors?.name_ar">
-            <span x-text="errors.name_ar[0]" class="text text-danger"></span>
+            <span x-text="errors.name_ar" class="text text-danger"></span>
         </template>
     </div>
     <div class="col-md-3">
         {{html()->label("price")->text(lang("products.fields.price"))->class("required")}}
         {{html()->number("price")->minlength(1)->class("form-control")}}
         <template x-if="errors?.price">
-            <span x-text="errors.price[0]" class="text text-danger"></span>
+            <span x-text="errors.price" class="text text-danger"></span>
         </template>
     </div>
 
@@ -35,7 +35,7 @@
 
             {{html()->select("brand_name")->attribute("data-ajax-url",route("brands.get",["lang"=>app()->getLocale()]))->class("form-control")}}
             <template x-if="errors?.brand_name">
-                <span x-text="errors.brand_name[0]" class="text text-danger"></span>
+                <span x-text="errors.brand_name" class="text text-danger"></span>
             </template>
         </div>
 
@@ -49,7 +49,7 @@
             </div>
             {{html()->select("branch_name")->attribute("data-ajax-url",route("branches.get",["lang"=>app()->getLocale()]))->class("form-control")}}
             <template x-if="errors?.branch_name">
-                <span x-text="errors.branch_name[0]" class="text text-danger"></span>
+                <span x-text="errors.branch_name" class="text text-danger"></span>
             </template>
         </div>
     </div>
@@ -80,7 +80,7 @@
 
             {{html()->number("discount")->class("form-control")}}
             <template x-if="errors?.discount">
-                <span x-text="errors.discount[0]" class="text text-danger"></span>
+                <span x-text="errors.discount" class="text text-danger"></span>
             </template>
         </div>
 
@@ -100,14 +100,14 @@
         {{html()->label("description_en")->text(lang("products.fields.description_en"))->class("required")}}
         {{html()->textarea("description_en")->class("form-control tinymce")}}
         <template x-if="errors?.description_en">
-            <span x-text="errors.description_en[0]" class="text text-danger"></span>
+            <span x-text="errors.description_en" class="text text-danger"></span>
         </template>
     </div>
     <div class="col-md-6">
         {{html()->label("description_ar")->text(lang("products.fields.description_ar"))->class("required")}}
         {{html()->textarea("description_ar")->class("form-control tinymce")}}
         <template x-if="errors?.description_ar">
-            <span x-text="errors.description_ar[0]" class="text text-danger"></span>
+            <span x-text="errors.description_ar" class="text text-danger"></span>
         </template>
     </div>
 

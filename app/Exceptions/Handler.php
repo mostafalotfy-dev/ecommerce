@@ -28,11 +28,11 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    protected function invalidJson($request, ValidationException $exception)
+    protected function invalidJson($request, ValidationException $exception): \Illuminate\Http\JsonResponse
     {
         return response()->json([
-            'message' => $exception->getMessage(),
-            'errors' => $exception->errors(),
+            'message' => lang($exception->getMessage()),
+            'errors' => collect($exception->errors())->map(fn($error) => lang(collect($error)->first())),
         ], $exception->status);
     }
 }
