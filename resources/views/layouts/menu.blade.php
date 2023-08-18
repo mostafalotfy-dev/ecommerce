@@ -73,6 +73,13 @@
              </p>
          </a>
      @endif
+     <a href="{{route('image.index')}}" class="nav-link @if(request()->routeIs('products.*')) active @endif">
+         <i class="nav-icon fas fa-tachometer-alt"></i>
+         <p>
+             {{lang("models/products.plural")}}
+             <i class="right fas fa-angle-left"></i>
+         </p>
+     </a>
  </li>
 
 

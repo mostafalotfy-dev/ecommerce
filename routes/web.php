@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -36,6 +37,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::resource("customers",CustomerController::class);
     Route::resource("brands", BrandController::class)->except("show");
     Route::resource("products", ProductController::class);
+    Route::resource("images", ImageController::class);
 });
 
 

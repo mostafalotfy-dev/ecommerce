@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->text("description");
-            $table->string("alt");
+            $table->text("description")->nullable();
+            $table->string("alt")->nullable();
             $table->string("file_name");
-            $table->unsignedBigInteger("product_id")->foreign("id")->references("id")->on("products")->cascadeOnDelete();
+            $table->nullableMorphs("imageable");
             $table->timestamps();
         });
     }

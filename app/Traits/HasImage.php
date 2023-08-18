@@ -20,7 +20,7 @@ trait HasImage {
     }
     public function delete($imageName)
     {
-         \Storage::disk('public')->delete($this->imagePath."/".$this->imagePath.$imageName );
+         \Storage::disk('public')->delete($imageName );
 
     }
 }

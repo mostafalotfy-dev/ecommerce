@@ -52,6 +52,9 @@ select2("branch_name");
 
 
 
-new Dropzone("#dropzon")
+new Dropzone("#image",{
+
+    acceptedFiles:"image/*"
+})
 
 
