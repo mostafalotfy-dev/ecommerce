@@ -79,7 +79,7 @@ class  LangRepository extends Repository
     {
         factory("lang")->where("id", $id)->update([
             "value" => $value,
-            ""
+
         ]);
     }
 

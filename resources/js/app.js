@@ -2,7 +2,7 @@ import Alpine from 'alpinejs'
 import "../plugins/select2/js/select2.full.min.js"
 import "../plugins/bootstrap-slider/bootstrap-slider.min.js"
 import Tagify from '@yaireo/tagify'
-
+import Dropzone from "dropzone";
 
 // tinymce
 
@@ -52,6 +52,6 @@ select2("branch_name");
 
 
 
-
+new Dropzone("#dropzon")
 
 
