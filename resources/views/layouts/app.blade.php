@@ -235,10 +235,10 @@
                                 $breadcrumb  = str(request()->route()->uri);
 
                             $breadcrumb_text = match (true){
-                                $breadcrumb->contains("create") =>  lang("Create"),
-                                $breadcrumb->endsWith("edit")  => lang("Edit"),
-                                !!$breadcrumb->contains("show") => lang("Show"),
-                                default => lang("Index")
+                                $breadcrumb->contains("create") =>  lang("create"),
+                                $breadcrumb->endsWith("edit")  => lang("edit"),
+                                !!$breadcrumb->contains("show") => lang("show"),
+                                default => lang("index")
                             };
 
                         @endphp

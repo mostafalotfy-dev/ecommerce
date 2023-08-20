@@ -221,6 +221,12 @@ document.addEventListener("alpine:init", function () {
       }
     };
   });
+  Alpine.data("gallery", function () {
+    return {
+      images: [],
+      get: function get() {}
+    };
+  });
 });
 /******/ })()
 ;

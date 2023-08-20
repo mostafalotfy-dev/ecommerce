@@ -11,8 +11,10 @@ class ImageController extends Controller
     {
         if(request()->ajax())
             return response()->json([
-                "results"=>factory("image")->paginate()
+                "results"=>\Storage::disk("public")->directories(recursive :true)
             ]);
+
+
         return view("images.index");
     }
     public function store(): JsonResponse

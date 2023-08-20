@@ -43,7 +43,7 @@ class CategoryController extends Controller
     }
     public function update(Category $category, UpdateCategoryRequest $request): JsonResponse
     {
-//        dd($request->all());
+
         $image = image("category_image","images");
         $input = $request->except("save_and_more","_token","category_image","_method","save_and_add","save");
         if(!$request->status)
@@ -58,7 +58,7 @@ class CategoryController extends Controller
 
         $image->add($input);
 
-       $category->update($input);
+        $category->update($input);
 
         return  \factory("response")->success(route("category.index"));
     }

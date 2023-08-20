@@ -223,6 +223,14 @@ document.addEventListener("alpine:init", () => {
             }
         }
     })
+    Alpine.data("gallery",function (){
 
+        return {
+            images:[],
+            get() {
+
+            }
+        }
+    })
 
 })
