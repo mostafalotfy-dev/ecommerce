@@ -232,5 +232,23 @@ document.addEventListener("alpine:init", () => {
             }
         }
     })
+    Alpine.data("address",function (){
+        return {
+            addresses:[],
+            index : 0,
+            delete(id){
 
+              this.addresses =  this.addresses.filter( (address)=>{
+                  console.log(id)
+                  return id === address.id;
+              })
+                console.log(id)
+            },
+
+            add(){
+                this.addresses.push({id:this.index++})
+
+            }
+        }
+    })
 })

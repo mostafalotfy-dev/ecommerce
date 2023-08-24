@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Psy\Util\Json;
+
 
 class CategoryController extends Controller
 {
@@ -38,6 +38,7 @@ class CategoryController extends Controller
         }else{
             $input["status"] = 0;
         }
+        $input["created_at"]= now();
         factory("category")->insert($input);
         return \factory("response")->success(route("category.index"));
     }
@@ -45,7 +46,7 @@ class CategoryController extends Controller
     {
 
         $image = image("category_image","images");
-        $input = $request->except("save_and_more","_token","category_image","_method","save_and_add","save");
+        $input = $request->except("save_and_more","_token","_method","save_and_add","save");
         if(!$request->status)
         {
             $input["status"] = 0;
@@ -78,8 +79,9 @@ class CategoryController extends Controller
     }
     public function destroy(Category $category): RedirectResponse
     {
-        $category->delete();
         image("category_image","images")->delete($category->category_image);
+        $category->delete();
+
         return back();
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Factory;
 use App\Comparator\Comparator;
 use App\Repositories\AddressRepository;
@@ -20,7 +19,6 @@ use App\Repositories\ResponseRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\SettingRepository;
 use App\Repositories\ShipmentRepository;
-use Illuminate\Support\Facades\Lang;
 use App\Repositories\OfferRepository;
 use App\Repositories\BrandRepository;
 use App\Repositories\BranchRepository;

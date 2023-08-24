@@ -13,6 +13,9 @@ class Category extends Model
     protected $fillable = [
         "name_en",
         "name_ar",
-        "status"
+        "status",
+        "category_image",
+        "old_index",
+        "new_index"
     ];
 }

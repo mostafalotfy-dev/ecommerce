@@ -20,7 +20,8 @@ trait HasImage {
     }
     public function delete($imageName)
     {
-         \Storage::disk('public')->delete($imageName );
+        factory("compare")->when(!!$imageName,fn()=>  \Storage::disk('public')->delete($imageName ));
+
 
     }
 }

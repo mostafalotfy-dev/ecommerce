@@ -40,6 +40,10 @@
                                                                  checked
                                                                  @endif
         @endisset>
+
+    </div>
+    <div class="col-md-3">
+       @isset($category)  <img height="150" src="{{url("storage/".$category->category_image)}}" alt=""> @endisset
     </div>
 </div>
 <hr>
