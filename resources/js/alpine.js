@@ -235,19 +235,20 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("address",function (){
         return {
             addresses:[],
-            index : 0,
+            index : 1,
             delete(id){
 
               this.addresses =  this.addresses.filter( (address)=>{
-                  console.log(id)
-                  return id === address.id;
+
+                  return id == address.id;
               })
-                console.log(id)
+
             },
 
             add(){
                 this.addresses.push({id:this.index++})
-
+                console.log(this.$refs)
+                $(this.$refs.country).select2()
             }
         }
     })

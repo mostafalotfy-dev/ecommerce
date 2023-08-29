@@ -8,6 +8,7 @@ use App\Repositories\AttributeRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CartRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CountryRepository;
 use App\Repositories\CustomerRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\LangRepository;
@@ -113,5 +114,9 @@ class AppFactory {
     public function offer()
     {
 	    return app(OfferRepository::class);
+    }
+    public function country()
+    {
+        return app(CountryRepository::class);
     }
 }

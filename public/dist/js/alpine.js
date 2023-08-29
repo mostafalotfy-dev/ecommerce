@@ -230,17 +230,18 @@ document.addEventListener("alpine:init", function () {
   Alpine.data("address", function () {
     return {
       addresses: [],
-      index: 0,
+      index: 1,
       "delete": function _delete(id) {
         this.addresses = this.addresses.filter(function (address) {
-          return id !== address.id;
+          return id == address.id;
         });
-        console.log(id);
       },
       add: function add() {
         this.addresses.push({
           id: this.index++
         });
+        console.log(this.$refs);
+        $(this.$refs.country).select2();
       }
     };
   });

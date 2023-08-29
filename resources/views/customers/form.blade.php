@@ -1,13 +1,21 @@
 <div class="row">
-    <div class="col-md-3">
-        {{html()->label("name")->text(lang("models/customers.fields.name"))}}
-        {{html()->text("name")->class("form-control")->placeholder(lang("models/customers.fields.name"))}}
-        <template x-if="errors?.name">
+    <div class="col-md-2">
+        {{html()->label("first_name")->text(lang("models/customers.fields.first_name"))}}
+        {{html()->text("first_name")->class("form-control")->placeholder(lang("models/customers.fields.first_name"))}}
+        <template x-if="errors?.first_name">
 
-            <span class="text text-danger" x-text="errors.name"></span>
+            <span class="text text-danger" x-text="errors.first_name"></span>
         </template>
     </div>
-    <div class=" col-md-5">
+    <div class="col-md-3">
+        {{html()->label("last_name")->text(lang("models/customers.fields.last_name"))}}
+        {{html()->text("last_name")->class("form-control")->placeholder(lang("models/customers.fields.last_name"))}}
+        <template x-if="errors?.last_name">
+
+            <span class="text text-danger" x-text="errors.last_name"></span>
+        </template>
+    </div>
+    <div class=" col-md-3">
         {{html()->label("mobile")->text(lang("models/customers.fields.mobile"))}}
         <div class="input-group">
             <div class="input-group-prepend">
@@ -61,7 +69,7 @@
     </div>
     <div class="col-md-3">
         {{html()->label("password")->text(lang("models/customers.fields.password"))}}
-        {{html()->password("password")->class("form-control")->attribute("autocomplete","new-password")}}
+        {{html()->password("password")->class("form-control")->attribute("autocomplete","nope")}}
         <template x-if="errors?.password">
             <span class="text text-danger" x-text="errors.password"></span>
         </template>
@@ -77,69 +85,7 @@
 </div>
 <hr>
 
-<div class="row" x-data="address">
-    <button type="button" @click="add()"
-            class="btn btn-warning">{{lang("models/customers.buttons.add_address")}}</button>
-    <table class="table table-responsive">
-        <thead>
-        <tr>
-            <th>{{lang("models/customers.fields.full_name")}}</th>
-            <th>{{lang("models/customers.fields.street_address")}}</th>
-            <th>{{lang("models/customers.fields.country_id")}}</th>
-            <th>{{lang("models/customers.fields.state_id")}}</th>
-            <th>{{lang("models/customers.fields.town")}}</th>
-            <th>{{lang("models/customers.fields.zip_code")}}</th>
-            <th>{{lang("models/customers.fields.phone_number")}}</th>
-            <th>{{lang("models/customers.fields.status")}}</th>
-            <th>{{lang("models/customers.buttons.delete")}}</th>
-        </tr>
-        </thead>
-        <tbody>
 
-        <template x-for="address in addresses" :key="address.id">
-            <tr>
-                <td>
-
-                    {{html()->text("full_name")->name("address[full_name]")->class("form-control")}}
-
-                </td>
-                <td>
-
-                    {{html()->text("street_address")->name("address[street_address]")->class("form-control")}}
-                </td>
-                <td>
-
-                    {{html()->select("country_id")->name("address[country_id]")->class("form-control")}}
-                </td>
-                <td>
-
-                    {{html()->select("state_id")->name("address[state_id]")->class("form-control")}}
-                </td>
-                <td>
-
-                    {{html()->text("town")->name("address[town]")->class("form-control")}}
-                </td>
-                <td>
-
-                    {{html()->text("zip_code")->name("address[zip_code]")->class("form-control")}}
-                </td>
-                <td>
-
-                    {{html()->text("phone_number")->name("address[phone_number]")->class("form-control")}}
-                </td>
-                <td >
-
-                    {{html()->checkbox("status")->name("address[status]")->class("form-control")}}
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger" @click="delete(address.id)">{{lang("models/customers.buttons.delete")}}</button>
-                </td>
-            </tr>
-        </template>
-
-        </tbody>
-    </table>
-</div>
 <hr>
 <input class="btn btn-primary" type="submit" name="save" value="{{lang("save")}}">
 

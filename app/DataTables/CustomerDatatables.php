@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -25,6 +26,11 @@ class CustomerDatatables extends DataTable
     {
         return (new QueryDataTable($query))
             ->addColumn('action', 'customers.action')
+            ->addColumn('status', function ( $customer)
+            {
+                $status = $customer->is_active;
+                return view("customers.status",compact("status"));
+            })
             ->setRowId('id');
     }
 
@@ -95,11 +101,11 @@ class CustomerDatatables extends DataTable
                 "name"=>"dob",
                 "title"=>lang("models/customers.fields.date_of_birth")
             ]),
-            Column::make([
-                "data"=>"is_active",
-                "name"=>"is_active",
-                "title"=>lang("models/customers.fields.is_active")
-            ]),
+            Column::computed('status')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
             Column::make([
                 "data"=>"created_at",
                 "name"=>"created_at",
@@ -110,6 +116,7 @@ class CustomerDatatables extends DataTable
                 "name"=>"updated_at",
                 "title"=>lang("models/customers.fields.updated_at")
             ]),
+
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
