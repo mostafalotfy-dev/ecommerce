@@ -73,10 +73,10 @@
              </p>
          </a>
      @endif
-     <a href="{{route('images.index')}}" class="nav-link @if(request()->routeIs('images.*')) active @endif">
+     <a href="{{route('files.index')}}" class="nav-link @if(request()->routeIs('files.*')) active @endif">
          <i class="nav-icon fas fa-tachometer-alt"></i>
          <p>
-             {{lang("models/images.plural")}}
+             {{lang("models/files.plural")}}
              <i class="right fas fa-angle-left"></i>
          </p>
      </a>

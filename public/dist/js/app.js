@@ -5478,8 +5478,12 @@ function select2(id) {
 }
 select2("brand_name");
 select2("branch_name");
-new dropzone__WEBPACK_IMPORTED_MODULE_4__["default"]("#image", {
+if (document.querySelector("#image")) new dropzone__WEBPACK_IMPORTED_MODULE_4__["default"]("#image", {
   acceptedFiles: "image/*"
+});
+new dropzone__WEBPACK_IMPORTED_MODULE_4__["default"]("#files", {
+  acceptedFiles: ".csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*",
+  chunks: true
 });
 
 /***/ }),

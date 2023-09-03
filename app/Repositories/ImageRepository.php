@@ -10,12 +10,12 @@ class ImageRepository extends Repository{
 
     public function setImageName($name)
     {
-        $this->imageField = $name;
+        $this->field = $name;
         return $this;
     }
     public function setImagePath($path)
     {
-        $this->imagePath = $path;
+        $this->path = $path;
         return $this;
     }
     public function tableName():string

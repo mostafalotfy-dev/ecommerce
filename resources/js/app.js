@@ -51,10 +51,14 @@ select2("brand_name");
 select2("branch_name");
 
 
+if(document.querySelector("#image"))
+    new Dropzone("#image",{
 
-new Dropzone("#image",{
+        acceptedFiles:"image/*"
+    })
 
-    acceptedFiles:"image/*"
+
+new Dropzone("#files",{
+    acceptedFiles:".csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*",
+    chunks:true
 })
-
-

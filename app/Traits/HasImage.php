@@ -5,17 +5,17 @@
 namespace App\Traits;
 trait HasImage {
 
-    protected string $imagePath;
-    protected string $imageField;
+    protected string $path;
+    protected string $field;
 
     public function add(&$input)
     {
-        if(request($this->imageField))
+        if(request($this->field))
         {
-            $file = request()->file($this->imageField);
-            $fileName = $this->imagePath . "/". uniqid().".".$file->extension();
+            $file = request()->file($this->field);
+            $fileName = $this->path . "/". $file->getClientOriginalName().".".$file->extension();
             \Storage::disk('public')->put($fileName, \File::get($file));
-            $input[$this->imageField] = $fileName;
+            $input[$this->field] = $fileName;
         }
     }
     public function delete($imageName)

@@ -37,7 +37,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:
     Route::resource("customers",CustomerController::class);
     Route::resource("brands", BrandController::class)->except("show");
     Route::resource("products", ProductController::class);
-    Route::resource("images", ImageController::class);
+
+    Route::resource("files",\App\Http\Controllers\FileController::class);
 });
 
 
