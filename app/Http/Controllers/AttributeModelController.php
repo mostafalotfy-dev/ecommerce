@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateAttributeRequest;
 use App\Http\Requests\UpdateAttributeRequest;
 use App\Models\AttributeModel;
-use Illuminate\Http\Request;
 
 class AttributeModelController extends Controller
 {

@@ -2,14 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Models\Branch;
 use Illuminate\Database\Query\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\QueryDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -18,18 +14,17 @@ class BranchesDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
         return (new QueryDataTable($query))
             ->addColumn('action', 'branches.action')
-            ->editColumn("status",function ($branch)
-            {
-                return view("branches.status",compact("branch"));
-	    })->editColumn("is_cod",function($branch){
-		    return view("branches.cod",compact("branch"));
-	    })
+            ->editColumn('status', function ($branch) {
+                return view('branches.status', compact('branch'));
+            })->editColumn('is_cod', function ($branch) {
+                return view('branches.cod', compact('branch'));
+            })
             ->setRowId('id');
     }
 
@@ -38,7 +33,7 @@ class BranchesDataTable extends DataTable
      */
     public function query(): QueryBuilder
     {
-        return \DB::table("branches");
+        return \DB::table('branches');
     }
 
     /**
@@ -47,20 +42,20 @@ class BranchesDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('branches-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
+            ->setTableId('branches-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -71,50 +66,50 @@ class BranchesDataTable extends DataTable
         return [
 
             Column::make([
-                "data"=>"id",
-                "name"=>"id",
-                "title"=>"#"
+                'data' => 'id',
+                'name' => 'id',
+                'title' => '#',
             ]),
             Column::make([
-                "name"=>"name_en",
-                "data"=>"name_en",
-                "title"=> lang("models/branches.fields.name_en")
+                'name' => 'name_en',
+                'data' => 'name_en',
+                'title' => lang('models/branches.fields.name_en'),
             ]),
             Column::make([
-                "name"=>"name_ar",
-                "data"=>"name_ar",
-                "title"=> lang("models/branches.fields.name_ar")
+                'name' => 'name_ar',
+                'data' => 'name_ar',
+                'title' => lang('models/branches.fields.name_ar'),
             ]),
             Column::make([
-                "name"=>"status",
-                "data"=>"status",
-                "title"=> lang("models/branches.fields.status")
+                'name' => 'status',
+                'data' => 'status',
+                'title' => lang('models/branches.fields.status'),
             ]),
             Column::make([
-                "name"=>"is_open",
-                "data"=>"is_open",
-                "title"=> lang("models/branches.fields.is_open")
+                'name' => 'is_open',
+                'data' => 'is_open',
+                'title' => lang('models/branches.fields.is_open'),
             ]),
             Column::make([
-                "name"=>"is_cod",
-                "data"=>"is_cod",
-                "title"=> lang("models/branches.fields.is_cod")
+                'name' => 'is_cod',
+                'data' => 'is_cod',
+                'title' => lang('models/branches.fields.is_cod'),
             ]),
             Column::make([
-                "data"=>"created_at",
-                "name"=>"created_at",
-                "title"=>lang("models/branches.fields.created_at")
+                'data' => 'created_at',
+                'name' => 'created_at',
+                'title' => lang('models/branches.fields.created_at'),
             ]),
             Column::make([
-                "data"=>"updated_at",
-                "name"=>"updated_at",
-                "title"=>lang("models/branches.fields.updated_at")
+                'data' => 'updated_at',
+                'name' => 'updated_at',
+                'title' => lang('models/branches.fields.updated_at'),
             ]),
             Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(60)
-            ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -123,6 +118,6 @@ class BranchesDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Branches_' . date('YmdHis');
+        return 'Branches_'.date('YmdHis');
     }
 }

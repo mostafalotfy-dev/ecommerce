@@ -2,13 +2,10 @@
 
 namespace App\Repositories;
 
-class OrderRepository extends Repository{
-
-    /**
-     * @return string
-     */
-    function tableName(): string
+class OrderRepository extends Repository
+{
+    public function tableName(): string
     {
-        return "orders";
+        return 'orders';
     }
 }

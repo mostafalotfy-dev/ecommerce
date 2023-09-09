@@ -4,9 +4,8 @@ namespace App\Repositories;
 
 class CountryRepository extends Repository
 {
-
-    function tableName(): string
+    public function tableName(): string
     {
-        return "countries";
+        return 'countries';
     }
 }

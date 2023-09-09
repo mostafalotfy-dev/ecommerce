@@ -23,8 +23,9 @@ class UpdateBrandRequest extends FormRequest
     public function rules(): array
     {
         $rules = BrandRepository::$rules;
-        $rules["name_en"] = "required|regex:(^[A-z])";
-        $rules["name_ar"] = "required|regex:(^[ء-ي])";
+        $rules['name_en'] = 'required|regex:(^[A-z])';
+        $rules['name_ar'] = 'required|regex:(^[ء-ي])';
+
         return $rules;
     }
 }

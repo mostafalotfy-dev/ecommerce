@@ -16,14 +16,14 @@ class AjaxLocalizeMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if($request->ajax())
-        {
+        if ($request->ajax()) {
 
-            $lang_header = str($request->header("Accept-Language"));
-            if($lang_header->startsWith("en"))
-                app()->setLocale("en");
-            elseif ($lang_header->startsWith("ar"))
-                app()->setLocale("ar");
+            $lang_header = str($request->header('Accept-Language'));
+            if ($lang_header->startsWith('en')) {
+                app()->setLocale('en');
+            } elseif ($lang_header->startsWith('ar')) {
+                app()->setLocale('ar');
+            }
         }
 
         return $next($request);

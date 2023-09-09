@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string("name_en")->unique();
-            $table->string("name_ar")->unique();
-            $table->integer("price")->default(0);
-            $table->text("description_en");
-            $table->text("description_ar");
-            $table->integer("discount")->default(0);
-            $table->integer("quantity")->default(0);
-            $table->tinyInteger("status")->default(0);
-            $table->integer("views")->default(0);
+            $table->string('name_en')->unique();
+            $table->string('name_ar')->unique();
+            $table->integer('price')->default(0);
+            $table->text('description_en');
+            $table->text('description_ar');
+            $table->integer('discount')->default(0);
+            $table->integer('quantity')->default(0);
+            $table->tinyInteger('status')->default(0);
+            $table->integer('views')->default(0);
 
             $table->timestamps();
-            $table->engine = "myisam";
+            $table->engine = 'myisam';
         });
     }
 

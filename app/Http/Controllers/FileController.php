@@ -11,7 +11,7 @@ class FileController extends Controller
      */
     public function index()
     {
-       return view("files.index");
+        return view('files.index');
     }
 
     /**
@@ -20,10 +20,11 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "file"=>"mimes:.csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*"
+            'file' => 'mimes:.csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*',
         ]);
         $input = $request->all();
-        image("file",now()->format("d-m-Y"))->add($input);
+        image('file', now()->format('d-m-Y'))->add($input);
+
         return response()->json([
 
         ]);

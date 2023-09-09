@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Repositories\CustomerRepository;
+use Illuminate\Foundation\Http\FormRequest;
+
 class UpdateCustomerRequest extends FormRequest
 {
     /**
@@ -21,10 +22,10 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules =  CustomerRepository::$rules;
-        unset($rules["password"]);
-        return  $rules;
+        $rules = CustomerRepository::$rules;
+        unset($rules['password']);
 
+        return $rules;
 
     }
 }

@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Http\Requests\CreateRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Resources\Select2AjaxResource;
-use App\Repositories\RoleRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Application;
@@ -16,193 +12,213 @@ use Illuminate\Http\Response;
 
 class AjaxController extends Controller
 {
-    public  function get_roles(): JsonResponse
+    public function get_roles(): JsonResponse
     {
-        $roles = factory("role")->search(request("q"))->where("id","!=","1")->paginate();
+        $roles = factory('role')->search(request('q'))->where('id', '!=', '1')->paginate();
 
+        $lang = request('lang');
 
-        $lang = request("lang");
         return \response()->json([
-            "results"=>$roles->map(fn($role)=>[
-                "text"=>$role->{"name_".$lang},
-                "id"=>$role->id
+            'results' => $roles->map(fn ($role) => [
+                'text' => $role->{'name_'.$lang},
+                'id' => $role->id,
             ]),
-                "pagination"=>[
-                    "hasMore"=>(bool) $roles->count()
-                ]
-            ]
+            'pagination' => [
+                'hasMore' => (bool) $roles->count(),
+            ],
+        ]
         );
     }
+
     public function get_category()
     {
 
-            $response =  factory("category")->search(request("q"))->where("status",1)->paginate();
-            return response()->json(
-                [
-                    "results"=>  $response->map(fn($r)=>[
-                        "text"=>$r->{"name_".app()->getLocale()},
-                        "id"=>$r->id
-                    ]),
-                    "pagination"=>[
-                        "hasMore"=>(bool) $response->count()
-                    ]
-                ]
+        $response = factory('category')->search(request('q'))->where('status', 1)->paginate();
 
-            );
+        return response()->json(
+            [
+                'results' => $response->map(fn ($r) => [
+                    'text' => $r->{'name_'.app()->getLocale()},
+                    'id' => $r->id,
+                ]),
+                'pagination' => [
+                    'hasMore' => (bool) $response->count(),
+                ],
+            ]
+
+        );
 
     }
+
     public function store_language(): Application|Response|\Illuminate\Contracts\Foundation\Application|ResponseFactory
     {
         request()->validate(
-        [
-            "key"=>"required|integer",
-            "value"=>"required|string"
-        ]);
+            [
+                'key' => 'required|integer',
+                'value' => 'required|string',
+            ]);
 
-      factory("lang")->updateById(\request("key"),\request("value"));
-      return response([
+        factory('lang')->updateById(\request('key'), \request('value'));
 
-      ],204);
+        return response([
+
+        ], 204);
     }
-
 
     public function search_language()
     {
-        $search_value = str(\request("search"))->replace("-","/");
+        $search_value = str(\request('search'))->replace('-', '/');
+
         return response()->json(
 
-            factory("lang")->search($search_value)->orderBy("id","desc")->paginate()
+            factory('lang')->search($search_value)->orderBy('id', 'desc')->paginate()
 
-            );
+        );
     }
+
     public function get_countries()
     {
-	    return DB::table("countries")->get()->map(fn($counrty)=>[
-		    "text"=>request("lang","en") == "en" ? $country->country_enName : $country->country_arName,
-		    "id"=>$country->country_code
-	    ]);
+        return DB::table('countries')->get()->map(fn ($counrty) => [
+            'text' => request('lang', 'en') == 'en' ? $country->country_enName : $country->country_arName,
+            'id' => $country->country_code,
+        ]);
     }
+
     public function destroy_language($id)
     {
-        factory("lang")
+        factory('lang')
             ->find($id)
             ->delete();
+
         return \response()->json(
             [
-                "message"=>lang("success"),
-                "data"=>factory("lang")->paginate()
+                'message' => lang('success'),
+                'data' => factory('lang')->paginate(),
             ]
         );
     }
+
     public function get_permissions(string $searchKeyword = null)
     {
 
-        $permissions = factory("permission")->search($searchKeyword);
-
+        $permissions = factory('permission')->search($searchKeyword);
 
         return response()->json(
             [
-                "permissions"=> $permissions->get(),
+                'permissions' => $permissions->get(),
 
             ]);
 
     }
+
     public function add_permission(CreateRoleRequest $request)
     {
 
-        factory("role")->transaction(function(Builder $query){
-            $role_id = $query->insertGetId(request()->only("name_en","name_ar"));
-            $permissions = collect(request("permissions"))->map(fn($permission)=>[
-               "permission_id" =>$permission,
-                "role_id"=>$role_id
+        factory('role')->transaction(function (Builder $query) {
+            $role_id = $query->insertGetId(request()->only('name_en', 'name_ar'));
+            $permissions = collect(request('permissions'))->map(fn ($permission) => [
+                'permission_id' => $permission,
+                'role_id' => $role_id,
             ]);
 
-            factory("permission_role")->insert($permissions->toArray());
+            factory('permission_role')->insert($permissions->toArray());
+
             return true;
         });
+
         return response()->json([
-            "redirect_to"=>route("roles.index")
+            'redirect_to' => route('roles.index'),
         ]);
 
     }
+
     public function update_role($id)
     {
 
     }
+
     public function add_roles(CreateRoleRequest $request)
     {
-        $input = $request->only("name_en","name_ar","admin_id");
+        $input = $request->only('name_en', 'name_ar', 'admin_id');
 
-      $role_id =  factory("role")->insertGetId($input);
+        $role_id = factory('role')->insertGetId($input);
 
-      $permissions = collect($request->permissions)->map(fn(int $permission)=>[
+        $permissions = collect($request->permissions)->map(fn (int $permission) => [
 
-         "role_id"=>$role_id,
-          "permission_id"=>$permission,
+            'role_id' => $role_id,
+            'permission_id' => $permission,
 
-      ]);
+        ]);
 
-         factory("permission_role")->create($permissions->toArray());
+        factory('permission_role')->create($permissions->toArray());
 
-        return \response()->json(lang("done"));
+        return \response()->json(lang('done'));
 
     }
+
     public function update_admin_status()
     {
         request()->validate([
-            "id"=>"required|exists:admins,id",
-            "status"=>"required|in:0,1"
+            'id' => 'required|exists:admins,id',
+            'status' => 'required|in:0,1',
         ]);
-        $repo = factory("admin")->find(request("id"));
+        $repo = factory('admin')->find(request('id'));
         $admin = $repo->first();
 
-            $repo->update([
-                "status"=>request("status")
-            ]);
+        $repo->update([
+            'status' => request('status'),
+        ]);
 
         return \response()->json([
-            "status"=>$admin->status
+            'status' => $admin->status,
         ]);
     }
+
     public function update_status($name)
     {
         request()->validate([
-           "id"=>"required|integer",
-           "status"=>"required|integer|in:0,1"
+            'id' => 'required|integer',
+            'status' => 'required|integer|in:0,1',
         ]);
         $repo = factory($name);
         $repo
-            ->where("id",request("id"))
+            ->where('id', request('id'))
             ->update([
-            "status"=>request("status")
-        ]);
+                'status' => request('status'),
+            ]);
     }
-    public function update_code($name,$status,$id)
+
+    public function update_code($name, $status, $id)
     {
         request()->validate(
             [
-                "status"=>"in:1,0",
+                'status' => 'in:1,0',
 
             ]
         );
-        factory("branch")->find($id)->update([
-            "is_cod"=>$status
+        factory('branch')->find($id)->update([
+            'is_cod' => $status,
         ]);
+
         return \response()->json();
     }
+
     public function get_brands()
     {
 
-        $brands = factory("brand")->paginate();
+        $brands = factory('brand')->paginate();
+
         return \response()->json([
-            "results"=>Select2AjaxResource::collection($brands)
+            'results' => Select2AjaxResource::collection($brands),
         ]);
     }
+
     public function get_branches()
     {
-        $branches = factory("branch")->paginate();
+        $branches = factory('branch')->paginate();
+
         return \response()->json([
-            "results"=> Select2AjaxResource::collection($branches)
+            'results' => Select2AjaxResource::collection($branches),
         ]);
     }
 }

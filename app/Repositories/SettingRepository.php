@@ -6,15 +6,17 @@ use App\Comparator\Comparator;
 use App\Traits\Singleton;
 use Illuminate\Support\Collection;
 
-class SettingRepository extends Repository{
+class SettingRepository extends Repository
+{
     use Singleton;
-    /** @var Comparator */
+
     private Comparator $compare;
+
     private Collection $data;
 
     protected $searchableFields = [
-        "key",
-        "value"
+        'key',
+        'value',
     ];
 
     public function __construct()
@@ -22,38 +24,40 @@ class SettingRepository extends Repository{
         $this->compare = new Comparator;
         $this->data = $this->get();
     }
+
     public function tableName(): string
     {
-        return "settings";
+        return 'settings';
     }
+
     public function getByKey($key)
     {
-        if($this->compare->isProduction())
-        {
-            $keys  = cache()->rememberForever("settings",fn()=>$this->data->pluck("value","key"));
+        if ($this->compare->isProduction()) {
+            $keys = cache()->rememberForever('settings', fn () => $this->data->pluck('value', 'key'));
+
             return $keys->value($key);
-        }else
-        {
-            $keys = $this->data->pluck("value","key");
+        } else {
+            $keys = $this->data->pluck('value', 'key');
         }
+
         return $keys->value($key);
     }
-    public function setKey($key,$value)
+
+    public function setKey($key, $value)
     {
-       return  $this->insert([
-            "key"=>$key,
-            "value"=>$value
+        return $this->insert([
+            'key' => $key,
+            'value' => $value,
         ]);
     }
-    public function update($key,$value)
+
+    public function update($key, $value)
     {
         $this
-        ->where("key",$key)
-        ->update([
-            "key"=>$key,
-            "value",$value
-        ]);
+            ->where('key', $key)
+            ->update([
+                'key' => $key,
+                'value', $value,
+            ]);
     }
-
-
 }

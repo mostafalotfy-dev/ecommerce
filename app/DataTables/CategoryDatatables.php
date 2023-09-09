@@ -2,14 +2,12 @@
 
 namespace App\DataTables;
 
-
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-
 use Yajra\DataTables\Services\DataTable;
 
 class CategoryDatatables extends DataTable
@@ -17,23 +15,22 @@ class CategoryDatatables extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
 
         return (new EloquentDataTable($query))
             ->addColumn('action', 'categories.action')
-            ->editColumn("category_id",function($model) {
+            ->editColumn('category_id', function ($model) {
 
                 return $model->parents($model->category_id)?->name_en;
 
-
             })
-            ->editColumn("status",function ($model){
-                return view("categories.status",[
-                    "status"=>$model->status,
-                    "id"=>$model->id
+            ->editColumn('status', function ($model) {
+                return view('categories.status', [
+                    'status' => $model->status,
+                    'id' => $model->id,
                 ]);
             })
             ->setRowId('id');
@@ -42,7 +39,7 @@ class CategoryDatatables extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Category $category ): QueryBuilder
+    public function query(Category $category): QueryBuilder
     {
         return $category->newQuery();
     }
@@ -53,20 +50,20 @@ class CategoryDatatables extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('category-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
+            ->setTableId('category-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -77,46 +74,46 @@ class CategoryDatatables extends DataTable
         return [
 
             Column::make([
-                "name"=>"id",
-                "data"=>"id",
-                "title"=>lang("models/category.fields.id"),
+                'name' => 'id',
+                'data' => 'id',
+                'title' => lang('models/category.fields.id'),
             ]),
             Column::make([
-                "name"=>"name_en",
-                "data"=>"name_en",
-                "title"=>lang("models/category.fields.name_en"),
+                'name' => 'name_en',
+                'data' => 'name_en',
+                'title' => lang('models/category.fields.name_en'),
             ]),
             Column::make([
-                "name"=>"name_ar",
-                "data"=>"name_ar",
-                "title"=>lang("models/category.fields.name_ar"),
+                'name' => 'name_ar',
+                'data' => 'name_ar',
+                'title' => lang('models/category.fields.name_ar'),
             ]),
             Column::make([
-                "name"=>"category_id",
-                "data"=>"category_id",
-                "title"=>lang("models/category.fields.category_id"),
+                'name' => 'category_id',
+                'data' => 'category_id',
+                'title' => lang('models/category.fields.category_id'),
             ]),
             Column::make([
-                "name"=>"status",
-                "data"=>"status",
-                "title"=>lang("models/category.fields.status"),
+                'name' => 'status',
+                'data' => 'status',
+                'title' => lang('models/category.fields.status'),
             ]),
             Column::make([
-                "name"=>"created_at",
-                "data"=>"created_at",
-                "title"=>lang("models/category.fields.created_at"),
+                'name' => 'created_at',
+                'data' => 'created_at',
+                'title' => lang('models/category.fields.created_at'),
             ]),
             Column::make([
-                "name"=>"updated_at",
-                "data"=>"updated_at",
-                "title"=>lang("models/category.fields.updated_at"),
+                'name' => 'updated_at',
+                'data' => 'updated_at',
+                'title' => lang('models/category.fields.updated_at'),
             ]),
 
             Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(60)
-            ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -125,6 +122,6 @@ class CategoryDatatables extends DataTable
      */
     protected function filename(): string
     {
-        return 'CategoryDatatables_' . date('YmdHis');
+        return 'CategoryDatatables_'.date('YmdHis');
     }
 }

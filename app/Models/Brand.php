@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        "name_en",
-        "name_ar"
+        'name_en',
+        'name_ar',
     ];
 }

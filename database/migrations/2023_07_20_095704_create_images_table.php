@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->text("description")->nullable();
-            $table->string("alt")->nullable();
-            $table->string("file_name");
-            $table->nullableMorphs("imageable");
+            $table->text('description')->nullable();
+            $table->string('alt')->nullable();
+            $table->string('file_name');
+            $table->nullableMorphs('imageable');
             $table->timestamps();
         });
     }

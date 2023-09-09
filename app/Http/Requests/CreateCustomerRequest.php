@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Repositories\CustomerRepository;
+use Illuminate\Foundation\Http\FormRequest;
+
 class CreateCustomerRequest extends FormRequest
 {
     /**

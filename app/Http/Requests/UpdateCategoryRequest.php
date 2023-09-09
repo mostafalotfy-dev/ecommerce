@@ -23,9 +23,10 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-       $rules = CategoryRepository::$rules;
-       $rules["name_en"] = "required|regex:(^[A-z])";
-       $rules["name_ar"] = "required|regex:(^[ي-ء])";
-       return $rules;
+        $rules = CategoryRepository::$rules;
+        $rules['name_en'] = 'required|regex:(^[A-z])';
+        $rules['name_ar'] = 'required|regex:(^[ي-ء])';
+
+        return $rules;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface ToModelContract{
-    function toModel():Model;
-
+interface ToModelContract
+{
+    public function toModel(): Model;
 }

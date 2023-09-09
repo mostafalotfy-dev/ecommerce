@@ -1,16 +1,11 @@
 <?php
 
-namespace  App\Repositories;
-
+namespace App\Repositories;
 
 class ShipmentRepository extends Repository
 {
-
-    /**
-     * @return string
-     */
-    function tableName(): string
+    public function tableName(): string
     {
-        return "shipments";
+        return 'shipments';
     }
 }

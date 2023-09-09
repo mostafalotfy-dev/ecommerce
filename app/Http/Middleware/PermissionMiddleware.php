@@ -13,16 +13,16 @@ class PermissionMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,$permission): Response
+    public function handle(Request $request, Closure $next, $permission): Response
     {
         // if(!auth("admin") ){
         //     abort(403);
         // }
-         $user = auth("admin")->user();
-         if( !factory("permission")->hasPermission([$permission],$user->id) )
-         {
-             abort(403);
-         }
+        $user = auth('admin')->user();
+        if (! factory('permission')->hasPermission([$permission], $user->id)) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }

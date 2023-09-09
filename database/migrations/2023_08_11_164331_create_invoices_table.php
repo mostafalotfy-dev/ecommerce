@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("order_id")->foreign("id")->references("id")->on("orders")->cascadeOnDelete();
-            $table->string("grand_total");
-            $table->tinyInteger("status");
+            $table->unsignedBigInteger('order_id')->foreign('id')->references('id')->on('orders')->cascadeOnDelete();
+            $table->string('grand_total');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

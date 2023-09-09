@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name_en")->unique();
+            $table->string('name_en')->unique();
 
-            $table->string("name_ar")->unique();
-            $table->integer("oldIndex")->default(0);
-            $table->integer("newIndex")->default(0);
-            $table->string("draggable_class_name")->default(".item");
-            
-            $table->unsignedBigInteger("category_id")->foreign("id")->references("id")->on("categories")->cascadeOnDelete()->nullable();
+            $table->string('name_ar')->unique();
+            $table->integer('oldIndex')->default(0);
+            $table->integer('newIndex')->default(0);
+            $table->string('draggable_class_name')->default('.item');
+
+            $table->unsignedBigInteger('category_id')->foreign('id')->references('id')->on('categories')->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }

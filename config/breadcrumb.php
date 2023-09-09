@@ -1,8 +1,9 @@
 <?php
-return [
-    "items"=>[
-       "roles",
-        "products"
 
-    ]
+return [
+    'items' => [
+        'roles',
+        'products',
+
+    ],
 ];

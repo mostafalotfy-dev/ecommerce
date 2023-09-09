@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text("description");
-            $table->unsignedBigInteger("product_id")->foreign("id")->refreces("id")->on("products")->cascadeOnDelete();
+            $table->text('description');
+            $table->unsignedBigInteger('product_id')->foreign('id')->refreces('id')->on('products')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-
 use Illuminate\Console\GeneratorCommand;
 
 /**
@@ -16,31 +15,35 @@ class MakeRepositoryCommand extends GeneratorCommand
      * @var string
      */
     protected $signature = 'app:make-repository {name}';
-    protected $type="class";
+
+    protected $type = 'class';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Command description';
-    public function getStub(){
 
-        $path =  str(file_get_contents(base_path("stubs/repository.stub")));
-        $className = $this->argument("name");
+    public function getStub()
+    {
+
+        $path = str(file_get_contents(base_path('stubs/repository.stub')));
+        $className = $this->argument('name');
         $tableName = str($className)->plural();
         $path->replace(
-            "{{ className }}"
-            
-        , $className)->replace("{{ tableName }}", $tableName);
-        return base_path("stubs/repository.stub");
+            '{{ className }}', $className)->replace('{{ tableName }}', $tableName);
+
+        return base_path('stubs/repository.stub');
 
     }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
         parent::handle();
-        $this->info("success");
+        $this->info('success');
     }
 }

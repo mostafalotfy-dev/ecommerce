@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->refrences("id")->on("products")->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("order_id")->foreignIdFor(Order::class)->refrences("id")->on("orders")->constrained()->cascadeOnDelete();
-            $table->unsignedBigInteger("quantity");
+            $table->unsignedBigInteger('product_id')->foreignIdFor(Product::class)->refrences('id')->on('products')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('order_id')->foreignIdFor(Order::class)->refrences('id')->on('orders')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('quantity');
             $table->timestamps();
         });
     }

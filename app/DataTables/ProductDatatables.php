@@ -2,15 +2,11 @@
 
 namespace App\DataTables;
 
-
 use App\Models\Product;
 use Illuminate\Database\Query\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\QueryDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -19,14 +15,14 @@ class ProductDatatables extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
         return (new QueryDataTable($query))
             ->addColumn('action', 'products.action')
-            ->addColumn('in_stock', function(Product $product){
-                return view("products.in_stock",compact("product"));
+            ->addColumn('in_stock', function (Product $product) {
+                return view('products.in_stock', compact('product'));
             })
             ->setRowId('id');
     }
@@ -36,7 +32,7 @@ class ProductDatatables extends DataTable
      */
     public function query(): QueryBuilder
     {
-        return \DB::table("products");
+        return \DB::table('products');
     }
 
     /**
@@ -45,20 +41,20 @@ class ProductDatatables extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productdatatables-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
+            ->setTableId('productdatatables-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -69,36 +65,36 @@ class ProductDatatables extends DataTable
         return [
 
             Column::make([
-                "title"=>"#",
-                "name"=>"id",
-                "data"=>"id"
+                'title' => '#',
+                'name' => 'id',
+                'data' => 'id',
             ]),
             Column::make([
-                "title"=>lang("product.fields.name_en"),
-                "name"=>"name_en",
-                "data"=>"name_en"
+                'title' => lang('product.fields.name_en'),
+                'name' => 'name_en',
+                'data' => 'name_en',
             ]),
             Column::make([
-                "title"=>lang("product.fields.name_ar"),
-                "name"=>"name_ar",
-                "data"=>"name_ar"
+                'title' => lang('product.fields.name_ar'),
+                'name' => 'name_ar',
+                'data' => 'name_ar',
             ]),
             Column::make([
-                "title"=>lang("products.fields.price"),
-                "name"=>"price",
-                "data"=>"price",
+                'title' => lang('products.fields.price'),
+                'name' => 'price',
+                'data' => 'price',
 
             ]),
             Column::make([
-                "title"=>lang("products.fields.discount"),
-                "name"=>"discount",
-                "data"=>"discount",
+                'title' => lang('products.fields.discount'),
+                'name' => 'discount',
+                'data' => 'discount',
 
             ]),
-            Column::computed("in_stock",lang("products.fields.in_stock"))
-            ->printable()
-            ->exportable(),
-            Column::computed('action',lang("action"))
+            Column::computed('in_stock', lang('products.fields.in_stock'))
+                ->printable()
+                ->exportable(),
+            Column::computed('action', lang('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
@@ -111,6 +107,6 @@ class ProductDatatables extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductDatatables_' . date('YmdHis');
+        return 'ProductDatatables_'.date('YmdHis');
     }
 }

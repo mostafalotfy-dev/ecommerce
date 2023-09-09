@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\OrderStatus;
-use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,9 +16,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("customer_id")->nullable()->foreignIdFor(User::class)->refrences("id")->on("users")->constrained()->cascadeOnDelete();
-            $table->bigInteger("quantity")->default(0);
-            $table->unsignedBigInteger("status_id")->foreignIdFor(OrderStatus::class)->refrences("id")->on("order_status")->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('customer_id')->nullable()->foreignIdFor(User::class)->refrences('id')->on('users')->constrained()->cascadeOnDelete();
+            $table->bigInteger('quantity')->default(0);
+            $table->unsignedBigInteger('status_id')->foreignIdFor(OrderStatus::class)->refrences('id')->on('order_status')->constrained()->cascadeOnDelete();
 
             $table->timestamps();
 

@@ -22,7 +22,8 @@ class UpdateBannerRequest extends FormRequest
      */
     public function rules(): array
     {
-       $rules= BannerRepository::$rules;
-       return $rules;
+        $rules = BannerRepository::$rules;
+
+        return $rules;
     }
 }

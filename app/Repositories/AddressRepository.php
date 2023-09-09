@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-class AddressRepository extends Repository{
-
-    function tableName(): string
+class AddressRepository extends Repository
+{
+    public function tableName(): string
     {
-        return "address";
+        return 'address';
     }
 }

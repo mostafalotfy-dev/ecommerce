@@ -13,9 +13,9 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::create([
-            "name_en"=>"dresses",
-            "name_ar"=>"فساتين",
-            "category_id"=>0,
+            'name_en' => 'dresses',
+            'name_ar' => 'فساتين',
+            'category_id' => 0,
 
         ]);
     }

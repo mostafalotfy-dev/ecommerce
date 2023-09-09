@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Attributes extends Model
 {
     use HasFactory;
-    protected $table = "products_attributes";
+
+    protected $table = 'products_attributes';
 }

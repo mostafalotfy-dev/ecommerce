@@ -8,8 +8,6 @@ use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class UsersDataTable extends DataTable
@@ -17,13 +15,13 @@ class UsersDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-		->addColumn('action', 'users.action')
-		
+            ->addColumn('action', 'users.action')
+
             ->setRowId('id');
     }
 
@@ -41,20 +39,20 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
+            ->setTableId('users-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -64,45 +62,45 @@ class UsersDataTable extends DataTable
     {
         return [
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-	  Column::make([
-		  "data"=>"id",
-		  "name"=>"id",
-		  "title"=>"#"
-	  ]),
-	  Column::make(([
-		  "data"=>"name",
-		  "name"=>"name",
-		  "title"=>lang("models/customers.fields.name")
-	  ])),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
             Column::make([
-		  "data"=>"mobile_code",
-		  "name"=>"mobile_code",
-		  "title"=>lang("models/customers.fields.mobile_code"
-	    ])
-	    Column::make([
-		    "data"=>"email",
-		    "name"=>"email",
-		    "title"=>lang("models/customers.fields.email")
-	    ]),
-	    Column::make([
-		    "data"=>"dob",
-		    "name"=>"dob",
-		    "title"=>lang("models/customers.fields.date_of_birth")
- 
-	    ]),
+                'data' => 'id',
+                'name' => 'id',
+                'title' => '#',
+            ]),
+            Column::make(([
+                'data' => 'name',
+                'name' => 'name',
+                'title' => lang('models/customers.fields.name'),
+            ])),
+            Column::make([
+                'data' => 'mobile_code',
+                'name' => 'mobile_code',
+                'title' => lang('models/customers.fields.mobile_code'),
+            ]),
+            Column::make([
+                'data' => 'email',
+                'name' => 'email',
+                'title' => lang('models/customers.fields.email'),
+            ]),
+            Column::make([
+                'data' => 'dob',
+                'name' => 'dob',
+                'title' => lang('models/customers.fields.date_of_birth'),
 
-            Column::make( ["data"=>"created_at",
-		    "name"=>"created_at",
-		    "title"=>lang("models/customers.fields.created_at`")
-	    ]),
-	    Column::make([ "data"=>"updated_at",
-		    "name"=>"updated_at",
-		    "title"=>lang("models/customers.fields.updated_at")
-]),
+            ]),
+
+            Column::make(['data' => 'created_at',
+                'name' => 'created_at',
+                'title' => lang('models/customers.fields.created_at`'),
+            ]),
+            Column::make(['data' => 'updated_at',
+                'name' => 'updated_at',
+                'title' => lang('models/customers.fields.updated_at'),
+            ]),
         ];
     }
 
@@ -111,6 +109,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'Users_'.date('YmdHis');
     }
 }

@@ -23,9 +23,10 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules =  ProductRepository::$rules;
-        $rules["name_en"] = "required|string|max:255|regex:(^[A-z])";
-        $rules["name_ar"] = "required|string|max:255|regex:(^[ء-ي])";
+        $rules = ProductRepository::$rules;
+        $rules['name_en'] = 'required|string|max:255|regex:(^[A-z])';
+        $rules['name_ar'] = 'required|string|max:255|regex:(^[ء-ي])';
+
         return $rules;
     }
 }

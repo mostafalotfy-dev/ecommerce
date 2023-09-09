@@ -2,13 +2,10 @@
 
 namespace App\DataTables;
 
-
 use Illuminate\Database\Query\Builder as QueryBuilder;
-
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-
 use Yajra\DataTables\QueryDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -17,7 +14,7 @@ class BrandDatatables extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder $query Results from query() method.
+     * @param  QueryBuilder  $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): QueryDataTable
     {
@@ -31,7 +28,7 @@ class BrandDatatables extends DataTable
      */
     public function query(): QueryBuilder
     {
-        return \DB::table("brands");
+        return \DB::table('brands');
     }
 
     /**
@@ -40,20 +37,20 @@ class BrandDatatables extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('branddatatables-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
+            ->setTableId('branddatatables-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload'),
+            ]);
     }
 
     /**
@@ -64,28 +61,28 @@ class BrandDatatables extends DataTable
         return [
 
             Column::make([
-                "name"=>"id",
-                "data"=>"id",
-                "title"=>"#"
+                'name' => 'id',
+                'data' => 'id',
+                'title' => '#',
             ]),
             Column::make([
-                "name"=>"name_en",
-                "data"=>"name_en",
-                "title"=>lang("model/brands.fields.name_en")
-            ]),Column::make([
-                "name"=>"name_ar",
-                "data"=>"name_ar",
-                "title"=>lang("model/brands.fields.name_ar")
+                'name' => 'name_en',
+                'data' => 'name_en',
+                'title' => lang('model/brands.fields.name_en'),
+            ]), Column::make([
+                'name' => 'name_ar',
+                'data' => 'name_ar',
+                'title' => lang('model/brands.fields.name_ar'),
             ]),
             Column::make([
-                "name"=>"created_at",
-                "data"=>"created_at",
-                "title"=>lang("models/brands.fields.created_at")
+                'name' => 'created_at',
+                'data' => 'created_at',
+                'title' => lang('models/brands.fields.created_at'),
             ]),
             Column::make([
-                "name"=>"updated_at",
-                "data"=>"updated_at",
-                "title"=>lang("models/brands.fields.updated_at")
+                'name' => 'updated_at',
+                'data' => 'updated_at',
+                'title' => lang('models/brands.fields.updated_at'),
             ]),
             Column::computed('action')
                 ->exportable(false)
@@ -100,6 +97,6 @@ class BrandDatatables extends DataTable
      */
     protected function filename(): string
     {
-        return 'BrandDatatables_' . date('YmdHis');
+        return 'BrandDatatables_'.date('YmdHis');
     }
 }

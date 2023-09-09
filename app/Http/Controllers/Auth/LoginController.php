@@ -18,12 +18,14 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
- 
+
     use AuthenticatesUsers;
+
     public function username()
     {
-        return "phone_number";
+        return 'phone_number';
     }
+
     /**
      * Where to redirect users after login.
      *
@@ -40,8 +42,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest:admin')->except('logout');
     }
+
     public function guard()
     {
-        return auth("admin");
+        return auth('admin');
     }
 }

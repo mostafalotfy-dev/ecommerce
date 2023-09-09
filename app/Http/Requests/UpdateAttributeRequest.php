@@ -23,6 +23,7 @@ class UpdateAttributeRequest extends FormRequest
     public function rules(): array
     {
         $rules = AttributeRepository::$rules;
+
         return $rules;
     }
 }

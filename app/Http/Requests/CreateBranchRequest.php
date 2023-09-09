@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+
 use App\Repositories\BranchRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,6 +23,6 @@ class CreateBranchRequest extends FormRequest
     public function rules(): array
     {
         return BranchRepository::$rules;
-            
+
     }
 }

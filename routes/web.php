@@ -1,15 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\BranchController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +26,16 @@ use App\Http\Controllers\CustomerController;
 //});
 
 Auth::routes();
-Route::group(["middleware"=>["auth:admin"]],fn() => Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'));
-Route::group(['prefix' => LaravelLocalization::setLocale(),"middleware"=>["auth:admin"]], function() {
-    Route::resource("roles", RoleController::class);
-    Route::resource("category",CategoryController::class);
-    Route::get("language",[LanguageController::class,"index"])->name("language.index");
-    Route::resource("admins",AdminController::class);
-    Route::resource("branches",BranchController::class);
-    Route::resource("customers",CustomerController::class);
-    Route::resource("brands", BrandController::class)->except("show");
-    Route::resource("products", ProductController::class);
+Route::group(['middleware' => ['auth:admin']], fn () => Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'));
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['auth:admin']], function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('category', CategoryController::class);
+    Route::get('language', [LanguageController::class, 'index'])->name('language.index');
+    Route::resource('admins', AdminController::class);
+    Route::resource('branches', BranchController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('brands', BrandController::class)->except('show');
+    Route::resource('products', ProductController::class);
 
-    Route::resource("files",\App\Http\Controllers\FileController::class);
+    Route::resource('files', \App\Http\Controllers\FileController::class);
 });
-
-

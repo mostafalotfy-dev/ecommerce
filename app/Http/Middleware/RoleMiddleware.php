@@ -13,15 +13,15 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request,$role, Closure $next): Response
+    public function handle(Request $request, $role, Closure $next): Response
     {
-        if(!auth("admin") ){
+        if (! auth('admin')) {
             abort(403);
         }
-        if(auth("admin") && !auth("admin")->roles()->where("name_".app()->getLocale(),$role)->exists())
-        {
+        if (auth('admin') && ! auth('admin')->roles()->where('name_'.app()->getLocale(), $role)->exists()) {
             abort(403);
         }
+
         return $next($request);
     }
 }

@@ -22,10 +22,11 @@ class UpdateAdminRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules= AdminRepository::$rules;
-        $rules["phone_number"] .= ",". request("admin");
-        $rules["email"] .= ",". request("admin");
-        unset($rules["password"]);
+        $rules = AdminRepository::$rules;
+        $rules['phone_number'] .= ','.request('admin');
+        $rules['email'] .= ','.request('admin');
+        unset($rules['password']);
+
         return $rules;
     }
 }

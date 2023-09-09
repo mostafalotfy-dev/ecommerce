@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('product_metas', function (Blueprint $table) {
             $table->id();
-            $table->string("key");
-            $table->string("type");
-            $table->unsignedBigInteger("product_id")->foreignIdFor(Product::class)->refrences("id")->on("products")->constrained()->cascadeOnDelete();
+            $table->string('key');
+            $table->string('type');
+            $table->unsignedBigInteger('product_id')->foreignIdFor(Product::class)->refrences('id')->on('products')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

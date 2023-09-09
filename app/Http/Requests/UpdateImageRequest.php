@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Image;
 use App\Repositories\ImageRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,6 +23,7 @@ class UpdateImageRequest extends FormRequest
     public function rules(): array
     {
         $rules = ImageRepository::$rules;
+
         return $rules;
     }
 }

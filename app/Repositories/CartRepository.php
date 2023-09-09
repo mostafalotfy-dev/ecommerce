@@ -2,12 +2,10 @@
 
 namespace App\Repositories;
 
-
-class CartRepository extends  Repository
+class CartRepository extends Repository
 {
-
-    function tableName(): string
+    public function tableName(): string
     {
-        return "carts";
+        return 'carts';
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace  App\Repositories;
-
+namespace App\Repositories;
 
 class PermissionRoleRepository extends Repository
 {
     protected $searchableFields = [
-      "id",
-      "permission_id",
-      "role_id"
+        'id',
+        'permission_id',
+        'role_id',
     ];
-    function tableName(): string
+
+    public function tableName(): string
     {
-        return "permission_role";
+        return 'permission_role';
     }
 }

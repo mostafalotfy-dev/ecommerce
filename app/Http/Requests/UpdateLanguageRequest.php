@@ -22,7 +22,8 @@ class UpdateLanguageRequest extends FormRequest
      */
     public function rules(): array
     {
-      $rules = LangRepository::$rules;
-      return $rules;
+        $rules = LangRepository::$rules;
+
+        return $rules;
     }
 }

@@ -34,8 +34,6 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
-
-
         // Create table for associating permissions to users (Many To Many Polymorphic)
         Schema::create('permission_user', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');

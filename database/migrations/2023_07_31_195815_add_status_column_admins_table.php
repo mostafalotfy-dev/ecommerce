@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("admins",function (Blueprint $table)
-        {
-            $table->boolean("status")->default(0);
+        Schema::table('admins', function (Blueprint $table) {
+            $table->boolean('status')->default(0);
         });
     }
 
@@ -22,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropColumns("admins","status");
+        Schema::dropColumns('admins', 'status');
     }
 };

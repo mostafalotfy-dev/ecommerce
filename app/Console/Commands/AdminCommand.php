@@ -28,18 +28,18 @@ class AdminCommand extends Command
     public function handle()
     {
         Admin::truncate();
-       Admin::create([
-        "first_name"=>"admin",
-        "last_name"=>"developer",
-        "phone_number"=>"01021408853",
-        "email"=>"mostafalotfy285@gmail.com",
-        "password"=>bcrypt("mostafalotfy285"),
-           "role_id"=>Role::create([
-               "name_en"=>"admin",
-               "name_ar"=>"أدمن",
+        Admin::create([
+            'first_name' => 'admin',
+            'last_name' => 'developer',
+            'phone_number' => '01021408853',
+            'email' => 'mostafalotfy285@gmail.com',
+            'password' => bcrypt('mostafalotfy285'),
+            'role_id' => Role::create([
+                'name_en' => 'admin',
+                'name_ar' => 'أدمن',
 
-           ])->id
-       ]);
-       $this->info("success");
+            ])->id,
+        ]);
+        $this->info('success');
     }
 }

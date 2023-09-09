@@ -15,8 +15,8 @@ class Select2AjaxResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-          "text"=>$request->lang == "en" ? $this->name_en : $this->name_ar,
-            "id"=>$this->id
+            'text' => $request->lang == 'en' ? $this->name_en : $this->name_ar,
+            'id' => $this->id,
         ];
     }
 }
