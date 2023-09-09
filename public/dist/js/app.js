@@ -5482,8 +5482,7 @@ if (document.querySelector("#image")) new dropzone__WEBPACK_IMPORTED_MODULE_4__[
   acceptedFiles: "image/*"
 });
 new dropzone__WEBPACK_IMPORTED_MODULE_4__["default"]("#files", {
-  acceptedFiles: ".csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*",
-  chunks: true
+  acceptedFiles: ".csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*"
 });
 
 /***/ }),

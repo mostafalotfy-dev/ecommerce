@@ -60,5 +60,5 @@ if(document.querySelector("#image"))
 
 new Dropzone("#files",{
     acceptedFiles:".csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*",
-    chunks:true
+
 })
