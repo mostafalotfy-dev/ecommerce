@@ -224,12 +224,13 @@ document.addEventListener("alpine:init", () => {
         }
     })
     Alpine.data("gallery",function (){
-
         return {
             images:[],
             get() {
-
-            }
+                fetch("/api/images")
+                    .then(res=>res.json())
+                    .then(data=>this.images = data.results);
+            },
         }
     })
     Alpine.data("address",function (){
@@ -240,7 +241,7 @@ document.addEventListener("alpine:init", () => {
 
               this.addresses =  this.addresses.filter( (address)=>{
 
-                  return id == address.id;
+                  return id === address.id;
               })
 
             },

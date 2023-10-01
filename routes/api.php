@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,4 @@ Route::put('ajax/update/{name}/status', [AjaxController::class, 'update_status']
 Route::get('ajax/update/cod/{status}/{id}', [AjaxController::class, 'update_cod']);
 Route::get('ajax/branches', [AjaxController::class, 'get_branches'])->name('branches.get');
 Route::get('ajax/brands', [AjaxController::class, 'get_brands'])->name('brands.get');
+Route::resource("images", ImageController::class);

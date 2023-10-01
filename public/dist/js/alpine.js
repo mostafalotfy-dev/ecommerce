@@ -224,7 +224,14 @@ document.addEventListener("alpine:init", function () {
   Alpine.data("gallery", function () {
     return {
       images: [],
-      get: function get() {}
+      get: function get() {
+        var _this6 = this;
+        fetch("/api/images").then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          return _this6.images = data.results;
+        });
+      }
     };
   });
   Alpine.data("address", function () {
@@ -233,7 +240,7 @@ document.addEventListener("alpine:init", function () {
       index: 1,
       "delete": function _delete(id) {
         this.addresses = this.addresses.filter(function (address) {
-          return id == address.id;
+          return id === address.id;
         });
       },
       add: function add() {

@@ -9,4 +9,5 @@
         <input name="file" type="file" accept="image/*" multiple />
     </div>
     {{html()->form()->close()}}
+
 @endsection

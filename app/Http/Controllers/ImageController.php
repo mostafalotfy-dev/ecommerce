@@ -15,9 +15,14 @@ class ImageController extends Controller
             ]);
         }
 
-        return view('images.index');
+        return view('files.index');
     }
-
+    public function show($directory)
+    {
+        return response()->json([
+            "results"=> \Storage::disk("public")->files($directory,true)
+        ]);
+    }
     public function store(): JsonResponse
     {
         $this->validate(request(), [
@@ -34,7 +39,7 @@ class ImageController extends Controller
         return response()->json();
     }
 
-    public function update($id)
+    public function update($id): JsonResponse
     {
         $input = request()->only('alt', 'description');
         $image = factory('image')->find($id);

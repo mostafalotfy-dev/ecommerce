@@ -16,6 +16,7 @@
         "laravel/ui": "^4.2",
         "mcamara/laravel-localization": "^1.8",
         "spatie/laravel-html": "^3.2",
+        "tightenco/ziggy": "^1.6",
         "tinymce/tinymce": "^6.6",
         "yajra/laravel-datatables": "10.0",
         "yajra/laravel-datatables-oracle": "10.3.1"
