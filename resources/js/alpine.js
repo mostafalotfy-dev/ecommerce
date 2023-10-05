@@ -231,6 +231,7 @@ document.addEventListener("alpine:init", () => {
         return {
             images:[],
             pageNumber:1,
+            enabled : false,
             init()
             {
                 this.get();
@@ -245,9 +246,7 @@ document.addEventListener("alpine:init", () => {
                     .then(res=> res.json())
                     .then(data => this.images = data.results);
             },
-            update_alt(target){
-
-
+            update(target){
                 const form = new FormData(target)
 
                 fetch(target.getAttribute("action"),{

@@ -37,6 +37,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['au
     Route::resource('customers', CustomerController::class);
     Route::resource('brands', BrandController::class)->except('show');
     Route::resource('products', ProductController::class);
-    Route::resource('files', FileController::class);
+    Route::resource('files', FileController::class)->except("destroy");
     Route::post("files/update_alt",[FileController::class,"update_alt"])->name("files.update_alt");
+    Route::delete("files",[FileController::class,"destroy"])->name("files.destroy");
 });

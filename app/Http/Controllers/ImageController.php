@@ -12,7 +12,7 @@ class ImageController extends Controller
     {
         if (request()->ajax()) {
             return response()->json([
-                'results' =>ImageResource::collection(factory("files")->fromDB()->paginate()),
+                'results' =>ImageResource::collection(factory("files")->fromDB()->orderBy("id","desc")->paginate()),
             ]);
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
@@ -62,8 +63,15 @@ class FileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(): JsonResponse
     {
-        //
+        \request()->validate([
+            "id"=>"required|integer",
+        ]);
+        $model = factory("image")->find(\request("id"));
+        $path =  $model->first()->file_name;
+        $model->delete();
+        unlink(public_path("storage/{$path}"));
+        return response()->json();
     }
 }
