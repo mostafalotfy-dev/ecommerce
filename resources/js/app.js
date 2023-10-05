@@ -4,6 +4,10 @@ import "../plugins/bootstrap-slider/bootstrap-slider.min.js"
 import Tagify from '@yaireo/tagify'
 import Dropzone from "dropzone";
 
+
+
+
+
 // tinymce
 
 tinymce.init({
@@ -62,3 +66,4 @@ new Dropzone("#files",{
     acceptedFiles:".csv,application/vnd.ms-excel,application/vnd.ms-excel,image/*,video/*,audio/*",
 
 })
+

@@ -13,6 +13,7 @@ use App\Repositories\CartRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CountryRepository;
 use App\Repositories\CustomerRepository;
+use App\Repositories\FileRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\LangRepository;
 use App\Repositories\OfferRepository;
@@ -137,5 +138,9 @@ class AppFactory
     public function country()
     {
         return app(CountryRepository::class);
+    }
+    public function files()
+    {
+        return app(FileRepository::class);
     }
 }

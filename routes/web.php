@@ -5,6 +5,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -36,6 +37,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['au
     Route::resource('customers', CustomerController::class);
     Route::resource('brands', BrandController::class)->except('show');
     Route::resource('products', ProductController::class);
-
-    Route::resource('files', \App\Http\Controllers\FileController::class);
+    Route::resource('files', FileController::class);
+    Route::post("files/update_alt",[FileController::class,"update_alt"])->name("files.update_alt");
 });

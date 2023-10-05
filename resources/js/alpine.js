@@ -1,3 +1,7 @@
+import route from 'ziggy';
+import { Ziggy } from './ziggy.js';
+
+
 document.addEventListener("alpine:init", () => {
     Alpine.store("search", {
             searchInput: "",
@@ -226,11 +230,48 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("gallery",function (){
         return {
             images:[],
-            get() {
-                fetch("/api/images")
-                    .then(res=>res.json())
-                    .then(data=>this.images = data.results);
+            pageNumber:1,
+            init()
+            {
+                this.get();
             },
+            get() {
+
+                fetch(`${location.protocol}/api/images?page=${this.pageNumber}`,{
+                    headers:{
+                        "X-Requested-With":"XMLHttpRequest"
+                    }
+                })
+                    .then(res=> res.json())
+                    .then(data => this.images = data.results);
+            },
+            update_alt(target){
+
+
+                const form = new FormData(target)
+
+                fetch(target.getAttribute("action"),{
+                    body:form,
+                    method:target.getAttribute("method")
+                }).then(()=>this.get())
+            },
+            next(){
+
+                this.pageNumber++;
+                if(this.pageNumber > this.images.length)
+                {
+                    this.pageNumber = this.images.length;
+                }
+                this.get()
+            },
+            prev(){
+                this.pageNumber--;
+                if(this.pageNumber < 1)
+                {
+                    this.pageNumber = 1;
+                }
+                this.get();
+            }
         }
     })
     Alpine.data("address",function (){
@@ -248,9 +289,11 @@ document.addEventListener("alpine:init", () => {
 
             add(){
                 this.addresses.push({id:this.index++})
-                console.log(this.$refs)
+
                 $(this.$refs.country).select2()
             }
         }
     })
+
+
 })

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use Illuminate\Http\JsonResponse;
 
@@ -11,7 +12,7 @@ class ImageController extends Controller
     {
         if (request()->ajax()) {
             return response()->json([
-                'results' => \Storage::disk('public')->directories(recursive : true),
+                'results' =>ImageResource::collection(factory("files")->fromDB()->paginate()),
             ]);
         }
 
@@ -44,7 +45,6 @@ class ImageController extends Controller
         $input = request()->only('alt', 'description');
         $image = factory('image')->find($id);
         $image->update($input);
-
         return response()->json($input);
 
     }

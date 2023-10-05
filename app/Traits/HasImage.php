@@ -8,7 +8,7 @@ trait HasImage
 
     protected string $field;
 
-    public function add(&$input)
+    public function add(&$input): void
     {
         if (request($this->field)) {
             $file = request()->file($this->field);
@@ -18,7 +18,7 @@ trait HasImage
         }
     }
 
-    public function delete($imageName)
+    public function delete($imageName): void
     {
         factory('compare')->when((bool) $imageName, fn () => \Storage::disk('public')->delete($imageName));
 

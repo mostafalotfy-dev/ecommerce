@@ -26,6 +26,7 @@
         "laravel-mix": "^6.0.49",
         "moment": "^2.29.4",
         "select2": "^4.1.0-rc.0",
-        "sweetalert2": "^11.7.20"
+        "sweetalert2": "^11.7.20",
+        "ziggy-js": "^1.6.2"
     }
 }
